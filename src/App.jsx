@@ -1,8 +1,10 @@
 import React from 'react'
-import { LoginPage } from './auth/pages/LoginPage'
+import { AppRouter } from './router/AppRouter'
 
 export const App = () => {
   return (
-    <LoginPage />
+    <>
+      <AppRouter/>
+    </>
   )
 }

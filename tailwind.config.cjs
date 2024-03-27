@@ -7,7 +7,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'login': "url(./src/shared/assets/FondoLogin.png)",        
+        'login': "url('./src/shared/assets/FondoLogin.png')",        
       },
       colors: {
         'primary': '#D1C8C1',
