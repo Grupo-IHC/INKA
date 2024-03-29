@@ -12,6 +12,9 @@ export default {
       colors: {
         'primary': '#D1C8C1',
         'secondary': '#31241E',
+      },
+      padding: {
+        '121px': '121px',
       }
     },
   },
