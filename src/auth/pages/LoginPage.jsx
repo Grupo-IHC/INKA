@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export const LoginPage = () => {
 
-  const {onInputChange, formState, email, password, onReset} = useForm({
+  const {onInputChange, formState, email, password} = useForm({
     email: '',
     password: ''
   })
@@ -20,7 +20,6 @@ export const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(formState);
-    onReset();
   }
 
   return (
