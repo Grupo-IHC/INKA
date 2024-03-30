@@ -1,11 +1,11 @@
 import React from 'react'
 import { Navbar } from '../components/Navbar'
+import { InicioPage } from './InicioPage/InicioPage'
 
 export const InkaPage = () => {
   return (
     <div className='pt-[121px]'>
-      <Navbar/>
-      <h1>InkaPage</h1>
+      <InicioPage/>
     </div>
   )
 }

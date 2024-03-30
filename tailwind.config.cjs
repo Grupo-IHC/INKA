@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       mont: ['Montserrat'],
+      pro: ['Source Code Pro']
     },
     extend: {
       backgroundImage: {
@@ -12,6 +13,10 @@ export default {
       colors: {
         'primary': '#D1C8C1',
         'secondary': '#31241E',
+        'tertiary': '#FF7000',
+        'cuaternary': '#7A3906',
+        'quinary': '#7A3906',
+        'senary': '#F6F4F3',
       },
       padding: {
         '121px': '121px',

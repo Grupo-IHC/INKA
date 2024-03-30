@@ -1,8 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 h1,h2,h3,h4,h5,h6,p,a,label,li{
   font-family: 'Montserrat';
+}
+
+.image-gallery-bullet {
+  background-color: #4a4b4a !important;
+}
+
+.btn-send {
+  @apply w-10/12 bg-transparent text-quinary font-mont font-bold text-xl py-2 px-2.5 rounded-3xl cursor-pointer border-2 border-secondary hover:bg-secondary hover:text-white;
+}
+.btn-send-2 {
+  @apply  bg-secondary text-white font-mont font-bold text-xl py-2 px-10 rounded-3xl cursor-pointer;
 }
