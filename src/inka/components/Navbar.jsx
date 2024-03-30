@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom';
 export const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white">
-      <div className='lg:container 2xl:container mx-auto w-full flex items-center justify-between py-3.5'>
+      <div className='container mx-auto w-full flex items-center justify-between py-3.5 lg:px-16 2xl:px-0'>
         <img src={inkaLogo} alt="inkaLogo" />
           <NavLink
            to="/" 
