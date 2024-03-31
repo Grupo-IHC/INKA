@@ -2,33 +2,21 @@ import ImageGallery from 'react-image-gallery'
 import { galleryImages } from '../../../core/galleryImages'
 import "react-image-gallery/styles/css/image-gallery.css";
 
-import inicioImg1 from '../../../shared/assets/InicioN1.png';
-import inicioImg2 from '../../../shared/assets/InicioN2.png';
+
 
 export const InicioPage = () => {
   return (
     <>   
-      <section className='carrousel'>
-        <ImageGallery 
-          items={galleryImages}
-          showPlayButton={false} 
-          showThumbnails={false}
-          showFullscreenButton={false}
-          showBullets={true}
-          autoPlay={true}
-          slideInterval={2000}
-        />
+      <section className='start h-[800px] 2xl:h-screen'>
+        <div className='container mx-auto text-white h-full py-3.5 relative flex flex-col items-center justify-center px-16 2xl:px-0'>
+          <h2 className='font-stick text-4xl 2xl:text-6xl font-light'>Negocios & Soluciones</h2>
+          <h1 className='font-pro text-7xl 2xl:text-9xl font-bold'>INKA</h1>
+          <p className='font-inika font-bold text-lg 2xl:text-2xl absolute bottom-24 left-14 2xl:left-1'> Empresa con una rica historia en la industria de sellos personalizados en Lima, Perú.</p>
+        </div>
       </section>
       <section className='home-1 bg-primary'>
-        <div className='container mx-auto py-9 flex justify-between'>
-          <div className='flex flex-col justify-center'>
-            <h1 className='text-secondary font-bold text-2xl py-4'>INKA - DEJA TU  HUELLA EN CADA PAGINA</h1>
-            <p className='text-2xl'>Nuestros sellos son mucho más que simples marcas <br/> en papel; son expresiones de tu individualidad y estilo.<br/> Con una variedad de diseños y opciones de<br/> personalización, puedes dejar tu huella única en cada<br/> página que toques.</p>
-          </div>
-          <div className='flex gap-x-14'>
-            <img src={inicioImg1} alt="inicioImg1" />
-            <img src={inicioImg2} alt="inicioImg2" />
-          </div>
+        <div>
+          Holaaaaaaaaaa
         </div>
       </section>
     </>
