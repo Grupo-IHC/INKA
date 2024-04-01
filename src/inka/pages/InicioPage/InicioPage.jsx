@@ -1,15 +1,25 @@
 import sealWoodImg from '../../../shared/assets/sealOneInicio.png';
 import sealAutomaticImg from '../../../shared/assets/sealTwoInicio.png';
 import inkaBack2 from '../../../shared/assets/inkaBack2.png';
+import { useLocationInicio } from '../../../hooks/useLocationInicio';
+import { useEffect } from 'react';
 
 export const InicioPage = () => {
+
+  const {isScrolled, scrollPosition} = useLocationInicio();
+
+  const containerStyle = {
+    transform: `translate3d(0, ${scrollPosition * 0.20}px, 0)`,
+    opacity: 1 - scrollPosition / 400
+  };
+
   return (
     <>   
       <section className='section-1 h-[600px] 2xl:h-screen'>
         <div className='container mx-auto text-white h-full py-3.5 relative px-16 2xl:px-0'>
-          <h2 className='absolute left-[30%] top-1/4 font-stick text-4xl 2xl:text-6xl font-light'>Negocios & Soluciones</h2>
-          <h1 className='font-pro absolute left-[40%] top-1/3 text-7xl 2xl:text-9xl font-bold'>INKA</h1>
-          <p className='font-inika font-bold text-lg 2xl:text-2xl absolute bottom-10 2xl:bottom-40 left-14 2xl:left-1'> Empresa con una rica historia en la industria de sellos personalizados en Lima, Perú.</p>
+          <h2 className='absolute left-[30%] top-1/4 font-stick text-4xl 2xl:text-6xl font-light' style={containerStyle}>Negocios & Soluciones</h2>
+          <h1 className={`font-pro absolute left-[40%] top-1/3 text-7xl 2xl:text-9xl font-bold ${isScrolled ? '' : ''}`} style={containerStyle}>INKA</h1>
+          <p className='font-inika font-bold text-lg 2xl:text-2xl absolute bottom-10 2xl:bottom-40 left-14 2xl:left-1' style={containerStyle}> Empresa con una rica historia en la industria de sellos personalizados en Lima, Perú.</p>
         </div>
       </section>
       <section className='section-2 bg-inicio2 bg-no-repeat bg-center-center bg-cover bg-white relative'>

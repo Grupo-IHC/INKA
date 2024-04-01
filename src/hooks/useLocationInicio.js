@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom"
 export const useLocationInicio = () => {
   const location = useLocation();
   const [showLogo, setShowLogo] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     setShowLogo(location.pathname !== '/')
@@ -13,6 +14,7 @@ export const useLocationInicio = () => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 100);
+      setScrollPosition(scrollPosition);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -22,8 +24,10 @@ export const useLocationInicio = () => {
     };
   }, []); 
 
+
   return {
     showLogo,
-    isScrolled
+    isScrolled,
+    scrollPosition,
   }
 }
