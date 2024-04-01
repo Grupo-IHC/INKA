@@ -21,49 +21,36 @@ const categorySeals = [
 
 export const ExplorarPage = () => {
 
-  const [indexLi, setIndexLi] = useState('');
-  const [valueAcordion, setValueAcordion] = useState(false)
+  const [indexLi, setIndexLi] = useState(0);
 
   const clickIndexLi = (index) => {
     setIndexLi(index);
     console.log(index);
   }
-
-  const clickArrow = () => {
-    setValueAcordion(!valueAcordion);
-  }
  
   return (
     <section className='section-2'>
-      <div className='container mx-auto py-9 flex justify-between'>
-        <div className='acordion w-96'>
-          <button 
-            className='w-full text-start flex items-center justify-between px-4 py-2 bg-primary'
-            onClick={clickArrow} 
-          >
-            <span className='font-bold text-2xl'>Categoría</span>
-            <img 
-              src={valueAcordion ? arrowRigthIcon : arrowDownIcon} 
-              alt="arrow"
-            />
-          </button>
-          {
-            valueAcordion && (
-              <ul className='bg-primary'>
-              {
-                categorySeals.map((category) => (
-                  <li
-                    key={category.id}
-                    className={`font-bold px-4 py-2 border-b border-white cursor-pointer ${indexLi === category.id ? 'text-cuaternary'  : ''}`}
-                    onClick={() => clickIndexLi(category.id)}
-                  >
-                    {category.name}
-                  </li>
-                ))
-              }
-              </ul>
-            )
-          }
+      <div className='container mx-auto py-9 px-10 2xl:px-0'>
+        <div className='acordion'>
+          <ul className='flex gap-x-2'>
+            <li 
+              className={`font-bold px-4 py-2 border-b border-white cursor-pointer rounded-3xl border-none ${indexLi === 0 ?'text-white bg-secondary'  : ''}`}
+              onClick={() => clickIndexLi(0)}
+            >
+              TODOS
+            </li>
+            {
+              categorySeals.map((category) => (
+                <li
+                  key={category.id}
+                  className={`font-bold px-4 py-2 border-b border-white cursor-pointer rounded-3xl border-none ${indexLi === category.id ?'text-white bg-secondary'  : ''}`}
+                  onClick={() => clickIndexLi(category.id)}
+                >
+                  {category.name}
+                </li>
+              ))
+            }
+          </ul>
         </div>
         <LayoutExplorerSeals/>
       </div>

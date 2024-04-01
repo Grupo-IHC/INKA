@@ -5,12 +5,12 @@ import { NavLink} from 'react-router-dom';
 import { useLocationInicio } from '../../hooks/useLocationInicio';
 
 export const Navbar = () => {
-  const {showLogo} = useLocationInicio();
+  const {showLogo, isScrolled} = useLocationInicio();
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 ${showLogo ? 'bg-white' : 'bg-transparent'}`}>
-      <div className={`container mx-auto w-full flex items-center ${showLogo ? "justify-between" : "justify-center gap-x-14"} py-3.5 px-16 2xl:px-0`}>
-        {showLogo && <img src={inkaLogo} alt="inkaLogo" />}
+    <header className={`fixed top-0 left-0 right-0 z-50 max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
+      <div className={`container mx-auto w-full flex items-center max-h-[112px] justify-center gap-x-10 py-3.5 px-10 2xl:px-0 2xl:py-14`}>
+        {showLogo && <img src={inkaLogo} className='w-1/12' alt="inkaLogo" />}
         <NavLink
          to="/" 
          className={({isActive}) => (isActive? "font-bold text-tertiary" : "font-bold")}

@@ -12,16 +12,16 @@ export const InkaRoutes = () => {
 
   return (
     <>
-    <Navbar/>
-    <div className={`${showLogo ? 'bg-white home pt-[121px]' : 'bg-inicio bg-no-repeat bg-center-center bg-cover pt-[67px]'}`}>
-      <Routes>
-        <Route path="/" element={<InicioPage/>} />
-        <Route path="/explorar" element={<ExplorarPage/>} />
-        <Route path="/productos" element={<ProductsPage/>} />
-        <Route path="/contactanos" element={<ContactanosPage/>} />
-        <Route path="/*" element={<Navigate to="/"/>} />
-      </Routes>
-    </div>
+      <Navbar/>
+      <div className={`${showLogo ? 'bg-white home pt-[67px] 2xl:pt-[112px]' : 'bg-inicio bg-no-repeat w-full bg-center-center object-cover bg-contain pt-[67px] 2xl:pt-[112px]'}`}>
+        <Routes>
+          <Route path="/" element={<InicioPage/>} />
+          <Route path="/explorar" element={<ExplorarPage/>} />
+          <Route path="/productos" element={<ProductsPage/>} />
+          <Route path="/contactanos" element={<ContactanosPage/>} />
+          <Route path="/*" element={<Navigate to="/"/>} />
+        </Routes>
+      </div>
     </>
   )
 }
