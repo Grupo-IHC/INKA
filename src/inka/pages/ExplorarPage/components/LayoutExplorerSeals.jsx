@@ -1,10 +1,10 @@
-import plantilla from '../../../../shared/assets/plantillaP1.png';
+import plantilla from '../../../../shared/assets/plantilla2.png';
 
 
 export const LayoutExplorerSeals = () => {
   return (
-    <div className="py-7 px-4 bg-primary rounded-lg w-8/12 grid grid-cols-3 gap-x-4 gap-y-4">
-      <div className="grid-cols-1 bg-white rounded-lg p-4 flex flex-col gap-y-5">
+    <div className="py-7 px-4 rounded-lg grid grid-cols-4 gap-x-20 gap-y-10">
+      <div className="grid-cols-1 bg-transparent border-2 rounded-3xl p-4 gap-y-5 flex flex-col">
         <img className='w-full' src={plantilla} alt="plantilla" />
         <div>
           <p className='font-pro text-lg'>SELLO 4911</p>
@@ -16,7 +16,6 @@ export const LayoutExplorerSeals = () => {
           </button>
         </div>
       </div>
-      
     </div>
   )
 }
