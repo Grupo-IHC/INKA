@@ -5,6 +5,7 @@ import { ExplorarPage } from "../pages/ExplorarPage/ExplorarPage"
 import { ProductsPage } from "../pages/ProductsPage/ProductsPage"
 import { ContactanosPage } from "../pages/ContactanosPage/ContactanosPage"
 import { useLocationInicio } from "../../hooks/useLocationInicio"
+import { Footer } from "../components/Footer"
 
 export const InkaRoutes = () => {
   
@@ -22,6 +23,7 @@ export const InkaRoutes = () => {
           <Route path="/*" element={<Navigate to="/"/>} />
         </Routes>
       </div>
+      <Footer/>
     </>
   )
 }

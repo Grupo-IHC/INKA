@@ -24,7 +24,6 @@ export const useLocationInicio = () => {
     };
   }, []); 
 
-
   return {
     showLogo,
     isScrolled,

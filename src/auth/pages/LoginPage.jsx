@@ -3,8 +3,12 @@ import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks/useForm';
 import eyeIcon from "../../shared/assets/eye.svg";
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { checkingAuthentication } from '../../store/auth/thunks';
 
 export const LoginPage = () => {
+
+  const dispatch = useDispatch();
 
   const {onInputChange, formState, email, password} = useForm({
     email: '',
@@ -19,6 +23,7 @@ export const LoginPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(checkingAuthentication(formState));
     console.log(formState);
   }
 
