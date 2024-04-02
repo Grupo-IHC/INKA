@@ -51,7 +51,7 @@ export const Navbar = () => {
         </NavLink>
         <span
           onClick={logoutAccount}
-          className='cursor-pointer'
+          className='cursor-pointer font-bold'
         >
           salir
         </span>
