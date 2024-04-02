@@ -3,14 +3,22 @@ import shopIcon from '../../shared/assets/shopIcon.svg';
 import profileIcon from '../../shared/assets/profileIcon.svg';
 import { NavLink} from 'react-router-dom';
 import { useLocationInicio } from '../../hooks/useLocationInicio';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/auth/authSlice';
 
 export const Navbar = () => {
   const {showLogo, isScrolled} = useLocationInicio();
+
+  const dispatch = useDispatch();
+
+  const logoutAccount = () => {
+    dispatch(logout());
+  }
   
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
       <div className={`container mx-auto w-full flex items-center max-h-[112px] justify-center gap-x-10 py-3.5 px-10 2xl:px-0 2xl:py-14`}>
-        {showLogo && <img src={inkaLogo} className='w-1/12' alt="inkaLogo" />}
+        <img src={inkaLogo} className='w-1/12' alt="inkaLogo" />
         <NavLink
          to="/" 
          className={({isActive}) => (isActive? "font-bold text-tertiary" : "font-bold")}
@@ -41,6 +49,12 @@ export const Navbar = () => {
         <NavLink href="">
           <img src={profileIcon} alt="profileIcon" />
         </NavLink>
+        <span
+          onClick={logoutAccount}
+          className='cursor-pointer'
+        >
+          salir
+        </span>
       </div>
     </header>
   )

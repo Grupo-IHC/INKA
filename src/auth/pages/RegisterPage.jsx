@@ -3,6 +3,9 @@ import eyeIcon from "../../shared/assets/eye.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../store/auth/Providers";
+import { failedRegister, successfulRegister } from "../../store/auth/registerSlice";
 
 const formValidations = {
   nroDocument: [(value) => value.length === 8,'El DNI debe tener 8 caracteres.'],
@@ -13,6 +16,8 @@ const formValidations = {
 };
 
 export const RegisterPage = () => {
+
+  const dispatch = useDispatch();
 
   const {onInputChange, formState, onReset, nroDocument, firstName, secondName, lastName, secondLastName, email, password, nroDocumentValid, firstNameValid, lastNameValid, emailValid, passwordValid, isFormValid} = useForm({
     nroDocument: '',
@@ -31,11 +36,26 @@ export const RegisterPage = () => {
     setvalueEye(!valueEye);
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid) return;
-    console.log(formState);
+    const dataSend = {
+      email,
+      password,
+      first_name: firstName,
+      second_name: secondName,
+      last_name : lastName,
+      second_last_name: secondLastName,
+      document_number: nroDocument
+    }
+    const response = await createUser(dataSend);
+    
+    if( response.status !== 'OK') {
+      dispatch(failedRegister(response));
+    } else {
+      dispatch(successfulRegister(response));
+    }
   }
 
   return (

@@ -4,7 +4,8 @@ import { useForm } from '../../hooks/useForm';
 import eyeIcon from "../../shared/assets/eye.svg";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { checkingAuthentication } from '../../store/auth/thunks';
+import { loginUser } from '../../store/auth/Providers';
+import { login, logout } from '../../store/auth/authSlice';
 
 export const LoginPage = () => {
 
@@ -21,10 +22,15 @@ export const LoginPage = () => {
     setvalueEye(!valueEye);
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
-    dispatch(checkingAuthentication(formState));
-    console.log(formState);
+    // dispatch(checkingAuthentication(formState));
+    const{ok, data} = await loginUser({username: email, password});
+    if(ok) {
+      dispatch(login(data.user));
+    } else {
+      dispatch(logout());
+    }
   }
 
   return (

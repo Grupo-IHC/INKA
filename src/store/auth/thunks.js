@@ -1,8 +1,17 @@
-import { checkingCredentials, login } from "./authSlice";
+import { createUser } from "./Providers";
+import { checkingCredentials, login, logout } from "./authSlice";
 
-export const checkingAuthentication = ({email, password}) => {
+export const checkingAuthentication = () => {
   return async (dispatch) => {
-    // dispatch(checkingCredentials());
-    dispatch(login({email, password}));
+    dispatch(checkingCredentials());
+  }
+}
+
+export const SignIn = (data) => {
+  return async (dispatch) => {
+    dispatch(checkingCredentials());
+    const result = await createUser(data);
+    if (result.status !== 'OK') return dispatch(logout(result.msg));
+    dispatch(login(data));
   }
 }

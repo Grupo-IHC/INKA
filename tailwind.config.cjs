@@ -10,7 +10,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'login': "url('/src/shared/assets/FondoLogin.png')",    
+        'login': "url('/src/shared/assets/backgroundLR.png')",    
         'inicio': "url('/src/shared/assets/backgroundInicio.png')",
         'inicio2': "url('/src/shared/assets/backgroundInicio2.png')",
       },
