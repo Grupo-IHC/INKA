@@ -16,8 +16,8 @@ export const Navbar = () => {
   }
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
-      <div className={`container mx-auto w-full flex items-center max-h-[112px] justify-center gap-x-10 py-3.5 px-10 2xl:px-0 2xl:py-14`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 max-h-[67px] 2xl:max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
+      <div className={`container mx-auto w-full flex items-center justify-center gap-x-10 py-3.5 px-10 2xl:px-0 2xl:py-7`}>
         <img src={inkaLogo} className='w-1/12' alt="inkaLogo" />
         <NavLink
          to="/" 
@@ -43,18 +43,20 @@ export const Navbar = () => {
         >
           CONTÁCTANOS
         </NavLink>
-        <NavLink href="">
+        <NavLink
+          to={"/shopping"}
+        >
           <img src={shopIcon} alt="shopIcon" />
         </NavLink>
         <NavLink href="">
           <img src={profileIcon} alt="profileIcon" />
         </NavLink>
-        <span
+        {/* <span
           onClick={logoutAccount}
           className='cursor-pointer font-bold'
         >
           salir
-        </span>
+        </span> */}
       </div>
     </header>
   )
