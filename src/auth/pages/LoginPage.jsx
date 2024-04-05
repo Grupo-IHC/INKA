@@ -6,10 +6,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../store/auth/Providers';
 import { login, logout } from '../../store/auth/authSlice';
+import { useAuthStore } from '../../hooks/useAuthStore';
 
 export const LoginPage = () => {
 
   const dispatch = useDispatch();
+
+  const {startLogin,} = useAuthStore();
 
   const {onInputChange, formState, email, password} = useForm({
     email: '',
@@ -24,13 +27,7 @@ export const LoginPage = () => {
 
   const onSubmit = async(e) => {
     e.preventDefault();
-    // dispatch(checkingAuthentication(formState));
-    const{ok, data} = await loginUser({username: email, password});
-    if(ok) {
-      dispatch(login(data.user));
-    } else {
-      dispatch(logout());
-    }
+    startLogin({username: email, password});
   }
 
   return (
