@@ -28,3 +28,47 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
 .slick-dots .slick-active button::before{
   color: #FF7000 !important;
 }
+
+.loader-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 50;
+  position: fixed;
+  opacity: 0.55;
+  background: #000;
+}
+.loader-container .message {
+  margin: 0;
+  position: absolute;
+  bottom: 300px;
+  width: 613px;
+  height: 93px;
+  color: #F5FDF7;
+  text-align: center;
+  font-family: Inter;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px; /* 120% */
+  letter-spacing: -0.5px;
+}
+.loader {
+  width: 179px;
+  height: 179px;
+  padding: 20px;
+  aspect-ratio: 150%;
+  border-radius: 50%;
+  background: #F5FDF7;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 2s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}

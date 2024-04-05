@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from '../../store/auth/Providers';
 import { login, logout } from '../../store/auth/authSlice';
 import { useAuthStore } from '../../hooks/useAuthStore';
+import { Loader } from '../../inka/components/Loader';
 
 export const LoginPage = () => {
 
@@ -31,7 +32,9 @@ export const LoginPage = () => {
   }
 
   return (
-    <AuthLayout title="Login"> 
+    <>
+      {/* <Loader /> */}
+      <AuthLayout title="Login"> 
       <form onSubmit={onSubmit}>
         <div className='flex justify-between pb-8 flex-col'>
           <label className='font-mont font-bold text-xl py-1' htmlFor="email">Email</label>
@@ -71,6 +74,7 @@ export const LoginPage = () => {
           </Link>
         </div>
       </form>
-    </AuthLayout>
+      </AuthLayout>
+    </>
   )
 }

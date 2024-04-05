@@ -8,13 +8,24 @@ import plusIcon from '../../../shared/assets/plusIcon.svg';
 import iconCheck from '../../../shared/assets/iconCheck.svg';
 import visaAndMast from '../../../shared/assets/visaAndMasLogo.png';
 import plinAndYape from '../../../shared/assets/plinAndYapeIcon.png';
+import { useState } from 'react';
+import { ModalDelivery } from './components/ModalDelivery';
 
 export const ShoppingCart = () => {
+
+  const [selectedOption, setSelectedOption] = useState('')
+
+  const handleOption = (option) => {
+    setSelectedOption(option);
+  }
+
   return (
-    <section className="shoppingCart">
-      <div className="container mx-auto py-9 px-10 2xl:px-0 grid grid-cols-12 gap-x-4">
-        <div className="col-span-9 2xl:col-span-8">
-          <div className="table w-full bg-[#D9D9D9] py-[10px] px-[10px]">
+    <>
+      {selectedOption === 'delivery' && <ModalDelivery />}
+      <section className="shoppingCart">
+        <div className="container mx-auto py-9 px-10 2xl:px-0 grid grid-cols-12 gap-x-4">
+          <div className="col-span-9 2xl:col-span-8">
+            <div className="table w-full bg-[#D9D9D9] py-[10px] px-[10px]">
             <div className="grid grid-cols-12 ">
               <div className="col-span-4 2xl:col-span-4">
                 <p>PRODUCTO</p>
@@ -32,8 +43,8 @@ export const ShoppingCart = () => {
                 <p>TOTAL</p>
               </div>
             </div>
-          </div>
-          <div className="products w-full max-h-[700px] overflow-y-auto	">
+            </div>
+            <div className="products w-full max-h-[700px] overflow-y-auto	">
             {/* Iterar */}
             <div className="grid grid-cols-12 px-[10px] py-[20px] border-b-2">
               <div className="col-span-4 2xl:col-span-4">
@@ -76,18 +87,24 @@ export const ShoppingCart = () => {
                 <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ 30.00</p>
               </div>
             </div>         
+            </div>
           </div>
-        </div>
-        <div className='col-span-3 bg-[#D1C8C1] max-h-[650px] p-[15px]'>
-          <h2 className='text-center font-mont text-[18px] 2xl:text-[25px] pb-[10px] border-b-2 border-[#5A5A5A]'>Resumen de pedidos</h2>
-          <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl'>
-            Retiro en tienda
-            <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
-          </button>
-          <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl'>
-            Delivery
-            <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
-          </button>
+          <div className='col-span-3 2xl:col-span-4 bg-[#D1C8C1] max-h-[650px] p-[15px]'>
+            <h2 className='text-center font-mont text-[18px] 2xl:text-[25px] pb-[10px] border-b-2 border-[#5A5A5A]'>Resumen de pedidos</h2>
+            <button 
+              className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'retiro' && 'bg-[#31241E] text-white'}`}
+              onClick={() => handleOption('retiro')}
+            >
+              Retiro en tienda
+              <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
+            </button>
+            <button 
+              className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'delivery' && 'bg-[#31241E] text-white'}`}
+              onClick={() => handleOption('delivery')}
+            >
+              Delivery
+              <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
+            </button>
           <div className='my-[30px]  2xl:px-[15px] flex flex-col gap-y-5'>
             <div className='flex justify-between'>
               <span className='font-semibold text-[16px] 2xl:text-[20px]'>Articulos</span>
@@ -105,17 +122,17 @@ export const ShoppingCart = () => {
           </div>
           <div className='flex flex-col gap-y-2'>
             <h2 className='text-[16px] 2xl:text-[22px] font-semibold'>Metodo de Pago: </h2>
-            <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl'>
-              <div className='flex gap-x-2 2xl:gap-x-4'>
-                <h3>Tarjetas</h3>
-                <img src={visaAndMast} className='w-5/12' alt="tarjetas" />
+            <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px]'>
+              <div className='flex items-center gap-x-2'>
+                <span className='font-mont'>Tarjetas</span>
+                <img src={visaAndMast} className='w-[40%]' alt="tarjetas" />
               </div>
               <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
             </button>
-            <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl'>
-              <div className='flex 2xl:gap-x-4 items-center'>
-                <h3>Billteteras</h3>
-                <img src={plinAndYape} className='w-5/12' alt="billeteras" />
+            <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px]'>
+              <div className='flex items-center gap-x-2'>
+                <span className='font-mont'>Billeteras</span>
+                <img src={plinAndYape} className='w-[35%]' alt="billeteras" />
               </div>
               <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
             </button>
@@ -128,9 +145,10 @@ export const ShoppingCart = () => {
               Volver
             </button>
           </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
