@@ -12,11 +12,11 @@ export const useAuthStore = () => {
     dispatch(checkingCredentials());
 
     try {
-      const {data} = await inkaApi.post('/security/login', {username, password})
+      const {data} = await inkaApi.post('/security/login', {username, password});
       localStorage.setItem('token', data.access);
       dispatch(login({ user: data.user, confirmation: data.confirmation }));
     } catch (error) {
-      dispatch(logout({detail: error.response.data.detail}))
+      dispatch(logout({detail: error.response.data.detail}));
     }
   }
 
@@ -30,8 +30,17 @@ export const useAuthStore = () => {
       dispatch(login({ user: data.user, confirmation: 'waaaazaaaa'}));
     } catch (error) {
       localStorage.clear();
-      dispatch(logout({detail: error.response.data.detail}))
+      dispatch(logout({detail: error.response.data.detail}));
     }
+ }
+
+ const registerUser = async(data) => {
+  try {
+    const response = await inkaApi.post('/security/register', data);
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
  }
 
   return {
@@ -41,6 +50,7 @@ export const useAuthStore = () => {
 
     startLogin,
     checkAuthToken,
+    registerUser
   }
 
 };

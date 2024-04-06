@@ -3,9 +3,7 @@ import eyeIcon from "../../shared/assets/eye.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import { useDispatch } from "react-redux";
-import { createUser } from "../../store/auth/Providers";
-import { failedRegister, successfulRegister } from "../../store/auth/registerSlice";
+import { registerUser } from "../../hooks/useAuthStore";
 
 const formValidations = {
   nroDocument: [(value) => value.length === 8,'El DNI debe tener 8 caracteres.'],
@@ -16,8 +14,6 @@ const formValidations = {
 };
 
 export const RegisterPage = () => {
-
-  const dispatch = useDispatch();
 
   const {onInputChange, formState, onReset, nroDocument, firstName, secondName, lastName, secondLastName, email, password, nroDocumentValid, firstNameValid, lastNameValid, emailValid, passwordValid, isFormValid} = useForm({
     nroDocument: '',
@@ -49,13 +45,9 @@ export const RegisterPage = () => {
       second_last_name: secondLastName,
       document_number: nroDocument
     }
-    const response = await createUser(dataSend);
+
+    const response = await registerUser(dataSend);
     
-    if( response.status !== 'OK') {
-      dispatch(failedRegister(response));
-    } else {
-      dispatch(successfulRegister(response));
-    }
   }
 
   return (

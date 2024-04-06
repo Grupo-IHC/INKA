@@ -14,14 +14,22 @@ import { ModalDelivery } from './components/ModalDelivery';
 export const ShoppingCart = () => {
 
   const [selectedOption, setSelectedOption] = useState('')
+  const [showModalDelivery, setShowModalDelivery] = useState(false)
 
   const handleOption = (option) => {
     setSelectedOption(option);
+    if(option === 'delivery') {
+      setShowModalDelivery(true);
+    }
+  }
+
+  const onCloseModalDelivery = () => {
+    setShowModalDelivery(false);
   }
 
   return (
     <>
-      {selectedOption === 'delivery' && <ModalDelivery />}
+      {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} />}
       <section className="shoppingCart">
         <div className="container mx-auto py-9 px-10 2xl:px-0 grid grid-cols-12 gap-x-4">
           <div className="col-span-9 2xl:col-span-8">
@@ -92,14 +100,14 @@ export const ShoppingCart = () => {
           <div className='col-span-3 2xl:col-span-4 bg-[#D1C8C1] max-h-[650px] p-[15px]'>
             <h2 className='text-center font-mont text-[18px] 2xl:text-[25px] pb-[10px] border-b-2 border-[#5A5A5A]'>Resumen de pedidos</h2>
             <button 
-              className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'retiro' && 'bg-[#31241E] text-white'}`}
+              className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'retiro' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}`}
               onClick={() => handleOption('retiro')}
             >
               Retiro en tienda
               <img src={iconCheck} className='w-[15%] 2xl:w-auto' alt="iconCheck" />
             </button>
             <button 
-              className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'delivery' && 'bg-[#31241E] text-white'}`}
+              className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'delivery' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}`}
               onClick={() => handleOption('delivery')}
             >
               Delivery
