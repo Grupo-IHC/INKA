@@ -6,11 +6,9 @@ export const inkaApi = axios.create({
 })
 
 // inkaApi.interceptors.request.use( config => {
-//   // config.headers = {
-//   //   ...config.headers,
-//   //   'token' :  localStorage.getItem('token')
-//   // }
-//   console.log(config)
-//   config.headers['Token'] = 'waza'
+//   config.headers = {
+//     ...config.headers,
+//     'Bearer' :  localStorage.getItem('token')
+//   }
 //   return config;
 // })

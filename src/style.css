@@ -29,7 +29,7 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   color: #FF7000 !important;
 }
 
-.loader-container{
+/* .loader-container{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,29 +39,27 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   position: fixed;
   opacity: 0.55;
   background: #000;
+} */
+.stamp {
+ animation: bounce 1s infinite;
 }
-.loader-container .message {
-  margin: 0;
-  position: absolute;
-  bottom: 300px;
-  width: 613px;
-  height: 93px;
-  color: #F5FDF7;
-  text-align: center;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 48px; /* 120% */
-  letter-spacing: -0.5px;
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px) scaleY(0.7); 
+  }
+  50% {
+    transform: translateY(-40px) scaleY(1); 
+  }
 }
 .loader {
+  position: absolute;
+  top: 39%;
   width: 179px;
   height: 179px;
   padding: 20px;
   aspect-ratio: 150%;
   border-radius: 50%;
-  background: #F5FDF7;
+  background: #31241E;
   --_m: 
     conic-gradient(#0000 10%,#000),
     linear-gradient(#000 0 0) content-box;

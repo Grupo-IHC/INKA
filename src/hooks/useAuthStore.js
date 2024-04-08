@@ -15,6 +15,7 @@ export const useAuthStore = () => {
       const {data} = await inkaApi.post('/security/login', {username, password});
       localStorage.setItem('token', data.access);
       dispatch(login({ user: data.user, confirmation: data.confirmation }));
+      return data;
     } catch (error) {
       dispatch(logout({detail: error.response.data.detail}));
     }
@@ -23,6 +24,7 @@ export const useAuthStore = () => {
   const checkAuthToken = async() => {
     const token = localStorage.getItem('token');
     if (!token) return dispatch(logout({detail: 'No token found'}));
+    inkaApi.defaults.headers.common.Authorization = "Bearer" + " " + token;
     try {
       dispatch(checkingCredentials());
       const {data} = await inkaApi.post('/security/token/verify/', {token: token});

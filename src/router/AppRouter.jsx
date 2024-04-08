@@ -10,14 +10,20 @@ export const AppRouter = () => {
 
   const {status, checkAuthToken} = useAuthStore();
 
-    // useEffect(() => {
-    //   checkAuthToken();
-    // }, [])
+  useEffect(() => {
+    checkAuthToken();
+  }, [])
 
-    return (
-      <Routes>
-          <Route path="/*" element={<InkaRoutes/>} />
-          <Route path="/auth/*" element={<AuthRoutes/>} />
-      </Routes>
-    )
-  }
+  if (status === 'checking') return <Loader/>
+
+  return (
+    <Routes>
+        {
+          (status === 'authenticated')
+          ? <Route path="/*" element={<InkaRoutes/>} />
+          : <Route path="/auth/*" element={<AuthRoutes/>} />
+        }
+        <Route path="/*" element={<Navigate to={'/auth/login'}/>} />
+    </Routes>
+  )
+}

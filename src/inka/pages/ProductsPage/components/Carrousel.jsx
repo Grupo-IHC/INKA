@@ -76,7 +76,7 @@ export const Carrousel = () => {
         {
           seals.map((seal) => (
             <div key={seal.id} className="slider-item !flex justify-center text-center">
-              <img src={seal.image} className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer"  alt="Seal" />
+              <img src={seal.image} className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl"  alt="Seal" />
             </div>
           ))
         }

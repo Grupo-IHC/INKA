@@ -27,11 +27,17 @@ export const LoginPage = () => {
 
   const onSubmit = async(e) => {
     e.preventDefault();
-    startLogin({username: email, password});
+    try {
+    const response = await startLogin({username: email, password});
+    if (response) navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <>
+      {/* <Loader /> */}
       {status === 'checking' && <Loader />}
       <AuthLayout title="Login"> 
         <form onSubmit={onSubmit}>
