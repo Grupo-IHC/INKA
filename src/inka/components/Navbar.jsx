@@ -1,18 +1,43 @@
 import inkaLogo from '../../shared/assets/inkaLogo.svg';
 import shopIcon from '../../shared/assets/shopIcon.svg';
 import profileIcon from '../../shared/assets/profileIcon.svg';
-import { NavLink} from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import { useLocationInicio } from '../../hooks/useLocationInicio';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../store/auth/authSlice';
+import { useAuthStore } from '../../hooks/useAuthStore';
+import { useState } from 'react';
 
 export const Navbar = () => {
   const {showLogo, isScrolled} = useLocationInicio();
 
-  const dispatch = useDispatch();
+  const {logoutUser, status} = useAuthStore();
 
-  const logoutAccount = () => {
-    dispatch(logout());
+  const navigate = useNavigate();
+
+  const [showProfile, setShowProfile] = useState(false)
+
+  const logOut =  () => {
+    logoutUser();
+    navigate("/auth/login") 
+  }
+
+  const showAccout = () => {
+    return (
+      <div className='fixed bg-white'>
+        {
+          (status === "authenticated") 
+          ? <small
+              onClick={logOut}
+            >
+              Salir
+            </small>
+          : <small>Logueate</small>
+        }
+      </div>
+    )
+  }
+
+  const valueShowProfile = () => {
+    setShowProfile(!showProfile)
   }
   
   return (
@@ -48,9 +73,13 @@ export const Navbar = () => {
         >
           <img src={shopIcon} alt="shopIcon" />
         </NavLink>
-        <NavLink href="">
-          <img src={profileIcon} alt="profileIcon" />
-        </NavLink>
+        <img 
+          src={profileIcon} 
+          alt="profileIcon"
+          className='cursor-pointer'
+          onClick={valueShowProfile} 
+        />
+        {showProfile && showAccout}
         {/* <span
           onClick={logoutAccount}
           className='cursor-pointer font-bold'

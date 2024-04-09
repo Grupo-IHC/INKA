@@ -45,6 +45,11 @@ export const useAuthStore = () => {
   }
  }
 
+ const logoutUser = () => {
+  localStorage.removeItem("token");
+  dispatch(logout());
+ }
+
   return {
     erroMessage,
     status,
@@ -52,7 +57,8 @@ export const useAuthStore = () => {
 
     startLogin,
     checkAuthToken,
-    registerUser
+    registerUser,
+    logoutUser
   }
 
 };
