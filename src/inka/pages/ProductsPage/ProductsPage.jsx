@@ -37,9 +37,9 @@ export const ProductsPage = () => {
     <section className="section-3 bg-products bg-center bg-no-repeat bg-cover">
       <div className="container mx-auto py-9 px-10 2xl:px-0 flex flex-col gap-y-16">
         {
-          productsType.map((product,key) => (
-            <div className={`${key + 1} flex max-h-[339px]`}>
-              { key % 2 !== 0 ? 
+          productsType.map((product,index) => (
+            <div key={index} className={`${index + 1} flex max-h-[339px]`}>
+              { (index + 1) % 2 === 0 ? 
                <>
                  <div className='flex flex-col gap-y-4 2xl:gap-y-14'>
                   <h3 className='text-[20px] 2xl:text-[30px]'>{product.name}</h3>
@@ -47,7 +47,7 @@ export const ProductsPage = () => {
                   <div className='text-end'>
                     <button 
                       className='btn-send-2'
-                      onClick={() => clickSeeMore('automaticos')}
+                      onClick={() => clickSeeMore(product.id)}
                     >
                       Ver más
                     </button>
@@ -66,7 +66,7 @@ export const ProductsPage = () => {
                 <div className='text-end'>
                   <button 
                     className='btn-send-2'
-                    onClick={() => clickSeeMore('automaticos')}
+                    onClick={() => clickSeeMore(product.id)}
                   >
                     Ver más
                   </button>

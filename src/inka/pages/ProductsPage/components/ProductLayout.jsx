@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Carrousel } from "./Carrousel";
+import { useInkaStore } from "../../../../hooks/useInkaStore";
+import { Loader } from "../../../components/Loader";
 
 const categorySeals = [
   {
@@ -21,18 +23,31 @@ const categorySeals = [
 export const ProductLayout = () => {
   const {id} =  useParams();
 
+  const {loading, getTypeSealsById} = useInkaStore();
+
   const [indexLi, setIndexLi] = useState(0);
+  const [productById, setProductById] = useState([])
 
   const clickIndexLi = (index) => {
     setIndexLi(index);
     console.log(index);
   }
+
+  useEffect(() => {
+    const getProductById = async() => {
+      const {data} = await getTypeSealsById(id)
+      setProductById(data);
+    }
+    getProductById();
+  }, [])
   
   return (
+    <>
+    {loading && <Loader />}
     <section className={`section-3-seal-${id}`}>
       <div className="container mx-auto py-9 px-10 2xl:px-0 flex flex-col">
-        <h1 className="font-mont font-ligth text-[30px]">Sellos {id.charAt(0).toUpperCase() + id.slice(1)}</h1>
-        <p className="font-mont text-[16px] mt-[20px] mb-[50px]">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat ipsum numquam explicabo qui sequi unde non aliquam illum nemo? Nesciunt velit illum hic sunt. Ab et officia possimus similique repellat.</p>
+        <h1 className="font-mont font-ligth text-[30px]">{productById.name}</h1>
+        <p className="font-mont text-[16px] mt-[20px] mb-[50px]">{productById.description}</p>
         <div className='acordion mb-[50px]'>
           <ul className='flex gap-x-2'>
             <li 
@@ -57,5 +72,6 @@ export const ProductLayout = () => {
         <Carrousel />
       </div>
     </section>
+    </>
   )
 }

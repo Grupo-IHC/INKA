@@ -17,9 +17,22 @@ export const useInkaStore = () => {
       setLoading(false);
     }
   }
+  const getTypeSealsById = async(id) => {
+    try {
+      const {data} = await inkaApi.get(`/product/type/${id}`);
+      return data;
+
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
 
   return {
     getTypeSeals,
+    getTypeSealsById,
     loading
   }
 }
