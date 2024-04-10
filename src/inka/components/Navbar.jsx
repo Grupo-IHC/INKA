@@ -49,11 +49,11 @@ export const Navbar = () => {
   
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 max-h-[67px] 2xl:max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
-      <div className={`container mx-auto w-full flex items-center justify-center gap-x-10 py-3.5 px-10 2xl:px-0 2xl:py-7 relative`}>
-        <img src={inkaLogo} className='w-1/12' alt="inkaLogo" />
+      <div className={`container mx-auto w-full flex items-center gap-x-1 2xl:justify-center 2xl:gap-x-10 py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
+        <img src={inkaLogo} className='w-2/12' alt="inkaLogo" />
         <NavLink
          to="/" 
-         className={({isActive}) => (isActive? "font-bold text-tertiary" : "font-bold")}
+         className={({isActive}) => (isActive? "font-bold text-tertiary text-[12px]" : "font-bold text-[12px]")}
         >
           INICIO
         </NavLink>
@@ -65,13 +65,13 @@ export const Navbar = () => {
         </NavLink> */}
         <NavLink 
           to="/productos" 
-          className={({isActive}) => (isActive? "font-bold text-tertiary" : "font-bold")}
+          className={({isActive}) => (isActive? "font-bold text-tertiary text-[12px] text-center" : "font-bold text-[12px] text-center")}
         >
           NUESTROS PRODUCTOS
         </NavLink>
         <NavLink
          to="/contactanos" 
-         className={({isActive}) => (isActive? "font-bold text-tertiary" : "font-bold")}
+         className={({isActive}) => (isActive? "font-bold text-tertiary text-[12px]" : "font-bold text-[12px]")}
         >
           CONTÁCTANOS
         </NavLink>
@@ -83,7 +83,7 @@ export const Navbar = () => {
         <img 
             src={profileIcon} 
             alt="profileIcon"
-            className='cursor-pointer'
+            className='cursor-pointer w-1/12'
             onClick={valueShowProfile} 
           />
         {showProfile && showAccout()}

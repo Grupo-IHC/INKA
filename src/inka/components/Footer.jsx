@@ -8,22 +8,22 @@ import ytIcon from '../../shared/assets/youtubeIcon.svg';
 export const Footer = () => {
   return (
     <footer>
-      <div className='container mx-auto py-5 px-16 2xl:py-5 2xl:px-0'>
-        <div className='flex justify-between'>
-          <img className='w-1/12 2xl:w-[80px]' src={logoInkaFooter} alt="LogoInka" />
-          <div className='flex items-center'>
-            <img className='w-1/12' src={homeVector} alt="Home" />
-            <span className='font-inka font-semibold text-md ml-2 w-full'>
+      <div className='container mx-auto px-[15px] py-[8px]'>
+        <div className='flex flex-col items-center gap-y-[12px] lg:flex-row lg:justify-center'>
+          <img className='w-3/12' src={logoInkaFooter} alt="LogoInka" />
+          <div className='flex items-center w-full'>
+            <img className='w-[30px]' src={homeVector} alt="Home" />
+            <span className='font-inka font-semibold text-justify text-[12px] lg:text-md ml-2 w-full'>
               Jr. Maximo Gorbitz 889 Zona D
             </span>
           </div>
-          <div className='flex items-center'>
-            <img className='w-1/12' src={emailVector} alt="Email" />
-            <span className='font-inka font-semibold text-md ml-2'>
+          <div className='flex items-center w-full'>
+            <img className='w-[30px]' src={emailVector} alt="Email" />
+            <span className='font-inka font-semibold text-[12px] lg:text-md ml-2'>
              sellosinka@gmail.com
             </span>
           </div>
-          <div className='icons flex items-center gap-x-4'>
+          <div className='icons flex items-center justify-center gap-x-4 w-full'>
             <a href="https://www.youtube.com/watch?v=XVOBVbm3FJg" target='blank'>
               <img className='w-8/12' src={fbIcon} alt="Facebook" />
             </a>
@@ -36,7 +36,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className='text-center'>
-          <small>
+          <small className='text-[12px]'>
             Copyright © INKA SAC. Todos los derechos reservados.
           </small>
         </div>

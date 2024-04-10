@@ -12,8 +12,9 @@ export default {
       backgroundImage: {
         'login': "url('/src/shared/assets/backgroundLR.png')",    
         'inicio': "url('/src/shared/assets/backgroundInicio.png')",
-        'inicio2': "url('/src/shared/assets/backgroundInicio2.png')",
         'products': "url('/src/shared/assets/backgroundProductos.png')", 
+        'section2-1': "url('/src/shared/assets/bg-section2.1.png')", 
+        'section2-3': "url('/src/shared/assets/bg-section2.3.png')", 
       },
       colors: {
         'primary': '#D1C8C1',
