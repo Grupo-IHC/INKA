@@ -16,7 +16,7 @@ export const InkaRoutes = () => {
   return (
     <>
       <Navbar/>
-      <div className={`min-h-screen ${showLogo ? 'bg-white home pt-[67px] 2xl:pt-[112px]' : 'startPage bg-inicio bg-cover bg-no-repeat pt-[67px] 2xl:pt-[112px]'}`}>
+      {/* <div className={`min-h-screen ${showLogo ? 'bg-white home pt-[67px] 2xl:pt-[112px]' : 'startPage bg-mobile bg-contain lg:bg-inicio pt-[67px] 2xl:pt-[112px]'}`}> */}
         <Routes>
           <Route path="/" element={<InicioPage/>} />
           <Route path="/explorar" element={<ExplorarPage/>} />
@@ -26,7 +26,7 @@ export const InkaRoutes = () => {
           <Route path="/shopping" element={<ShoppingCart/>} />
           <Route path="*" element={<Navigate to="/"/>} />
         </Routes>
-      </div>
+      {/* </div> */}
       <Footer/>
     </>
   )
