@@ -97,9 +97,9 @@ export const Navbar = () => {
   }
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 max-h-[67px] 2xl:max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : (valueMenuMobile ? "bg-white" : "bg-transparent" ))}`}>
-      <div className={`max-h-[67px] container mx-auto w-full flex items-center justify-between md:justify-center 2xl:gap-x-10 py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
-        <img src={inkaLogo} className='w-3/12' alt="inkaLogo" />
+    <header className={`fixed top-0 left-0 right-0 z-40 2xl:max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : (valueMenuMobile ? "bg-white" : "bg-transparent" ))}`}>
+      <div className={`container mx-auto w-full max-h-[67px] flex items-center justify-between lg:justify-center 2xl:gap-x-10 py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
+        <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
         <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} />
         {
           valueMenuMobile && divMenu()
