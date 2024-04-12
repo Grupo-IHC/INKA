@@ -34,12 +34,12 @@ export const ProductsPage = () => {
   return (
     <>
     {loading && <Loader />}
-    <section className="section-3 bg-products bg-center bg-no-repeat bg-cover">
-      <div className="container mx-auto py-9 px-10 2xl:px-0 flex flex-col gap-y-16">
+    <section className="section-3 bg-products bg-center bg-no-repeat bg-cover pt-[67px] 2xl:pt-[100px]">
+      <div className="container mx-auto px-[15px] py-[15px] 2xl:px-0 flex flex-col">
         {
           productsType.map((product,index) => (
-            <div key={index} className={`${index + 1} flex max-h-[339px]`}>
-              { (index + 1) % 2 === 0 ? 
+            <div key={index} className={`${index + 1} flex flex-col lg:flex-row max-h-[480px] md:items-center`}>
+              {/* { (index + 1) % 2 === 0 ? 
                <>
                  <div className='flex flex-col gap-y-4 2xl:gap-y-14'>
                   <h3 className='text-[20px] 2xl:text-[30px]'>{product.name}</h3>
@@ -54,15 +54,15 @@ export const ProductsPage = () => {
                   </div>
                  </div>
                  <img  
-                  src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg : (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic" />
+                  src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg : (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic"\ />
                </>
-               :
+               : */}
                <>
                 <img  
-                  src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg : (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic" />
-                <div className='flex flex-col gap-y-4 2xl:gap-y-14'>
-                <h3 className='text-[20px] 2xl:text-[30px]'>{product.name}</h3>
-                <p className='text-[18px] 2xltext-2xl'>{product.description}</p>
+                  src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg : (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic" className='md:w-[50%]' />
+                <div className='flex flex-col gap-y-4 2xl:gap-y-14 md:w-full'>
+                <h3 className='text-[16px] font-bold 2xl:text-[30px]'>{product.name}</h3>
+                <p className='text-[14px] 2xltext-2xl'>{product.description}</p>
                 <div className='text-end'>
                   <button 
                     className='btn-send-2'
@@ -73,7 +73,7 @@ export const ProductsPage = () => {
                 </div>
               </div>
                </>
-              }
+              {/* } */}
             </div>
           ))
         }

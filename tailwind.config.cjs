@@ -14,7 +14,7 @@ export default {
         'inicio': "url('/src/shared/assets/backgroundInicio.png')",
         'mobile': "url('/src/shared/assets/bgMobile.png')",
         'products': "url('/src/shared/assets/backgroundProductos.png')", 
-        'section2': "url('/src/shared/assets/Vector.png')", 
+        'section2': "url('/src/shared/assets/bgSection2.svg')",
         'section4': "url('/src/shared/assets/bgSection4.svg')", 
       },
       colors: {

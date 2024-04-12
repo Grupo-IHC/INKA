@@ -44,49 +44,21 @@ export const Navbar = () => {
     )
   }
 
-  const divMenu = () => {
-    return (
-      <>
-        <div className='flex flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50'>
-          <NavLink
-           to="/" 
-           className={({isActive}) => ( isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2" :  "font-bold text-[14px] text-center pb-[15px] w-full border-b-2")}
-          >
-            INICIO
-          </NavLink>
-          <NavLink 
-            to="/productos" 
-            className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] border-b-2 w-full" : "font-bold text-[14px] text-center py-[15px] border-b-2 w-full")}
-          >
-            NUESTROS PRODUCTOS
-          </NavLink>
-          <NavLink
-           to="/contactanos" 
-           className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] w-full border-b-2" :  "font-bold text-[14px] text-center py-[15px] w-full border-b-2")}
-          >
-            CONTÁCTANOS
-          </NavLink>
-          <NavLink
-            to={"/shopping"}
-            className='py-[15px] w-full flex justify-center border-b-2' 
-          >
-            <img src={shopIcon} alt="shopIcon"/>
-          </NavLink>
-          <img 
-              src={profileIcon} 
-              alt="profileIcon"
-              className='cursor-pointer w-[36px] text-center pt-[15px]'
-              onClick={valueShowProfile} 
-            />
-          {showProfile && showAccout()}
-        </div>
-      </>
-    )
-  }
-
   useEffect(() => {
     console.log(status);
   }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setValueMenuMobile(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const valueShowProfile = () => {
     setShowProfile(!showProfile)
@@ -97,14 +69,43 @@ export const Navbar = () => {
   }
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 2xl:max-h-[112px] ${showLogo ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : (valueMenuMobile ? "bg-white" : "bg-transparent" ))}`}>
-      <div className={`container mx-auto w-full max-h-[67px] flex items-center justify-between lg:justify-center 2xl:gap-x-10 py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
+    <header className={`fixed top-0 left-0 right-0 z-40 ${(showLogo || valueMenuMobile )? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
+      <div className={`container mx-auto w-full max-h-[67px] 2xl:max-h-[100px] flex items-center justify-between 2xl:gap-x-10 py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
         <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
-        <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} />
-        {
-          valueMenuMobile && divMenu()
-        }
-        
+        <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} className='lg:hidden' />
+        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:justify-around lg:bg-inherit`}>
+          <NavLink
+           to="/" 
+           className={({isActive}) => ( isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto " :  "font-bold text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
+          >
+            INICIO
+          </NavLink>
+          <NavLink 
+            to="/productos" 
+            className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto" : "font-bold text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto")}
+          >
+            NUESTROS PRODUCTOS
+          </NavLink>
+          <NavLink
+           to="/contactanos" 
+           className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto" :  "font-bold text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
+          >
+            CONTÁCTANOS
+          </NavLink>
+          <NavLink
+            to={"/shopping"}
+            className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto' 
+          >
+            <img src={shopIcon} alt="shopIcon"/>
+          </NavLink>
+          <img 
+              src={profileIcon} 
+              alt="profileIcon"
+              className='cursor-pointer w-[36px] text-center pt-[15px] lg:p-0 lg:border-0 lg:w-auto'
+              onClick={valueShowProfile} 
+            />
+          {showProfile && showAccout()}
+        </div>
       </div>
     </header>
   )
