@@ -14,6 +14,7 @@ export const ProductsPage = () => {
   const navigate = useNavigate();
 
   const [productsType, setProductsType] = useState([]);
+  const [valueBreakpoint, setValueBreakpoint] = useState(false)
   
   const clickSeeMore = (name) => {
     navigate(`/productos/${name}`)
@@ -28,52 +29,39 @@ export const ProductsPage = () => {
   },[])
 
   useEffect(() => {
-    console.log(productsType);
-  }, [productsType])
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setValueMenuMobile(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
     {loading && <Loader />}
-    <section className="section-3 bg-products bg-center bg-no-repeat bg-cover pt-[67px] 2xl:pt-[100px]">
+    <section className="section-3 pt-[67px] 2xl:pt-[100px]">
       <div className="container mx-auto px-[15px] py-[15px] 2xl:px-0 flex flex-col">
         {
           productsType.map((product,index) => (
             <div key={index} className={`${index + 1} flex flex-col lg:flex-row max-h-[480px] md:items-center`}>
-              {/* { (index + 1) % 2 === 0 ? 
-               <>
-                 <div className='flex flex-col gap-y-4 2xl:gap-y-14'>
-                  <h3 className='text-[20px] 2xl:text-[30px]'>{product.name}</h3>
-                  <p className='text-[18px] 2xltext-2xl'>{product.description}</p>
-                  <div className='text-end'>
-                    <button 
-                      className='btn-send-2'
-                      onClick={() => clickSeeMore(product.id)}
-                    >
-                      Ver más
-                    </button>
-                  </div>
-                 </div>
-                 <img  
-                  src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg : (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic"\ />
-               </>
-               : */}
-               <>
-                <img  
-                  src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg : (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic" className='md:w-[50%]' />
-                <div className='flex flex-col gap-y-4 2xl:gap-y-14 md:w-full'>
-                <h3 className='text-[16px] font-bold 2xl:text-[30px]'>{product.name}</h3>
-                <p className='text-[14px] 2xltext-2xl'>{product.description}</p>
+              <img  
+                src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg :    (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic" className='md:w-[50%]  lg:w-[35%] 2xl:w-[25%]' />
+              <div className='flex flex-col gap-y-4 md:w-full'>
+                <h3 className='text-[16px] font-bold md:text-[20px]'>{product.name}</h3>
+                <p className='text-[14px] md:text-[18px]'>{product.description}</p>
                 <div className='text-end'>
                   <button 
                     className='btn-send-2'
                     onClick={() => clickSeeMore(product.id)}
                   >
-                    Ver más
+                  Ver más
                   </button>
                 </div>
               </div>
-               </>
-              {/* } */}
             </div>
           ))
         }

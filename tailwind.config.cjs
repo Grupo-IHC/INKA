@@ -13,7 +13,7 @@ export default {
         'login': "url('/src/shared/assets/backgroundLR.png')",    
         'inicio': "url('/src/shared/assets/backgroundInicio.png')",
         'mobile': "url('/src/shared/assets/bgMobile.png')",
-        'products': "url('/src/shared/assets/backgroundProductos.png')", 
+        'products': "url('/src/shared/assets/bgProductos.svg')", 
         'section2': "url('/src/shared/assets/bgSection2.svg')",
         'section4': "url('/src/shared/assets/bgSection4.svg')", 
       },
