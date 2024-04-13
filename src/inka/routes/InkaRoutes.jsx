@@ -8,6 +8,7 @@ import { useLocationInicio } from "../../hooks/useLocationInicio"
 import { Footer } from "../components/Footer"
 import { ProductLayout } from "../pages/ProductsPage/components/ProductLayout"
 import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart"
+import { ProductPageEdit } from "../pages/ProductsPage/components/ProductPageEdit"
 
 export const InkaRoutes = () => {
   
@@ -22,7 +23,7 @@ export const InkaRoutes = () => {
           <Route path="/" element={<InicioPage/>} />
           <Route path="/explorar" element={<ExplorarPage/>} />
           <Route path="/productos" element={<ProductsPage/>} />
-          <Route path="/productos/:id" element={<ProductLayout/>} />
+          <Route path="/productos/:id/*" element={<ProductLayout/>}/>
           <Route path="/contactanos" element={<ContactanosPage/>} />
           <Route path="/shopping" element={<ShoppingCart/>} />
           <Route path="*" element={<Navigate to="/"/>} />

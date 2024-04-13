@@ -73,7 +73,7 @@ export const Navbar = () => {
       <div className={`container mx-auto w-full max-h-[67px] 2xl:max-h-[100px] flex items-center justify-between py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
         <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
         <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} className='lg:hidden' />
-        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-between lg:bg-inherit`}>
+        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-between lg:bg-inherit 2xl:justify-center 2xl:gap-x-40`}>
           <NavLink
            to="/" 
            className={({isActive}) => ( isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto " :  "font-bold text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
@@ -95,21 +95,23 @@ export const Navbar = () => {
           >
             CONTÁCTANOS
           </NavLink>
-          <NavLink
-            to={"/shopping"}
-            className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto' 
-            onClick={() => setValueMenuMobile(false)}
-          >
-            <img src={shopIcon} alt="shopIcon"/>
-          </NavLink>
-          <img 
+          {showProfile && showAccout()}
+        </div>
+        <div className='hidden 2xl:flex 2xl:gap-x-10'>
+            <NavLink
+              to={"/shopping"}
+              className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto' 
+              onClick={() => setValueMenuMobile(false)}
+            >
+              <img src={shopIcon} alt="shopIcon"/>
+            </NavLink>
+            <img 
               src={profileIcon} 
               alt="profileIcon"
               className='cursor-pointer w-[36px] text-center pt-[15px] lg:p-0 lg:border-0 lg:w-auto'
               onClick={valueShowProfile} 
             />
-          {showProfile && showAccout()}
-        </div>
+          </div>
       </div>
     </header>
   )
