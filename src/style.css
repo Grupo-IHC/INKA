@@ -28,18 +28,6 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
 .slick-dots .slick-active button::before{
   color: #FF7000 !important;
 }
-
-/* .loader-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-  z-index: 50;
-  position: fixed;
-  opacity: 0.55;
-  background: #000;
-} */
 .stamp {
  animation: bounce 1s infinite;
 }

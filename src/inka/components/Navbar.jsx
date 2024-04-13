@@ -70,31 +70,35 @@ export const Navbar = () => {
   
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 ${(showLogo || valueMenuMobile )? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
-      <div className={`container mx-auto w-full max-h-[67px] 2xl:max-h-[100px] flex items-center justify-between 2xl:gap-x-10 py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
+      <div className={`container mx-auto w-full max-h-[67px] 2xl:max-h-[100px] flex items-center justify-between py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
         <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
         <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} className='lg:hidden' />
-        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:justify-around lg:bg-inherit`}>
+        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-between lg:bg-inherit`}>
           <NavLink
            to="/" 
            className={({isActive}) => ( isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto " :  "font-bold text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
+           onClick={() => setValueMenuMobile(false)}
           >
             INICIO
           </NavLink>
           <NavLink 
             to="/productos" 
             className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto" : "font-bold text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto")}
+            onClick={() => setValueMenuMobile(false)}
           >
             NUESTROS PRODUCTOS
           </NavLink>
           <NavLink
            to="/contactanos" 
            className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto" :  "font-bold text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
+           onClick={() => setValueMenuMobile(false)}
           >
             CONTÁCTANOS
           </NavLink>
           <NavLink
             to={"/shopping"}
             className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto' 
+            onClick={() => setValueMenuMobile(false)}
           >
             <img src={shopIcon} alt="shopIcon"/>
           </NavLink>

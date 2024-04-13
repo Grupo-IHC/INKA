@@ -6,7 +6,7 @@ import nextIcon from '../../../../shared/assets/arrowRigthIcon.png';
 import imgSeal from '../../../../shared/assets/sealCarrouselImage.png';
 
 
-export const Carrousel = () => {
+export const Carrousel = ({product}) => {
 
   function SampleNextArrow(props) {
     const { className, onClick } = props;
@@ -39,44 +39,37 @@ export const Carrousel = () => {
     slidesToShow: 3,
     slidesToScroll: 3,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
-
-  const seals = [
-    {
-      id: 1,
-      image : imgSeal,
-    },
-    {
-      id: 2,
-      image : imgSeal,
-    },
-    {
-      id: 3,
-      image : imgSeal,
-    },
-    {
-      id: 4,
-      image : imgSeal,
-    },
-    {
-      id: 5,
-      image : imgSeal,
-    },
-    {
-      id: 6,
-      image : imgSeal,
-    },
-    
-  ]
 
   return (
     <div className="slider-container">
       <Slider {...settings}>
         {
-          seals.map((seal) => (
-            <div key={seal.id} className="slider-item !flex justify-center text-center">
-              <img src={seal.image} className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl"  alt="Seal" />
+          product.map((product) => (
+            <div key={product.name} className="slider-item !flex justify-center text-center">
+              <img 
+                src={product.image} 
+                className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl"  
+                alt={product.name} 
+                onClick={() => console.log(product.name)}
+              />
             </div>
           ))
         }

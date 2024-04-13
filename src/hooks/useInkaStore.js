@@ -19,9 +19,21 @@ export const useInkaStore = () => {
   }
   const getTypeSealsById = async(id) => {
     try {
-      const {data} = await inkaApi.get(`/product/type/${id}`);
-      return data;
+      const {data} = await inkaApi.get(`/product/?type=${id}`);
+      console.log(data.product);
+      return { type: data.type, category: data.category, product: data.product };
 
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+  const getProductFilterByCategory = async(id, categoryId) => {
+    try {
+      const {data} = await inkaApi.get(`/product/?type=${id}&category=${categoryId}`);
+      return data.product;
     } catch (error) {
       console.log(error);
     }
@@ -33,6 +45,7 @@ export const useInkaStore = () => {
   return {
     getTypeSeals,
     getTypeSealsById,
+    getProductFilterByCategory,
     loading
   }
 }

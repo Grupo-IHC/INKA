@@ -43,7 +43,7 @@ export const ProductsPage = () => {
   return (
     <>
     {loading && <Loader />}
-    <section className="section-3 pt-[67px] 2xl:pt-[100px]">
+    <section className="section-3">
       <div className="container mx-auto px-[15px] py-[15px] 2xl:px-0 flex flex-col">
         {
           productsType.map((product,index) => (

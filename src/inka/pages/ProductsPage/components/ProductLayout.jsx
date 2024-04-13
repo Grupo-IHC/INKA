@@ -16,27 +16,37 @@ const categorySeals = [
   {
     id: 3,
     name: 'Sellos Circulares',
-  }
+  },
 ]
 
 
 export const ProductLayout = () => {
   const {id} =  useParams();
 
-  const {loading, getTypeSealsById} = useInkaStore();
+  const {loading, getTypeSealsById, getProductFilterByCategory} = useInkaStore();
 
   const [indexLi, setIndexLi] = useState(0);
   const [productById, setProductById] = useState([])
+  const [categoryById, setCategoryById] = useState([])
+  const [listProductByCategory, setListProductByCategory] = useState([]);
 
-  const clickIndexLi = (index) => {
+  const clickIndexLi = async(index, categoryId) => {
     setIndexLi(index);
-    console.log(index);
+    if (index === 0) {
+      const {product} =  await getTypeSealsById(id)
+      setListProductByCategory(product);
+    }else {
+      const product =  await getProductFilterByCategory(id,categoryId);
+      setListProductByCategory(product);
+    }
   }
 
   useEffect(() => {
     const getProductById = async() => {
-      const {data} = await getTypeSealsById(id)
-      setProductById(data);
+      const {type, category, product} = await getTypeSealsById(id)
+      setProductById(type);
+      setCategoryById(category);
+      setListProductByCategory(product);
     }
     getProductById();
   }, [])
@@ -49,19 +59,19 @@ export const ProductLayout = () => {
         <h1 className="font-mont font-ligth text-[30px]">{productById.name}</h1>
         <p className="font-mont text-[16px] mt-[20px] mb-[50px]">{productById.description}</p>
         <div className='acordion mb-[50px]'>
-          <ul className='flex gap-x-2'>
+          <ul className='flex items-center flex-col flex-wrap max-h-[120px] md:max-h-[80px] lg:flex-row'>
             <li 
-              className={`font-bold px-4 py-2 border-b border-white cursor-pointer rounded-3xl border-none ${indexLi === 0 ?'text-white bg-secondary'  : ''}`}
+              className={`font-bold text-[12px] border-b py-[10px] px-[15px] border-white cursor-pointer rounded-2xl border-none 2xl:text-[16px] ${indexLi === 0 ?'text-white bg-secondary' : ''}`}
               onClick={() => clickIndexLi(0)}
             >
-              TODOS
+              Todos
             </li>
             {
-              categorySeals.map((category) => (
+              categoryById.map((category, index) => (
                 <li
-                  key={category.id}
-                  className={`font-bold px-4 py-2 border-b border-white cursor-pointer rounded-3xl border-none ${indexLi === category.id ?'text-white bg-secondary'  : ''}`}
-                  onClick={() => clickIndexLi(category.id)}
+                  key={index + 1}
+                  className={`font-bold text-[12px] border-b py-[10px] px-[15px] border-white cursor-pointer rounded-2xl border-none 2xl:text-[16px] ${indexLi === index + 1 ?'text-white bg-secondary'  : ''}`}
+                  onClick={() => clickIndexLi(index + 1, category.id)}
                 >
                   {category.name}
                 </li>
@@ -69,7 +79,7 @@ export const ProductLayout = () => {
             }
           </ul>
         </div>
-        <Carrousel />
+        <Carrousel product={listProductByCategory} />
       </div>
     </section>
     </>
