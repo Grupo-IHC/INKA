@@ -42,10 +42,24 @@ export const useInkaStore = () => {
     }
   }
 
+  const getInfoProduct = async(id) => {
+    try {
+      const {data} = await inkaApi.get(`/product/${id}`);
+      console.log(data);
+      return data;
+
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return {
     getTypeSeals,
     getTypeSealsById,
     getProductFilterByCategory,
+    getInfoProduct,
     loading
   }
 }

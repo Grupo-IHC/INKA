@@ -7,10 +7,9 @@ import { NavLink, useNavigate} from 'react-router-dom';
 import { useLocationInicio } from '../../hooks/useLocationInicio';
 import { useAuthStore } from '../../hooks/useAuthStore';
 import { useEffect, useState } from 'react';
-import { Modal } from './Modal';
 
 export const Navbar = () => {
-  const {showLogo, isScrolled} = useLocationInicio();
+  const {showLogo, isScrolled, isAuth} = useLocationInicio();
 
   const {logoutUser, status} = useAuthStore();
 

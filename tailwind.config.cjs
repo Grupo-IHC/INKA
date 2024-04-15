@@ -16,9 +16,12 @@ export default {
         'products': "url('/src/shared/assets/bgProductos.svg')", 
         'section2': "url('/src/shared/assets/bgSection2.svg')",
         'section4': "url('/src/shared/assets/bgSection4.svg')", 
+        'waveLogin': "url('/src/shared/assets/waveLogin.png')", 
+        'waveRegister': "url('/src/shared/assets/waveRegister.png')", 
+        'register' : "url('/src/shared/assets/backgroundRegister.png')",  
       },
       colors: {
-        'primary': '#D1C8C1',
+        'primary': '#E8DFDB',
         'secondary': '#31241E',
         'tertiary': '#FF7000',
         'cuaternary': '#7A3906',

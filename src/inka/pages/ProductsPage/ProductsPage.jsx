@@ -14,10 +14,9 @@ export const ProductsPage = () => {
   const navigate = useNavigate();
 
   const [productsType, setProductsType] = useState([]);
-  const [valueBreakpoint, setValueBreakpoint] = useState(false)
   
   const clickSeeMore = (name) => {
-    navigate(`/productos/${name}`)
+    navigate(`/productos/typeproduct/${name}`)
   }
 
   useEffect(() => {

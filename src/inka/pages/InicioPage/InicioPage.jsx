@@ -1,8 +1,6 @@
 import sealWoodImg from '../../../shared/assets/sealOneInicio.png';
 import sealAutomaticImg from '../../../shared/assets/sealTwoInicio.png';
-import inkaBack2 from '../../../shared/assets/inkaBack2.png';
 import { useLocationInicio } from '../../../hooks/useLocationInicio';
-import { useEffect } from 'react';
 
 export const InicioPage = () => {
 

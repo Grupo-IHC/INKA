@@ -23,7 +23,8 @@ export const InkaRoutes = () => {
           <Route path="/" element={<InicioPage/>} />
           <Route path="/explorar" element={<ExplorarPage/>} />
           <Route path="/productos" element={<ProductsPage/>} />
-          <Route path="/productos/:id/*" element={<ProductLayout/>}/>
+          <Route path="/productos/typeproduct/:id" element={<ProductLayout/>}/>
+          <Route path="/productos/:id" element={<ProductPageEdit/>} />
           <Route path="/contactanos" element={<ContactanosPage/>} />
           <Route path="/shopping" element={<ShoppingCart/>} />
           <Route path="*" element={<Navigate to="/"/>} />

@@ -4,9 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import prevIcon from '../../../../shared/assets/arrowLetfIcon.png';
 import nextIcon from '../../../../shared/assets/arrowRigthIcon.png';
 import imgSeal from '../../../../shared/assets/sealCarrouselImage.png';
+import { useNavigate } from "react-router-dom";
 
 
 export const Carrousel = ({product}) => {
+
+  const navigate = useNavigate();
 
   function SampleNextArrow(props) {
     const { className, onClick } = props;
@@ -68,7 +71,7 @@ export const Carrousel = ({product}) => {
                 src={product.image} 
                 className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl"  
                 alt={product.name} 
-                onClick={() => console.log(product.name)}
+                onClick={() => navigate(`/productos/${product.name}`)}
               />
             </div>
           ))
