@@ -27,7 +27,7 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   @apply font-mont font-semibold text-[12px] text-red-600 absolute bottom-0;
 }
 .slick-dots {
-  bottom: -40px !important;
+  bottom: -100px !important;
 }
 
 .slick-dots li button::before{ 

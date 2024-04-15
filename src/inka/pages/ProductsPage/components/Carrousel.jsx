@@ -62,7 +62,7 @@ export const Carrousel = ({product}) => {
   };
 
   return (
-    <div className="slider-container">
+    <div className="slider-container h-[320px]">
       <Slider {...settings}>
         {
           product.map((product) => (
