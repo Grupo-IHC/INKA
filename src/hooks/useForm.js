@@ -24,6 +24,20 @@ export const useForm = (initialForm={}, formValidations={}) => {
       [name]: value
     })
   }
+
+  const aumentQuantity = () => {
+    setFormState(prevState => ({
+      ...prevState,
+      quantity: prevState.quantity + 1
+    }))
+  }
+
+  const decrementQuantity = () => {
+    setFormState(prevState => ({
+      ...prevState,
+      quantity: prevState.quantity === 1 ? 1 : prevState.quantity - 1
+    }))
+  }
   
   const onReset = () => {
     setFormState(initialForm);
@@ -44,6 +58,8 @@ export const useForm = (initialForm={}, formValidations={}) => {
     formState,
     onReset,
     ...formValidation,
-    isFormValid
+    isFormValid,
+    aumentQuantity,
+    decrementQuantity
   }
 }
