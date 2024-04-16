@@ -19,10 +19,17 @@ export const useForm = (initialForm={}, formValidations={}) => {
 
   const onInputChange = ({target}) => {
     const {name, value} = target;
-    setFormState({
-      ...formState,
-      [name]: value
-    })
+    if(name === 'quantity') {
+      setFormState({
+        ...formState,
+        [name]: parseInt(value) <= 0 ? 1 : parseInt(value)
+      })
+    } else {
+      setFormState({
+        ...formState,
+        [name]: value
+      })
+    }
   }
 
   const aumentQuantity = () => {

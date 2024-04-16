@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom";
 import { useInkaStore } from "../../../../hooks/useInkaStore"
 import { useEffect, useCallback, useState } from "react";
 import {useDropzone} from 'react-dropzone'
+import { Loader } from "../../../components/Loader";
+import { useForm } from "../../../../hooks/useForm";
 
-
-import imgPrueba from "../../../../shared/assets/shopingCartProduct.png";
+import noSelected from "../../../../shared/assets/noSelectedIcon.png";
+import whiteColor from "../../../../shared/assets/whiteColorIcon.png";
 import redColor from "../../../../shared/assets/redColorIcon.png";
 import blackColor from "../../../../shared/assets/blackColorIcon.png";
 import blueColor from "../../../../shared/assets/blueColorIcon.png";
@@ -16,14 +18,14 @@ import greenTinta from "../../../../shared/assets/greenTintaIcon.png";
 import purpleTinta from "../../../../shared/assets/purpleTintaIcon.png";
 import lessIcon from '../../../../shared/assets/lessIcon.svg';
 import plusIcon from '../../../../shared/assets/plusIcon.svg';
-import { Loader } from "../../../components/Loader";
-import { useForm } from "../../../../hooks/useForm";
+
 
 const colors = [
-  {id: 1, color: redColor, name: 'red'},
-  {id: 2, color: blackColor, name: 'black'},
-  {id: 3, color: blueColor, name: 'blue'},
-  {id: 4, color: grayColor, name: 'gray'}
+  {id: 1, color: redColor, name: 'Rojo'},
+  {id: 2, color: blackColor, name: 'Negro'},
+  {id: 3, color: blueColor, name: 'Azul'},
+  {id: 4, color: grayColor, name: 'Gris'},
+  {id: 5, color: whiteColor, name: 'Blanco'},
 ]
 
 const tintas = [
@@ -47,8 +49,8 @@ export const ProductPageEdit = () => {
 
   const {onInputChange, aumentQuantity, quantity, decrementQuantity} = useForm({quantity:1});
   const [productInfo, setProductInfo] = useState([]);
-  const [indexColor, setIndexColor] = useState(1);
-  const [indexTinta, setIndexTinta] = useState(1)
+  const [indexColor, setIndexColor] = useState(0);
+  const [indexTinta, setIndexTinta] = useState(0);
 
   useEffect(() => {
     const getProduct = async() => {
@@ -63,7 +65,7 @@ export const ProductPageEdit = () => {
     <>
       {loading && <Loader />}
       <section className="Product">
-        <div className="container mx-auto px-[30px] py-[15px] grid gap-y-[30px] xl:grid-cols-3 xl:gap-y-[0px] xl:gap-x-[100px] xl:py-[30px] 2xl:py-[60px]">
+        <div className="container mx-auto px-[30px] py-[15px] grid gap-y-[30px] xl:grid-cols-3 xl:gap-y-[0px] xl:gap-x-[100px] xl:py-[30px]">
           <div className="flex flex-col xl:justify-between gap-y-[30px]">
             <div className="flex flex-col gap-y-[15px]">
               <h1 className="font-bold text-[#2B1E0C] text-[20px] text-center xl:text-start xl:text-[35px]">Sello {productInfo.name}</h1>
@@ -76,13 +78,13 @@ export const ProductPageEdit = () => {
               <h3 className="font-bold xl:text-[20px]">COLORES</h3>
               <div className="paletaColores flex gap-x-[15px] mt-[10px]">
                 {
-                  colors.map(color => (
+                  productInfo.color && productInfo.color.map( (color,index) => (
                     <div 
-                      key={color.id} 
-                      className={`color-${color.id} ${indexColor === color.id ? 'border rounded-lg border-[#2B1E0C]' : ''} p-[10px] w-[12%] cursor-pointer`}
-                      onClick={() => setIndexColor(color.id)}
+                      key={index}
+                      className={`${index === indexColor ? 'border rounded-lg border-[#2B1E0C]' : ''} p-[10px] w-[12%] cursor-pointer`}
+                      onClick={() => setIndexColor(index)}
                     >
-                      <img src={color.color} alt={color.name} />
+                      <img src={colors.find(c => c.name === color)?.color} alt={color.name} />
                     </div>
                   ))
                 }
@@ -91,6 +93,12 @@ export const ProductPageEdit = () => {
             <div className="content-tintas">
               <h3 className="font-bold xl:text-[20px]">COLOR DE TINTA</h3>
               <div className="paletaTintas flex gap-x-[15px] mt-[10px]">
+                <div 
+                  className={`p-[10px] cursor-pointer ${indexTinta===0 ? 'border rounded-lg border-[#2B1E0C]' : ''}`}
+                  onClick={() => setIndexTinta(0)}
+                >
+                  <img src={noSelected} alt="noSelected" />
+                </div>
                 {
                   tintas.map(tinta => (
                     <div 
@@ -141,7 +149,7 @@ export const ProductPageEdit = () => {
             <div className="content-medida">
               <h3 className="font-bold xl:text-[20px]">MEDIDA</h3>
               <div className="flex justify-center">
-                <div className={`h-[100px] w-[250px] xl:w-[350px] bg-[#F2EEEE] ${productInfo.category_product === "Circular" ? "rounded-full w-[150px] h-[150px]" : ""} flex items-center justify-center p-[15px] mt-[10px]`}>
+                <div className={`bg-[#F2EEEE] ${productInfo.category_product === "Circular" ? "rounded-full w-[150px] h-[150px]" : "h-[100px] w-[250px] xl:w-[350px]"} flex items-center justify-center p-[15px] mt-[10px]`}>
                   <p className="font-bold">{productInfo.measure}</p>
                 </div>
               </div>
