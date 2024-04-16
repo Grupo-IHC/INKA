@@ -63,7 +63,7 @@ export const ProductPageEdit = () => {
     <>
       {loading && <Loader />}
       <section className="Product">
-        <div className="container mx-auto px-[15px] py-[15px] grid gap-y-[30px] xl:grid-cols-3 xl:gap-y-[0px] xl:gap-x-[60px] xl:py-[30px] xl:px-[30px] 2xl:py-[60px]">
+        <div className="container mx-auto px-[30px] py-[15px] grid gap-y-[30px] xl:grid-cols-3 xl:gap-y-[0px] xl:gap-x-[100px] xl:py-[30px] 2xl:py-[60px]">
           <div className="flex flex-col xl:justify-between gap-y-[30px]">
             <div className="flex flex-col gap-y-[15px]">
               <h1 className="font-bold text-[#2B1E0C] text-[20px] text-center xl:text-start xl:text-[35px]">Sello {productInfo.name}</h1>
@@ -140,8 +140,10 @@ export const ProductPageEdit = () => {
           <div className="flex flex-col gap-y-[30px] xl:justify-end">
             <div className="content-medida">
               <h3 className="font-bold xl:text-[20px]">MEDIDA</h3>
-              <div className={`h-[100px] bg-[#F2EEEE] ${productInfo.category_product === "Circular" ? "rounded-full w-[150px] h-[150px]" : ""} flex items-center justify-center p-[15px] mt-[10px]`}>
-                <p className="font-bold">{productInfo.measure}</p>
+              <div className="flex justify-center">
+                <div className={`h-[100px] w-[250px] xl:w-[350px] bg-[#F2EEEE] ${productInfo.category_product === "Circular" ? "rounded-full w-[150px] h-[150px]" : ""} flex items-center justify-center p-[15px] mt-[10px]`}>
+                  <p className="font-bold">{productInfo.measure}</p>
+                </div>
               </div>
             </div>
             <div className="content-plantilla">

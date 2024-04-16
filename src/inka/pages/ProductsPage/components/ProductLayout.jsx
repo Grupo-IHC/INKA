@@ -79,7 +79,7 @@ export const ProductLayout = () => {
             }
           </ul>
         </div>
-        <Carrousel product={listProductByCategory} />
+        <Carrousel product={listProductByCategory} loading={loading} />
       </div>
     </section>
     </>

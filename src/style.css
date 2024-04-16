@@ -9,8 +9,6 @@
 h1,h2,h3,h4,h5,h6,p,a,label,li{
   font-family: 'Montserrat';
 }
-
-
 .btn-send {
   @apply w-full bg-secondary text-white font-mont font-bold py-2.5 px-11 text-[14px] lg:text-[18px] rounded-lg cursor-pointer;
 }
@@ -26,25 +24,17 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
 .pErrorCLass {
   @apply font-mont font-semibold text-[12px] text-red-600 absolute bottom-0;
 }
-.slick-dots {
-  bottom: -100px !important;
-}
-
-.slick-dots li button::before{ 
-  font-size: 15px !important;
-}
-.slick-dots .slick-active button::before{
-  color: #FF7000 !important;
-}
 .stamp {
- animation: bounce 1s infinite;
+  position: absolute;
+  top: 39.5%;
+  animation: bounce 1s infinite;
 }
 @keyframes bounce {
   0%, 100% {
-    transform: translateY(0px) scaleY(0.7); 
+    transform: translateY(10px) scaleY(0.7); 
   }
   50% {
-    transform: translateY(-40px) scaleY(1); 
+    transform: translateY(-35px) scaleY(1); 
   }
 }
 .loader {

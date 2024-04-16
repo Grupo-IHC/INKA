@@ -36,9 +36,7 @@ export const LoginPage = () => {
 
   return (
     <>
-      {/* <Loader /> */}
       {status === 'checking' && <Loader />}
-      {/* <Navbar/> */}
       <AuthLayout title="INICIAR SESION"> 
         <form onSubmit={onSubmit} className='mt-[40px]'>
           <div className='flex justify-between flex-col'>
