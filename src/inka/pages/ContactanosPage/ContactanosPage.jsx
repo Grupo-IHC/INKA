@@ -94,7 +94,7 @@ export const ContactanosPage = () => {
             </div>
             <div class="w-full flex justify-center lg:justify-start">
               <button 
-                  className='w-25 bg-secondary text-white font-mont font-bold text-xl py-2.5 px-11 rounded-lg cursor-pointer mb-5'
+                  className='btn-send '
                   type="submit"
               >
                 Enviar correo
@@ -103,20 +103,20 @@ export const ContactanosPage = () => {
           </form>
           <div class="sm:w-full lg:w-6/12"><iframe class="full" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Lima,Per%C3%BA+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/car-satnav-gps/">Car Navigation Systems</a></iframe></div>
         </div>
-        <div class="pb-10 flex flex-col items-center  md:flex-row md:justify-center w-full space-y-4 md:space-y-0 md:space-x-4 md:px-2 ">
-          <div class="py-4  font-bold  bg-[#F2F2F2] flex justify-center items-center flex-col p-1 w-8/12 shadow-md">
-            <img src={UBI} alt="UBICACION" />
-            <p class="text-sm sm:text-lg xl:text-2xl" >UBICACION</p>
+        <div class="pb-10 flex flex-col items-center  md:flex-row md:justify-center w-full space-y-4 md:space-y-0 md:space-x-4 md:px-2 lg:space-x-20 lg:px-32 xl:px-68">
+          <div class="py-4 bg-[#F2F2F2] flex justify-center items-center flex-col p-1 w-8/12 shadow-md">
+            <img class="h-7 mb-2" src={UBI} alt="UBICACION" />
+            <p class="font-bold text-sm sm:text-lg xl:text-2xl" >UBICACION</p>
             <p class="text-xs sm:text-sm xl:text-xl" >Av. Sol a Marte Zona “D”</p>
           </div>
-          <div class="py-4 font-bold bg-[#7B6960] text-white  flex justify-center items-center flex-col p-1  w-8/12 shadow-md">
-            <img src={MSG} alt="MSG" />
-            <p class="text-sm sm:text-lg xl:text-2xl">CORREO</p>
+          <div class="py-4 bg-[#7B6960] text-white  flex justify-center items-center flex-col p-1  w-8/12 shadow-md">
+            <img class="h-7 mb-2" src={MSG} alt="MSG" />
+            <p class="font-bold text-sm sm:text-lg xl:text-2xl">CORREO</p>
             <p class="text-xs sm:text-sm xl:text-xl">sellosinka@gmail.com</p> 
           </div>
-          <div class="py-4  font-bold bg-[#F2F2F2] flex justify-center items-center flex-col p-1  w-8/12 shadow-md">
-            <img src={RING} alt="RING" />
-            <p class="text-sm sm:text-lg xl:text-2xl">TELEFONO</p>
+          <div class="py-4 bg-[#F2F2F2] flex justify-center items-center flex-col p-1  w-8/12 shadow-md">
+            <img class="h-7 mb-2" src={RING} alt="RING" />
+            <p class="font-bold text-sm sm:text-lg xl:text-2xl">TELEFONO</p>
             <p class="text-xs sm:text-sm xl:text-xl">+51 987654321</p>
           </div>
         </div>
