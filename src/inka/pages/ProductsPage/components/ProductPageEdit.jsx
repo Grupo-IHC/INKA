@@ -19,6 +19,8 @@ import greenTinta from "../../../../shared/assets/greenTintaIcon.png";
 import purpleTinta from "../../../../shared/assets/purpleTintaIcon.png";
 import lessIcon from '../../../../shared/assets/lessIcon.svg';
 import plusIcon from '../../../../shared/assets/plusIcon.svg';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../../store/product/shoppingCartSlice";
 
 
 const colors = [
@@ -47,18 +49,22 @@ export const ProductPageEdit = () => {
 
   const {id} = useParams();
 
+  const dispatch = useDispatch();
+
   const {getInfoProduct, loading} = useInkaStore();
 
   const {onInputChange, aumentQuantity, quantity, isEmpty, decrementQuantity, setFormState} = useForm({quantity:1, isEmpty:false});
   const [productInfo, setProductInfo] = useState([]);
   const [indexColor, setIndexColor] = useState(0);
   const [indexTinta, setIndexTinta] = useState(0);
+  const [idProduct, setIdProduct] = useState('');
 
   useEffect(() => {
     const getProduct = async() => {
       const {data} = await getInfoProduct(id);
       console.log(data[0])
       setProductInfo(data[0]);
+      setIdProduct(data[0].id[0]);
     }
     getProduct();
   },[])  
@@ -67,6 +73,24 @@ export const ProductPageEdit = () => {
     if(isEmpty){
       setFormState({quantity:1})
     }
+  }
+
+  const selectColor = (index) => {
+    setIndexColor(index);
+    setIdProduct(productInfo.id[index]);
+  }
+
+  const onSubmit = () => {
+    dispatch(addToCart({
+      id: idProduct,
+      name: productInfo.name,
+      img: productInfo.image,
+      color: productInfo.color[indexColor],
+      design: acceptedFiles[0] ? URL.createObjectURL(acceptedFiles[0]) : null,
+      quantity: quantity,
+      price: productInfo.price,
+      total: parseInt((quantity * productInfo.price).toFixed(2)),
+    }));
   }
 
   return (
@@ -90,7 +114,7 @@ export const ProductPageEdit = () => {
                     <div 
                       key={index}
                       className={`${index === indexColor ? 'border rounded-lg border-[#2B1E0C]' : ''} p-[10px] w-[12%] cursor-pointer`}
-                      onClick={() => setIndexColor(index)}
+                      onClick={() => selectColor(index)}
                     >
                       <img src={colors.find(c => c.name === color)?.color} alt={color.name} />
                     </div>
@@ -150,7 +174,10 @@ export const ProductPageEdit = () => {
                 />
               </div>
             </div>
-            <button className="btn-send">
+            <button 
+              className="btn-send"
+              onClick={onSubmit}
+            >
               AGREGAR AL CARRITO
             </button>
           </div>
@@ -208,7 +235,10 @@ export const ProductPageEdit = () => {
               />
             </div>
           </div>
-          <button className="btn-send mt-[20px ] xl:hidden">
+          <button 
+            className="btn-send mt-[20px ] xl:hidden"
+            onClick={onSubmit}
+          >
             AGREGAR AL CARRITO
           </button>
         </div>

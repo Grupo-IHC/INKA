@@ -7,11 +7,14 @@ import { NavLink, useNavigate} from 'react-router-dom';
 import { useLocationInicio } from '../../hooks/useLocationInicio';
 import { useAuthStore } from '../../hooks/useAuthStore';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
   const {showLogo, isScrolled, isAuth} = useLocationInicio();
 
   const {logoutUser, status} = useAuthStore();
+
+  const {cartTotalQuantity} = useSelector(state => state.shoppingCart);
 
   const navigate = useNavigate();
 
@@ -102,8 +105,8 @@ export const Navbar = () => {
               className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto relative' 
               onClick={() => setValueMenuMobile(false)}
             >
-              <div className='h-[30px] w-[30px] text-white font-bold rounded-full bg-tertiary absolute flex items-center justify-center top-[-10px] right-[-30px]'>
-                12
+              <div className='h-[25px] w-[25px] text-white text-[14px] font-bold rounded-full bg-tertiary absolute flex items-center justify-center top-[-10px] right-[-25px]'>
+                {cartTotalQuantity}
               </div>
               <img src={shopIcon} alt="shopIcon"/>
             </NavLink>

@@ -4,7 +4,7 @@ import { checkingCredentials, login, logout } from "../store/auth/authSlice";
 
 export const useAuthStore = () => {
 
-  const {status, id, erroMessage} = useSelector(state => state.auth);
+  const {status, id, message} = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const startLogin = async({username, password}) => {
@@ -51,7 +51,7 @@ export const useAuthStore = () => {
  }
 
   return {
-    erroMessage,
+    message,
     status,
     id,
 
