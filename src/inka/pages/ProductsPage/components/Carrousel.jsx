@@ -3,9 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import prevIcon from '../../../../shared/assets/arrowLetfIcon.png';
 import nextIcon from '../../../../shared/assets/arrowRigthIcon.png';
-import imgSeal from '../../../../shared/assets/sealCarrouselImage.png';
+import arrowRigth from '../../../../shared/assets/arrowProductCarrousel.svg';
 import { useNavigate } from "react-router-dom";
-import { Loader } from "../../../components/Loader";
 
 
 export const Carrousel = ({product}) => {
@@ -65,10 +64,12 @@ export const Carrousel = ({product}) => {
         <Slider {...settings}>
           {
             product.map((product) => (
-              <div key={product.name} className="slider-item !flex justify-center text-center">
+              <div key={product.name} className="slider-item !flex justify-center text-center relative">
+                <h3 className="absolute bottom-2 left-[15%] text-white font-bold text-[25px] cursor-pointer">{product.name}</h3>
+                <img src={arrowRigth} alt="arrowRight" className="absolute bottom-3 right-[15%] cursor-pointer" />
                 <img 
                   src={product.image} 
-                  className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl"  
+                  className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl bg-[#D1C8C1]"  
                   alt={product.name} 
                   onClick={() => navigate(`/productos/${product.name}`)}
                 />

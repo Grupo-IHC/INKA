@@ -20,10 +20,18 @@ export const useForm = (initialForm={}, formValidations={}) => {
   const onInputChange = ({target}) => {
     const {name, value} = target;
     if(name === 'quantity') {
-      setFormState({
-        ...formState,
-        [name]: parseInt(value) <= 0 ? 1 : parseInt(value)
-      })
+      if(value === ""){
+        setFormState({
+          ...formState,
+          [name]: parseInt(value),
+          isEmpty:true
+        })
+      }else {
+        setFormState({
+          ...formState,
+          [name]: parseInt(value) <= 0 ? 1 : parseInt(value)
+        })
+      }
     } else {
       setFormState({
         ...formState,
@@ -63,6 +71,7 @@ export const useForm = (initialForm={}, formValidations={}) => {
     onInputChange,
     ...formState,
     formState,
+    setFormState,
     onReset,
     ...formValidation,
     isFormValid,

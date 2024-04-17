@@ -13,7 +13,7 @@ export const InicioPage = () => {
 
   return (
     <>   
-      <section className='section-1 h-[667px] 2xl:h-screen bg-mobile lg:bg-inicio bg-cover'>
+      <section className='section-1 h-[667px] 2xl:h-screen bg-mobile lg:bg-inicio  bg-cover'>
         <div className='container flex flex-col justify-center px-[15px] mx-auto text-white h-full relative lg:py-3.5 lg:px-16 2xl:px-0'>
           <div className='title text-center'>
             <h2 className='font-stick text-[30px] lg:text-4xl 2xl:text-6xl font-light' style={containerStyle}>Negocios & Soluciones</h2>

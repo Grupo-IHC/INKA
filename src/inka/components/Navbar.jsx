@@ -99,9 +99,12 @@ export const Navbar = () => {
         <div className='hidden 2xl:flex 2xl:gap-x-10'>
             <NavLink
               to={"/shopping"}
-              className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto' 
+              className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto relative' 
               onClick={() => setValueMenuMobile(false)}
             >
+              <div className='h-[30px] w-[30px] text-white font-bold rounded-full bg-tertiary absolute flex items-center justify-center top-[-10px] right-[-30px]'>
+                12
+              </div>
               <img src={shopIcon} alt="shopIcon"/>
             </NavLink>
             <img 

@@ -7,6 +7,7 @@ import { useForm } from "../../../../hooks/useForm";
 
 import noSelected from "../../../../shared/assets/noSelectedIcon.png";
 import whiteColor from "../../../../shared/assets/whiteColorIcon.png";
+import fucsiaColor from "../../../../shared/assets/fucsiaColorIcon.png";
 import redColor from "../../../../shared/assets/redColorIcon.png";
 import blackColor from "../../../../shared/assets/blackColorIcon.png";
 import blueColor from "../../../../shared/assets/blueColorIcon.png";
@@ -26,6 +27,7 @@ const colors = [
   {id: 3, color: blueColor, name: 'Azul'},
   {id: 4, color: grayColor, name: 'Gris'},
   {id: 5, color: whiteColor, name: 'Blanco'},
+  {id: 6, color: fucsiaColor, name: 'Fucsia'},
 ]
 
 const tintas = [
@@ -47,7 +49,7 @@ export const ProductPageEdit = () => {
 
   const {getInfoProduct, loading} = useInkaStore();
 
-  const {onInputChange, aumentQuantity, quantity, decrementQuantity} = useForm({quantity:1});
+  const {onInputChange, aumentQuantity, quantity, isEmpty, decrementQuantity, setFormState} = useForm({quantity:1, isEmpty:false});
   const [productInfo, setProductInfo] = useState([]);
   const [indexColor, setIndexColor] = useState(0);
   const [indexTinta, setIndexTinta] = useState(0);
@@ -60,6 +62,12 @@ export const ProductPageEdit = () => {
     }
     getProduct();
   },[])  
+
+  const onBlur = () => {
+    if(isEmpty){
+      setFormState({quantity:1})
+    }
+  }
 
   return (
     <>
@@ -133,6 +141,7 @@ export const ProductPageEdit = () => {
                   maxLength="3" 
                   value={quantity}
                   onChange={onInputChange}
+                  onBlur={onBlur}
                 />
                 <img src={plusIcon} 
                   className='w-4/12 cursor-pointer 2xl:w-auto' 
@@ -156,7 +165,7 @@ export const ProductPageEdit = () => {
             </div>
             <div className="content-plantilla">
               <h3 className="font-bold xl:text-[20px]">TU PLANTILLA</h3>
-              <div {...getRootProps()} className="p-[15px] w-full h-[300px] rounded-lg flex flex-col items-center   justify-center  border-2 border-dashed border-black mt-[10px]">
+              <div {...getRootProps()} className="cursor-pointer p-[15px] w-full h-[300px] rounded-lg flex flex-col items-center   justify-center  border-2 border-dashed border-black mt-[10px]">
                 {
                   acceptedFiles[0] && (
                     <img src={URL.createObjectURL(acceptedFiles[0])} className="max-h-[163px] max-w-[309px]" alt="" />
