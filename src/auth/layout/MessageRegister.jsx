@@ -9,9 +9,9 @@ export const MessageRegister = ({status, message,onClose}) => {
 
   const closeModal = () => {
     onClose();
-    if(status !== 'ERROR') {
-      navigate('/auth/login');
-    }
+    // if(status !== 'ERROR') {
+    //   navigate('/auth/login');
+    // }
   }
 
   return (
