@@ -13,13 +13,13 @@ export const InicioPage = () => {
 
   return (
     <>   
-      <section className='section-1 h-[667px] 2xl:h-screen bg-mobile lg:bg-inicio  bg-cover'>
+      <section className='section-1 h-[667px] 2xl:h-screen bg-mobile lg:bg-inicio bg-cover'>
         <div className='container flex flex-col justify-center px-[15px] mx-auto text-white h-full relative lg:py-3.5 lg:px-16 2xl:px-0'>
-          <div className='title text-center'>
+          <div className='title text-center relative'>
             <h2 className='font-stick text-[30px] lg:text-4xl 2xl:text-6xl font-light' style={containerStyle}>Negocios & Soluciones</h2>
             <h1 className={`font-pro text-[60px] lg:text-7xl 2xl:text-9xl font-bold ${isScrolled ? '' : ''}`} style={containerStyle}  >INKA</h1>
           </div>
-          <p className='absolute left-[0] bottom-[11%] md:left-[2%] font-inika font-bold text-center lg:text-lg 2xl:text-2xl absolute lg:bottom-10 lg:left-14 2xl:left-1' style={containerStyle}> Empresa con una rica historia en la industria de sellos personalizados en Lima, Perú.</p>
+          <p className='absolute left-[0] bottom-[11%] md:left-[2%] font-inika font-bold text-center lg:text-lg 2xl:text-2xl lg:bottom-13 lg:left-14 2xl:left-1' style={containerStyle}> Empresa con una rica historia en la industria de sellos personalizados en Lima, Perú.</p>
         </div>
       </section>
       <section className='section-2 bg-white h-[320px] md:h-[250px] bg-section2 bg-cover md:bg-no-repeat 2xl:h-[350px] 2xl:bg-center'>

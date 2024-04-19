@@ -3,40 +3,40 @@ import shopIcon from '../../shared/assets/shopIcon.svg';
 import menuMobile from '../../shared/assets/menuMobile.svg';
 import profileIcon from '../../shared/assets/profileIcon.svg';
 import closeIcon from '../../shared/assets/closeIcon.svg';
-import { NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useLocationInicio } from '../../hooks/useLocationInicio';
 import { useAuthStore } from '../../hooks/useAuthStore';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
-  const {showLogo, isScrolled, isAuth} = useLocationInicio();
+  const { showLogo, isScrolled, isAuth } = useLocationInicio();
 
-  const {logoutUser, status} = useAuthStore();
+  const { logoutUser, status } = useAuthStore();
 
-  const {cartTotalQuantity} = useSelector(state => state.shoppingCart);
+  const { cartTotalQuantity } = useSelector(state => state.shoppingCart);
 
   const navigate = useNavigate();
 
   const [showProfile, setShowProfile] = useState(false);
   const [valueMenuMobile, setValueMenuMobile] = useState(false)
 
-  const logOut =  () => {
+  const logOut = () => {
     logoutUser();
-    navigate("/auth/login") 
+    navigate("/auth/login")
   }
 
   const showAccout = () => {
     return (
-      <div className='fixed bg-white absolute top-[79px] right-[21.2%] h-[100px] bg-red-600 p-[15px]'>
+      <div className=' bg-white absolute top-[72px] right-[0%] h-[auto] p-[15px]'>
         {
-          (status === "authenticated") 
-          ? <small
+          (status === "authenticated")
+            ? <small
               onClick={logOut}
             >
               Salir
             </small>
-          : <NavLink
+            : <NavLink
               to={"/auth/login"}
             >
               Logueate
@@ -69,54 +69,77 @@ export const Navbar = () => {
   const showMenu = () => {
     setValueMenuMobile(!valueMenuMobile);
   }
-  
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 ${(showLogo || valueMenuMobile )? 'bg-white' : (isScrolled ? "bg-black bg-opacity-40" : "bg-transparent")}`}>
-      <div className={`container mx-auto w-full max-h-[67px] 2xl:max-h-[100px] flex items-center justify-between py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
-        <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
+    <header className={`fixed top-0 left-0 right-0 z-40 ${(showLogo || valueMenuMobile) ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-75" : "bg-transparent")}`}>
+      <div className={`my-1 mx-3 max-h-[67px] 2xl:mx-auto flex items-center justify-between md:justify-around py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
         <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} className='lg:hidden' />
-        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-between lg:bg-inherit 2xl:justify-center 2xl:gap-x-40`}>
+        <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
+        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-evenly lg:bg-inherit 2xl:justify-center 2xl:gap-x-40`}>
           <NavLink
-           to="/" 
-           className={({isActive}) => ( isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto " :  "font-bold text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
-           onClick={() => setValueMenuMobile(false)}
+            to="/"
+            className={({ isActive }) => (isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto " : "text-white font-bold text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
+            onClick={() => setValueMenuMobile(false)}
           >
             INICIO
           </NavLink>
-          <NavLink 
-            to="/productos" 
-            className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto" : "font-bold text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto")}
+          <NavLink
+            to="/productos"
+            className={({ isActive }) => (isActive ? "font-bold text-tertiary text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto" : "text-white font-bold text-[14px] text-center py-[15px] border-b-2 w-full lg:p-0 lg:border-0 lg:w-auto")}
             onClick={() => setValueMenuMobile(false)}
           >
             NUESTROS PRODUCTOS
           </NavLink>
           <NavLink
-           to="/contactanos" 
-           className={({isActive}) => (isActive? "font-bold text-tertiary text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto" :  "font-bold text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
-           onClick={() => setValueMenuMobile(false)}
+            to="/contactanos"
+            className={({ isActive }) => (isActive ? "font-bold text-tertiary text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto" : "text-white font-bold text-[14px] text-center py-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
+            onClick={() => setValueMenuMobile(false)}
           >
             CONTÁCTANOS
           </NavLink>
           {showProfile && showAccout()}
+
         </div>
-        <div className='hidden 2xl:flex 2xl:gap-x-10'>
+        <div className='search-box flex items-center w-[500px]  md:w-[380px] lg:w-[460px] xl:w-[500px] me-[50px] md:me-[10px] lg:me-[20px] xl:me-[50px]'>
+            <input 
+              className='search-input h-[35px] w-[100%] rounded-[25px] px-4'
+              type="text" 
+              placeholder='Buscar producto'/>
+            <a
+             className='search-btn absolute top-auto  md:right-[26%] lg:right-[150px] xl:right-[180px] cursor-pointer'>
+              <i className="fa-solid fa-magnifying-glass text-[24px]"></i>
+            </a>
+          </div>
+        {/* hidden */}
+        <div className='flex items-center 2xl:flex 2xl:gap-x-10'>
+          <div className='mx-[14px]'>
             <NavLink
               to={"/shopping"}
-              className='py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto relative' 
+              className='text-white py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto relative'
               onClick={() => setValueMenuMobile(false)}
             >
-              <div className='h-[25px] w-[25px] text-white text-[14px] font-bold rounded-full bg-tertiary absolute flex items-center justify-center top-[-10px] right-[-25px]'>
+              <div className='h-[25px] w-[25px] text-[14px] font-bold rounded-full bg-tertiary absolute flex items-center justify-center top-[-10px] right-[-27px]'>
                 {cartTotalQuantity}
               </div>
-              <img src={shopIcon} alt="shopIcon"/>
+              <i className="fa-solid fa-cart-shopping text-[25px]"></i>
+              {/* <img src={shopIcon} alt="shopIcon" /> */}
             </NavLink>
-            <img 
-              src={profileIcon} 
+          </div>
+          <div className='ms-[24px]'>
+            <a
+              alt="profileIcon"
+              className='w-[36px] text-white text-center pt-[15px] cursor-pointer lg:p-0 lg:border-0 lg:w-auto'
+              onClick={valueShowProfile}>
+              <i className="fa-solid fa-user text-[25px]"></i>
+            </a>
+            {/* <img
+              src={profileIcon}
               alt="profileIcon"
               className='cursor-pointer w-[36px] text-center pt-[15px] lg:p-0 lg:border-0 lg:w-auto'
-              onClick={valueShowProfile} 
-            />
+              onClick={valueShowProfile}
+            /> */}
           </div>
+        </div>
       </div>
     </header>
   )
