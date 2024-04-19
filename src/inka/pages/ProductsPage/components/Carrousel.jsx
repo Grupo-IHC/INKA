@@ -64,15 +64,17 @@ export const Carrousel = ({product}) => {
         <Slider {...settings}>
           {
             product.map((product) => (
-              <div key={product.name} className="slider-item !flex justify-center text-center relative">
-                <h3 className="absolute bottom-2 left-[15%] text-white font-bold text-[25px] cursor-pointer">{product.name}</h3>
-                <img src={arrowRigth} alt="arrowRight" className="absolute bottom-3 right-[15%] cursor-pointer" />
-                <img 
-                  src={product.image} 
-                  className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl bg-[#D1C8C1]"  
-                  alt={product.name} 
-                  onClick={() => navigate(`/productos/${product.name}`)}
-                />
+              <div key={product.name} className="slider-item !flex justify-center">
+                <div className="relative">
+                  <h3 className="absolute bottom-2 left-2 text-white font-bold text-[18px] cursor-pointer">{product.name}</h3>
+                  <img src={arrowRigth} alt="arrowRight" className="absolute bottom-2 right-2 cursor-pointer" />
+                  <img 
+                    src={product.image} 
+                    className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl bg-[#D1C8C1]"  
+                    alt={product.name} 
+                    onClick={() => navigate(`/productos/${product.name}`)}
+                  />
+                </div>
               </div>
             ))
           }
