@@ -71,11 +71,14 @@ export const Navbar = () => {
   }
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 ${(showLogo || valueMenuMobile) ? 'bg-white' : (isScrolled ? "bg-black bg-opacity-75" : "bg-transparent")}`}>
-      <div className={`my-1 mx-3 max-h-[67px] 2xl:mx-auto flex items-center justify-between md:justify-around py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
-        <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} className='lg:hidden' />
-        <img src={inkaLogo} className='w-3/12 md:w-[100px]' alt="inkaLogo" />
-        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-[#fff] py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-evenly lg:bg-inherit 2xl:justify-center 2xl:gap-x-40`}>
+    <header className={`fixed top-0 left-0 right-0 z-40 ${(showLogo || valueMenuMobile) ? "bg-black bg-opacity-75" : (isScrolled ? "bg-black bg-opacity-75" : "bg-transparent")}`}>
+      <div className={`my-1 mx-3 max-h-[67px] 2xl:mx-auto flex items-center justify-between md:justify-evenly py-3.5 px-[15px] 2xl:px-0 2xl:py-7 relative`}>
+        {/* <img src={valueMenuMobile ? closeIcon : menuMobile} alt="mobileLogo" onClick={showMenu} className='lg:hidden' /> */}
+        <a className='lg:hidden' onClick={showMenu}>
+          <i className="fa-solid fa-bars  text-white text-[24px]"></i>
+        </a>
+        <img src={inkaLogo} className='w-[100px] sm:ms-6 sm:me-4 lg:mx-0' alt="inkaLogo" />
+        <div className={`${valueMenuMobile ? "flex" : "hidden"} flex-col items-center fixed h-[100vh] w-[100%] bg-black bg-opacity-75 py-[30px] px-[30px] top-[67px] right-0 z-50 lg:flex lg:static lg:h-[auto] lg:p-0 lg:flex-row lg:w-[80%] lg:justify-evenly lg:bg-inherit 2xl:justify-center 2xl:gap-x-40`}>
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "font-bold text-tertiary text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto " : "text-white font-bold text-[14px] text-center pb-[15px] w-full border-b-2 lg:p-0 lg:border-0 lg:w-auto")}
@@ -100,22 +103,22 @@ export const Navbar = () => {
           {showProfile && showAccout()}
 
         </div>
-        <div className='search-box flex items-center w-[500px]  md:w-[380px] lg:w-[460px] xl:w-[500px] me-[50px] md:me-[10px] lg:me-[20px] xl:me-[50px]'>
+        <div className='search-box flex items-center w-[500px]  md:w-[560px] lg:w-[560px] xl:w-[530px] me-[50px] md:mx-[40px] lg:ms-0  lg:me-[0px] xl:me-[50px]'>
             <input 
               className='search-input h-[35px] w-[100%] rounded-[25px] px-4'
               type="text" 
               placeholder='Buscar producto'/>
             <a
-             className='search-btn absolute top-auto  md:right-[26%] lg:right-[150px] xl:right-[180px] cursor-pointer'>
-              <i className="fa-solid fa-magnifying-glass text-[24px]"></i>
+             className='search-btn flex justify-center items-center bg-[#000] h-[35px] w-[55px] mx-2  rounded-[10px] cursor-pointer'>
+              <i className="fa-solid fa-magnifying-glass text-white text-[24px]"></i>
             </a>
           </div>
         {/* hidden */}
-        <div className='flex items-center 2xl:flex 2xl:gap-x-10'>
+        <div className='flex items-center 2xl:flex 2xl:gap-x-10 sm:mx-4 lg:mx-0'>
           <div className='mx-[14px]'>
             <NavLink
               to={"/shopping"}
-              className='text-white py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto relative'
+              className='none text-white py-[15px] w-full flex justify-center border-b-2 lg:p-0 lg:border-0 lg:w-auto relative'
               onClick={() => setValueMenuMobile(false)}
             >
               <div className='h-[25px] w-[25px] text-[14px] font-bold rounded-full bg-tertiary absolute flex items-center justify-center top-[-10px] right-[-27px]'>
