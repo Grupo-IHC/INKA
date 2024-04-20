@@ -54,11 +54,22 @@ export const useInkaStore = () => {
     }
   }
 
+  const ContactSend = async(data) => {
+    try {
+      const response = await inkaApi.post('/security/contact', data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
+   }
+
   return {
     getTypeSeals,
     getTypeSealsById,
     getProductFilterByCategory,
     getInfoProduct,
+    ContactSend,
     loading
   }
 }
