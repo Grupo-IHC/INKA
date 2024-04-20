@@ -89,7 +89,7 @@ export const ProductPageEdit = () => {
       design: acceptedFiles[0] ? URL.createObjectURL(acceptedFiles[0]) : null,
       quantity: quantity,
       price: productInfo.price,
-      total: parseInt((quantity * productInfo.price).toFixed(2)),
+      total: Math.round(quantity * productInfo.price * 100) / 100,
     }));
   }
 

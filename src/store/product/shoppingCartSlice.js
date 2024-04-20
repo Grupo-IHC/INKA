@@ -18,7 +18,7 @@ export const shoppingCartSlice = createSlice({
                 state.cartItems = [...state.cartItems, payload];
             }
             state.cartTotalQuantity += payload.quantity;
-            state.cartTotalAmount += payload.total;
+            state.cartTotalAmount = Math.round((state.cartTotalAmount + payload.total) * 100)/100;
         }
     }
 });

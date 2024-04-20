@@ -13,7 +13,7 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   @apply w-full bg-secondary text-white font-mont font-bold py-2.5 px-11 text-[14px] lg:text-[18px] rounded-lg cursor-pointer;
 }
 .btn-send-2 {
-  @apply  bg-secondary text-white font-mont font-bold text-[16px] py-2 px-5 2xl:px-10 rounded-3xl cursor-pointer;
+  @apply  bg-secondary text-white font-mont font-bold text-[12px] lg:text-[16px] py-2 px-5 2xl:px-10 rounded-3xl cursor-pointer;
 }
 .labelInput {
   @apply font-mont font-bold text-[14px] lg:text-[18px] py-1;

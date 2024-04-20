@@ -26,7 +26,6 @@ export const ContactanosPage = () => {
     e.preventDefault();
     setFormSubmitted(true);
     if (!isFormValid) return;
-    console.log(formState);
   }
 
 

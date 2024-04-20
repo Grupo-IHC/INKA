@@ -53,7 +53,6 @@ export const RegisterPage = () => {
       last_name : lastName,
       document_number: nroDocument
     }
-
     setLoading(true);
     try {
       const {status, msg} = await registerUser(dataSend);

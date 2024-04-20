@@ -1,12 +1,19 @@
 import React from 'react'
 
-export const Modal = ({children, title=''}) => {
+export const Modal = ({children, onClose}) => {
+  const handleContentClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <div 
-      className={`modal cursor-pointer h-screen w-full flex justify-center items-center bg-[#000] bg-opacity-75 fixed inset-0 z-30`}
+      className={`modal cursor-pointer h-screen w-full flex justify-center items-center bg-[#000] bg-opacity-75 fixed inset-0 z-40`}
+      onClick={onClose}
     >
-      <div className="bg-white p-6 rounded-2xl min-w-[550px]">
-        <h1 className="font-mont font-bold text-3xl	text-center py-4 border-b-2 border-[#000]">{title}</h1>
+      <div 
+        className="bg-white p-6 rounded-2xl min-w-[300px] md:min-w-[500px] md:max-w-[600px] lg:min-w-[550px] flex flex-col justify-center"
+        onClick={handleContentClick}
+      >
         {children}
       </div>
     </div>

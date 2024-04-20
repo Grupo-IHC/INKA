@@ -8,52 +8,53 @@ export const ModalDelivery = ({onClose}) => {
   }
 
   return (
-    <Modal title="Entrega de pedido">
-      <form onSubmit={onSubmit} className="mt-9">
-        <div className='flex items-center justify-between pb-8'>
-          <label className='font-mont font-bold text-xl py-1' htmlFor="distrito">Distrito:</label>
+    <Modal onClose={onClose}>
+      <h1 className="font-mont font-bold text-lg lg:text-3xl	text-center py-4 border-b-2 border-[#000]">Entrega de pedido</h1>
+      <form onSubmit={onSubmit} className="mt-4">
+        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+          <label className='labelInput' htmlFor="distrito">Distrito:</label>
           <select 
             name="distrito"
-            className='bg-[#D1C8C1] py-2.5 px-4 rounded-lg min-w-[300px]'
+            className='inputClass'
           >
             <option value="0" selected>Seleccione un distrito</option>
             <option value="1" selected>Chorrillos</option>
             <option value="2" selected>Surco</option>
           </select>
         </div>
-        <div className='flex items-center justify-between pb-8'>
-          <label className='font-mont font-bold text-xl py-1' htmlFor="direccion">Dirección: </label>
+        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+          <label className='labelInput' htmlFor="direccion">Dirección: </label>
           <input 
             type="text" 
             name="direccion"
-            className='bg-[#D1C8C1] py-2.5 px-4 rounded-lg min-w-[300px]'
+            className='inputClass'
           />
         </div>
-        <div className='flex items-center justify-between pb-8'>
-          <label className='font-mont font-bold text-xl py-1' htmlFor="recepcion">Recepcionista: </label>
+        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+          <label className='labelInput' htmlFor="recepcion">Recepcionista: </label>
           <input 
             type="text" 
             name="recepcion"
-            className='bg-[#D1C8C1] py-2.5 px-4 rounded-lg min-w-[300px]'
+            className='inputClass'
           />
         </div>
-        <div className='flex items-center justify-between pb-8'>
-          <label className='font-mont font-bold text-xl py-1' htmlFor="documento">Nro. Documento: </label>
+        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+          <label className='labelInput' htmlFor="documento">Nro. Documento: </label>
           <input 
             type="text" 
             name="documento"
-            className='bg-[#D1C8C1] py-2.5 px-4 rounded-lg min-w-[300px]'
+            className='inputClass'
           />
         </div>
-        <div className='flex items-center justify-between pb-8'>
-          <label className='font-mont font-bold text-xl py-1' htmlFor="telefono">Telefono: </label>
+        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+          <label className='labelInput' htmlFor="telefono">Telefono: </label>
           <input 
             type="text" 
             name="telefono"
-            className='bg-[#D1C8C1] py-2.5 px-4 rounded-lg min-w-[300px]'
+            className='inputClass'
           />
         </div>
-        <div className="flex justify-around mt-4">
+        <div className="flex justify-between mt-4">
            <button className="btn-send-2" type="submit">
             Aceptar
            </button>
