@@ -72,7 +72,7 @@ export const Carrousel = ({product}) => {
                     src={product.image} 
                     className="max-w-[250px] 2xl:max-w-[400px] cursor-pointer rounded-2xl bg-[#D1C8C1]"  
                     alt={product.name} 
-                    onClick={() => navigate(`/productos/${product.name}`)}
+                    onClick={() => navigate(`/productos/${product.code}`)}
                   />
                 </div>
               </div>

@@ -46,7 +46,7 @@ export const ProductsPage = () => {
       <div className="container mx-auto px-[15px] py-[15px] 2xl:px-0 flex flex-col">
         {
           productsType.map((product,index) => (
-            <div key={index} className={`${index + 1} flex flex-col lg:flex-row max-h-[480px] md:items-center`}>
+            <div key={index} className={`${index + 1} flex flex-col lg:flex-row gap-y-[30px] md:items-center`}>
               <img  
                 src={product.name === 'Tinta para sellos' ? tintaIgm : (product.name === 'Tampón para sellos') ? tamponImg :    (product.name === 'Sellos de Madera' ? sealWoodImg : sealAutomaticImg)} alt="SealAutomatic" className='md:w-[50%]  lg:w-[35%] 2xl:w-[25%]' />
               <div className='flex flex-col gap-y-4 md:w-full'>

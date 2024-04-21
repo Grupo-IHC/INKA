@@ -57,7 +57,7 @@ export const ProductLayout = () => {
     <section className={`section-3-seal-${id}`}>
       <div className="container mx-auto py-9 px-10 2xl:px-0 flex flex-col">
         <h1 className="font-mont font-ligth text-[30px]">{productById.name}</h1>
-        <p className="font-mont text-[16px] mt-[20px] mb-[50px]">{productById.description}</p>
+        <p className="font-mont text-[16px] mt-[20px] mb-[50px] text-justify">{productById.description}</p>
         <div className='acordion mb-[50px]'>
           <ul className='flex items-center flex-col flex-wrap max-h-[120px] md:max-h-[80px] lg:flex-row'>
             <li 

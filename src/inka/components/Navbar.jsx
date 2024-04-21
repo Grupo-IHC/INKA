@@ -46,19 +46,19 @@ export const Navbar = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 ${
-        isScrolled || valueMenuMobile
+        isScrolled || valueMenuMobile || showLogo
           ? "bg-black bg-opacity-75"
           : "bg-transparent"
-      }`}
+      } ${showLogo ? 'lg:bg-black lg:bg-opacity-75' : 'lg:bg-transparent'}`}
     >
       <div
-        className={`my-1 mx-3 max-h-[67px] flex items-center py-3.5  px-1.5  relative sm:my-2 sm:px-2.5 lg:justify-evenly`}
+        className={`max-h-[67px] flex items-center py-3.5  px-1.5 relative sm:px-2.5 lg:justify-evenly`}
       >
         <a
           className="cursor-pointer lg:hidden"
           onClick={() => setValueMenuMobile(!valueMenuMobile)}
         >
-          <i className="fa-solid fa-bars  text-white text-[24px]"></i>
+          <i className="fa-solid fa-bars text-white text-[24px]"></i>
         </a>
 
         <img
