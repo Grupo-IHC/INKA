@@ -148,7 +148,7 @@ export const ContactanosPage = () => {
                 </button>
               </div>
             </form>
-            <div className="sm:w-full lg:w-6/12"><iframe className="full" width="100%" height="350" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Lima,Per%C3%BA+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/car-satnav-gps/">Car Navigation Systems</a></iframe></div>
+            <div className="sm:w-full lg:w-6/12"><iframe className="full" width="100%" height="100%" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Lima,Per%C3%BA+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/car-satnav-gps/">Car Navigation Systems</a></iframe></div>
           </div>
           <div className="pb-10 flex flex-col items-center  md:flex-row md:justify-center w-full space-y-4 md:space-y-0 md:space-x-4 md:px-2 lg:space-x-20 lg:px-32 xl:px-68">
             <div className="py-4 bg-[#F2F2F2] flex justify-center items-center flex-col p-1 w-8/12 shadow-md">
