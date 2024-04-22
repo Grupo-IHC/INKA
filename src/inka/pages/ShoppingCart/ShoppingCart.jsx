@@ -1,7 +1,4 @@
 import deleteIcon from '../../../shared/assets/deleteIcon.svg';
-import imgProduct from '../../../shared/assets/shopingCartProduct.png';
-import emptyCart from '../../../shared/assets/emptyCart.svg';
-import tintaIcon from '../../../shared/assets/tintaIcon.svg';
 import colorIcon from '../../../shared/assets/colorIcon.svg';
 import arrowRigth from '../../../shared/assets/arrowRIgth.svg';
 import arrowDown from '../../../shared/assets/arrowDown.svg';
@@ -15,12 +12,14 @@ import { useState } from 'react';
 import { ModalDelivery } from './components/ModalDelivery';
 
 import 'animate.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { aumentQuantity, decrementQuantity, deleteProduct } from '../../../store/product/shoppingCartSlice';
 import { Modal } from '../../components/Modal';
 
 export const ShoppingCart = () => {
 
   const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.shoppingCart);
+  const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState('');
   const [showModalDelivery, setShowModalDelivery] = useState(false);
@@ -43,7 +42,7 @@ export const ShoppingCart = () => {
   const emptyListProducts = () => {
     return(
       <div className='w-full h-[500px] p-[15px] flex flex-col items-center justify-center gap-y-3'>
-        <img src={emptyCart} alt="emptyCart" />
+        <i className="fa-solid fa-cart-plus text-[150px]"></i>
         <h3 className='text-tertiary font-bold text-[20px]'>Tu listado esta vacío</h3>
         <p className='text-center'>Comienza tu primera venta agregando productos a tu carrito de compras.</p>
       </div>
@@ -102,7 +101,11 @@ export const ShoppingCart = () => {
                   <div className="col-span-4 2xl:col-span-4">
                     <div className='grid grid-cols-12'>
                       <div className='col-span-1 flex items-center'>
-                        <img src={deleteIcon} className='cursor-pointer' alt="deleteIcon" />
+                        <img 
+                          src={deleteIcon} 
+                          className='cursor-pointer' 
+                          alt="deleteIcon" 
+                          onClick={() => dispatch(deleteProduct(cartItems[index]))} />
                       </div>  
                       <div className='col-span-5 flex justify-center'>
                         <img src={product.img} alt="deleteIcon" />
@@ -121,11 +124,22 @@ export const ShoppingCart = () => {
                       </div> 
                     </div>
                   </div>
-                  <div className="col-span-2 flex justify-center">
-                    <img src={product.design} className='' alt="" />
+                  <div className="col-span-2 flex justify-center items-center">
+                    {
+                      product.design 
+                      ? <img src={product.design} alt="" /> 
+                      : <span className='rounded-2xl bg-[#D1C8C1] p-[10px] text-[#7A3906] font-bold text-center text-[12px] xl:max-w-[100px] 2xl:text-[16px] 2xl:max-w-[144px]'>
+                          NO HAY DISEÑO
+                        </span> 
+                    }
                   </div>
                   <div className="col-span-2 2xl:col-span-2 flex items-center justify-center gap-x-2">
-                    <img src={lessIcon} className='w-2/12 cursor-pointer 2xl:w-auto' alt="less" />
+                    <img 
+                      src={lessIcon} 
+                      className='w-2/12 cursor-pointer 2xl:w-auto' 
+                      alt="less" 
+                      onClick={() => dispatch(decrementQuantity(cartItems[index]))}
+                    />
                     <input 
                       name="quantity"
                       className='max-w-[40px] border-2 border-black rounded-lg text-center' 
@@ -135,13 +149,18 @@ export const ShoppingCart = () => {
                       value={product.quantity}
                       disabled={true}
                     />
-                    <img src={plusIcon} className='w-2/12 cursor-pointer 2xl:w-auto' alt="less" />
+                    <img 
+                      src={plusIcon} 
+                      className='w-2/12 cursor-pointer 2xl:w-auto' 
+                      alt="less" 
+                      onClick={() => dispatch(aumentQuantity(cartItems[index]))}
+                    />
                   </div>
                   <div className="col-span-2 2xl:col-span-2 flex justify-center items-center">
-                    <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ {product.price}</p>
+                    <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ {(product.price).toFixed(2)}</p>
                   </div>
                   <div className="col-span-2 2xl:col-span-2 flex justify-center items-center">
-                    <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ {product.total}</p>
+                    <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ {(product.total).toFixed(2)}</p>
                   </div>
                 </div>
                 ))
@@ -171,6 +190,7 @@ export const ShoppingCart = () => {
                                 <img src={lessIcon} 
                                   className='cursor-pointer' 
                                   alt="less" 
+                                  onClick={() => dispatch(decrementQuantity(cartItems[index]))}
                                   // onClick={decrementQuantity}
                                 />
                                 <input 
@@ -185,6 +205,7 @@ export const ShoppingCart = () => {
                                 <img src={plusIcon} 
                                   className='cursor-pointer' 
                                   alt="less" 
+                                  onClick={() => dispatch(aumentQuantity(cartItems[index]))}
                                 />
                               </div>
                             </div>
@@ -204,7 +225,7 @@ export const ShoppingCart = () => {
                                   PRECIO UNI.: 
                                 </span>
                                 <span className='text-[16px]'>
-                                  S/ {item.price}
+                                  S/ {(item.price.toFixed(2))}
                                 </span>
                               </div>
                               <div className='flex items-center justify-between gap-x-2'>
@@ -212,15 +233,22 @@ export const ShoppingCart = () => {
                                   TOTAL: 
                                 </span>
                                 <span className='text-[16px]'>
-                                  S/ {item.total}
+                                  S/ {(item.total).toFixed(2)}
                                 </span>
                               </div>
-                              <button 
+                              {
+                                item.design 
+                                ? 
+                                <button 
                                 className='bg-secondary text-white text-[12px] font-mont font-bold rounded-2xl cursor-pointer py-[10px]'
                                 onClick={() => handleClickDesignMobile(index)}
-                              >
-                                DISEÑO
-                              </button>
+                                >
+                                  DISEÑO
+                                </button>
+                                : <span className='rounded-2xl bg-secondary py-[10px] text-white font-bold text-center text-[12px] xl:text-[16px] xl:max-w-[144px]'>
+                                    NO HAY DISEÑO
+                                  </span> 
+                              }
                             </div>
                           </div>
                         </div>

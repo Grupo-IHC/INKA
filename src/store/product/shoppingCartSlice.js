@@ -19,8 +19,31 @@ export const shoppingCartSlice = createSlice({
             }
             state.cartTotalQuantity += payload.quantity;
             state.cartTotalAmount = Math.round((state.cartTotalAmount + payload.total) * 100)/100;
+        },
+        aumentQuantity(state, {payload}) {
+            const itemId = state.cartItems.findIndex(item => item.id === payload.id);
+            state.cartItems[itemId].quantity += 1;
+            state.cartItems[itemId].total += state.cartItems[itemId].price;
+            state.cartTotalQuantity += 1;
+            state.cartTotalAmount = Math.round((state.cartTotalAmount + state.cartItems[itemId].price)*100)/100;
+        },
+        decrementQuantity(state, {payload}) {
+            const itemId = state.cartItems.findIndex(item => item.id === payload.id);
+            if(state.cartItems[itemId].quantity === 1) return;
+            state.cartItems[itemId].quantity -= 1;
+            state.cartItems[itemId].total -= state.cartItems[itemId].price;
+            state.cartTotalQuantity -=1;
+            state.cartTotalAmount = Math.round((state.cartTotalAmount - state.cartItems[itemId].price)*100)/100;
+        },
+        deleteProduct(state, {payload}) {
+            const newCartItems = state.cartItems.filter(item =>  {return item.id !== payload.id});
+            console.log(newCartItems);
+            // state.cartTotalQuantity -= state.cartItems[payload].quantity;
+            // state.cartTotalAmount = Math.round((state.cartTotalAmount - state.cartItems[payload].total)*100)/100;
+            // state.cartItems = newCartItems;
+
         }
     }
 });
 
-export const {addToCart} = shoppingCartSlice.actions;
+export const {addToCart, aumentQuantity, decrementQuantity, deleteProduct} = shoppingCartSlice.actions;
