@@ -9,9 +9,9 @@ export const ModalDelivery = ({onClose}) => {
 
   return (
     <Modal onClose={onClose}>
-      <h1 className="font-mont font-bold text-lg lg:text-3xl	text-center py-4 border-b-2 border-[#000]">Entrega de pedido</h1>
+      <h1 className="font-mont font-bold text-lg lg:text-3xl text-center py-4 border-b-2 border-[#000]">Entrega de pedido</h1>
       <form onSubmit={onSubmit} className="mt-4">
-        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+        <div className='flex justify-between pb-5 flex-col relative'>
           <label className='labelInput' htmlFor="distrito">Distrito:</label>
           <select 
             name="distrito"
@@ -22,7 +22,7 @@ export const ModalDelivery = ({onClose}) => {
             <option value="2" selected>Surco</option>
           </select>
         </div>
-        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+        <div className='flex justify-between pb-5 flex-col relative'>
           <label className='labelInput' htmlFor="direccion">Dirección: </label>
           <input 
             type="text" 
@@ -30,7 +30,7 @@ export const ModalDelivery = ({onClose}) => {
             className='inputClass'
           />
         </div>
-        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+        <div className='flex justify-between pb-5 flex-col relative'>
           <label className='labelInput' htmlFor="recepcion">Recepcionista: </label>
           <input 
             type="text" 
@@ -38,7 +38,7 @@ export const ModalDelivery = ({onClose}) => {
             className='inputClass'
           />
         </div>
-        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+        <div className='flex justify-between pb-5 flex-col relative'>
           <label className='labelInput' htmlFor="documento">Nro. Documento: </label>
           <input 
             type="text" 
@@ -46,7 +46,7 @@ export const ModalDelivery = ({onClose}) => {
             className='inputClass'
           />
         </div>
-        <div className='flex justify-between pb-5 flex-col relative lg:flex-row'>
+        <div className='flex justify-between pb-5 flex-col relative'>
           <label className='labelInput' htmlFor="telefono">Telefono: </label>
           <input 
             type="text" 

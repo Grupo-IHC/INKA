@@ -16,7 +16,6 @@ import plusIcon from '../../../../shared/assets/plusIcon.svg';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../../store/product/shoppingCartSlice";
 
-
 const colors = [
   {id: 1, color: redColor, name: 'Rojo'},
   {id: 2, color: blackColor, name: 'Negro'},
@@ -42,7 +41,6 @@ export const ProductPageEdit = () => {
   const {onInputChange, aumentQuantity, quantity, isEmpty, decrementQuantity, setFormState} = useForm({quantity:1, isEmpty:false});
   const [productInfo, setProductInfo] = useState([]);
   const [indexColor, setIndexColor] = useState(0);
-  const [indexTinta, setIndexTinta] = useState(0);
   const [idProduct, setIdProduct] = useState('');
 
   useEffect(() => {
@@ -82,9 +80,9 @@ export const ProductPageEdit = () => {
   return (
     <>
       {loading && <Loader />}
-      <section className="Product">
+      <section className="Product lg:grow lg:flex lg:items-center">
         <div className="container mx-auto px-[30px] py-[15px] grid gap-y-[30px] xl:grid-cols-3 xl:gap-y-[0px] xl:gap-x-[100px] xl:py-[30px]">
-          <div className="flex flex-col xl:justify-between gap-y-[30px]">
+          <div className="flex flex-col xl:justify-between">
             <div className="flex flex-col gap-y-[15px]">
               <h1 className="font-bold text-[#2B1E0C] text-[20px] text-center xl:text-start xl:text-[35px]">{productInfo.name}</h1>
               <p className="text-[16px] text-justify xl:text-[18px]">{productInfo.description}</p>
@@ -109,11 +107,11 @@ export const ProductPageEdit = () => {
               </div>
             </div>
           </div>
-          <div className="hidden xl:flex xl:flex-col xl:justify-end">
+          <div className="hidden xl:flex xl:flex-col xl:justify-end gap-y-[30px]">
             <div className="flex justify-center">
-              <img src={productInfo.image} alt="imgPrueba" className="2xl:w-[85%]" />
+              <img src={productInfo.image} alt="imgPrueba" />
             </div>
-            <div className="content-precio flex justify-between items-center xl:mt-[60px] xl:mb-[40px]">
+            <div className="content-precio flex justify-between items-center">
               <h3 className="font-bold xl:text-[20px]">CANTIDAD</h3>
               <div className="flex items-center justify-center gap-x-3">
                 <img src={lessIcon} 
@@ -145,7 +143,7 @@ export const ProductPageEdit = () => {
               AGREGAR AL CARRITO
             </button>
           </div>
-          <div className="flex flex-col gap-y-[30px] xl:justify-end">
+          <div className="flex flex-col xl:justify-between gap-y-[30px]">
             <div className="content-medida">
               <h3 className="font-bold xl:text-[20px]">MEDIDA</h3>
               <div className="flex justify-center">
@@ -154,7 +152,7 @@ export const ProductPageEdit = () => {
                 </div>
               </div>
             </div>
-            <div className="content-plantilla">
+            <div className={`content-plantilla ${productInfo?.name?.includes('Sello') ? 'block' : 'hidden' }`}>
               <h3 className="font-bold xl:text-[20px]">TU PLANTILLA</h3>
               <div {...getRootProps()} className="cursor-pointer p-[15px] w-full h-[300px] rounded-lg flex flex-col items-center   justify-center  border-2 border-dashed border-black mt-[10px]">
                 {
