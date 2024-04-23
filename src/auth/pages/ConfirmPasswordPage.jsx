@@ -5,25 +5,25 @@ export const ConfirmPasswordPage = () => {
     <>
       <div className=" h-[100vh] w-[100%] grid grid-cols-1 lg:grid-cols-2 bg-white">
         <div className="hidden lg:flex lg:bg-cover lg:bg-register"></div>
-        <div className="flex flex-col justify-center items-center container mx-auto px-14 sm:px-16 md:px-20 lg:px-8">
+        <div className="flex flex-col justify-center items-center container mx-auto px-10 sm:px-16 md:px-20 lg:px-8">
           <form
             action=""
-            className="flex flex-col justify-start relative gap-4 bg-[#D5D6D9] w-full max-w-lg py-12 px-8 rounded-3xl h-fit shadow-lg shadow-gray-600/40"
+            className="flex flex-col justify-start relative gap-4 bg-[#D5D6D9] w-full max-w-lg py-6 md:py-7 lg:py-9 px-4 lg:px-8 rounded-3xl h-fit shadow-lg shadow-gray-600/40"
           >
-            <div className="pb-4 text-start">
-              <h1 className="text-3xl font-bold pb-10">
+            <div className="pb-2 lg:pb-3 text-start">
+              <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold pb-3 lg:pb-7">
                 Validar código de seguridad
               </h1>
-              <p className="text-lg">
+              <p className="text-xs sm:text-sm md:text-md lg:text-lg">
                 Hemos enviado un código al correo registrado example@data.com.pe
               </p>
             </div>
-            <div className="flex flex-row justify-between items-center pt-3 pb-8">
+            <div className="flex flex-row justify-evenly lg:justify-between items-center pb-2 md:pb-4 lg:pb-10">
               
-              <input type="text" className="bg-white text-6xl text-center outline-none h-20 w-[20%] rounded-2xl " ></input>
-              <input type="text" className="bg-white text-6xl text-center outline-none h-20 w-[20%] rounded-2xl " ></input>
-              <input type="text" className="bg-white text-6xl text-center outline-none h-20 w-[20%] rounded-2xl " ></input>
-              <input type="text" className="bg-white text-6xl text-center outline-none h-20 w-[20%] rounded-2xl " ></input>
+              <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
+              <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
+              <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
+              <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
               
               {/* <label className="pb-7 text-lg font-bold">
                 Correo electrónico
@@ -34,8 +34,8 @@ export const ConfirmPasswordPage = () => {
                 placeholder="Ingrese su correo"
               /> */}
             </div>
-            <div className="flex flex-col self-center text-[#1D1D1D] gap-4 mb-8">
-              <div className="flex gap-2 justify-between">
+            <div className="flex flex-col self-center text-[#1D1D1D] gap-4 mb-3 lg:mb-8">
+              <div className="flex gap-2 text-xs sm:text-sm md:text-md lg:text-lg justify-between">
                 <span>¿No recibiste el código?</span>
                 <a
                   className="text-[#1D1D1D] font-semibold no-underline hover:underline "
@@ -45,7 +45,7 @@ export const ConfirmPasswordPage = () => {
                 </a>
               </div>
             </div>
-            <button className="bg-secondary text-white font-medium p-2 rounded-2xl m-auto w-32 mt-2">
+            <button className="bg-secondary text-white text-sm md:text-lg font-medium p-2 rounded-2xl m-auto w-32 mt-0 md:mt-2">
               Continuar
             </button>
           </form>
