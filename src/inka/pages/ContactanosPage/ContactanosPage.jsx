@@ -96,7 +96,7 @@ export const ContactanosPage = () => {
                   onChange={onInputChange} 
                   placeholder="Correo Electrónico" 
                 />
-                {(formSubmitted && !!correoValid) && <p className="font-mont absolute bottom-[-5px]">{correoValid}</p>}
+                {(formSubmitted && !!correoValid) && <p className="pErrorCLass">{correoValid}</p>}
               </div>
 
               <div className='flex flex-col md:flex-row md:justify-between pb-1 relative'>
@@ -110,7 +110,7 @@ export const ContactanosPage = () => {
                       onChange={onInputChange} 
                       placeholder="Asunto" 
                     />
-                    {(formSubmitted && !!asuntoValid) && <p className="font-mont absolute bottom-[-5px]">{asuntoValid}</p>}
+                    {(formSubmitted && !!asuntoValid) && <p className="pErrorCLass">{asuntoValid}</p>}
                   </div>
                   <div className='flex justify-between pb-5 flex-col relative md:w-6/12'>
                       <label className={`font-mont font-bold py-1 text-sm md:text-lg 2xl:text-2xl ${(formSubmitted && !!nombresValid)? "text-red-600" : ""}`} htmlFor="nombres">Nombre y Apellido</label>
@@ -122,7 +122,7 @@ export const ContactanosPage = () => {
                         onChange={onInputChange} 
                         placeholder="Nombre y Apellido" 
                       />
-                      {(formSubmitted && !!nombresValid) && <p className="font-mont absolute bottom-[-5px]">{nombresValid}</p>}
+                      {(formSubmitted && !!nombresValid) && <p className="pErrorCLass">{nombresValid}</p>}
                   </div>
               </div>
               <div className='flex justify-between pb-5 flex-col relative mb-5'>
@@ -138,7 +138,7 @@ export const ContactanosPage = () => {
                 >
                   value={message}
                 </textarea>
-                {(formSubmitted && !!messageValid) && <p className="font-mont absolute bottom-[-5px]">    {messageValid}</p>}
+                {(formSubmitted && !!messageValid) && <p className="pErrorCLass">    {messageValid}</p>}
               </div>
               <div className="w-full flex justify-center lg:justify-start">
                 <button 
