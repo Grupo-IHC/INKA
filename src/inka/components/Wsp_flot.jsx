@@ -29,7 +29,7 @@ export const Wsp = () => {
                   <img src={cerrar} alt="Cerrar pestaña wsp" className="h-[25px] w-[25px]" onClick={CloseWhatsApp} />
                 </button>
             </div>
-            <div className='flex w-[235px] h-[240px] rounded-md bg-black mt-[10px] border-2 border-green-500'>
+            <div className='flex w-[234px] h-[240px] rounded-md bg-black mt-[10px] border-2 border-green-500'>
 
             </div>
           </div>

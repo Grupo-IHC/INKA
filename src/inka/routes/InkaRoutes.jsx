@@ -32,6 +32,7 @@ export const InkaRoutes = () => {
         </Routes>
       </div>
       <Wsp/>
+      
       <Footer/>
     </>
   )
