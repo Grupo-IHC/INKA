@@ -1,7 +1,4 @@
 import deleteIcon from '../../../shared/assets/deleteIcon.svg';
-import imgProduct from '../../../shared/assets/shopingCartProduct.png';
-import emptyCart from '../../../shared/assets/emptyCart.svg';
-import tintaIcon from '../../../shared/assets/tintaIcon.svg';
 import colorIcon from '../../../shared/assets/colorIcon.svg';
 import arrowRigth from '../../../shared/assets/arrowRIgth.svg';
 import arrowDown from '../../../shared/assets/arrowDown.svg';
@@ -15,12 +12,14 @@ import { useState } from 'react';
 import { ModalDelivery } from './components/ModalDelivery';
 
 import 'animate.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { aumentQuantity, decrementQuantity, deleteProduct } from '../../../store/product/shoppingCartSlice';
 import { Modal } from '../../components/Modal';
 
 export const ShoppingCart = () => {
 
   const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.shoppingCart);
+  const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState('');
   const [showModalDelivery, setShowModalDelivery] = useState(false);
@@ -43,7 +42,7 @@ export const ShoppingCart = () => {
   const emptyListProducts = () => {
     return(
       <div className='w-full h-[500px] p-[15px] flex flex-col items-center justify-center gap-y-3'>
-        <img src={emptyCart} alt="emptyCart" />
+        <i className="fa-solid fa-cart-plus text-[150px]"></i>
         <h3 className='text-tertiary font-bold text-[20px]'>Tu listado esta vacío</h3>
         <p className='text-center'>Comienza tu primera venta agregando productos a tu carrito de compras.</p>
       </div>
@@ -72,9 +71,9 @@ export const ShoppingCart = () => {
     <>
       {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} />}
       {showDesingMobile && DesingMobile()}
-      <section className="shoppingCart">
+      <section className="shoppingCart lg:grow lg:flex lg:items-center">
         <div className="container mx-auto gap-y-5 lg:gap-y-0 p-[15px] 2xl:px-0 grid grid-cols-12 gap-x-4">
-          <div className="col-span-12 lg:col-span-9 2xl:col-span-8 flex flex-col gap-y-2 lg:block">
+          <div className="col-span-12 lg:col-span-8 flex flex-col gap-y-2 lg:block">
             <div className="table hidden lg:block w-full bg-[#D9D9D9] py-[10px] px-[10px]">
               <div className="grid grid-cols-12 ">
                 <div className="col-span-4 2xl:col-span-4">
@@ -96,47 +95,76 @@ export const ShoppingCart = () => {
             </div>
             <div className="products-desktop hidden lg:block w-full max-h-[700px] overflow-y-auto	">
             {/* Iterar */}
-              <div className="grid grid-cols-12 px-[10px] py-[20px] border-b-2">
-                <div className="col-span-4 2xl:col-span-4">
-                  <div className='grid grid-cols-12'>
-                    <div className='col-span-1 flex items-center'>
-                      <img src={deleteIcon} className='cursor-pointer' alt="deleteIcon" />
-                    </div>  
-                    <div className='col-span-4 flex justify-center'>
-                      <img src={imgProduct} alt="deleteIcon" />
-                    </div> 
-                    <div className='col-span-7 flex flex-col justify-center gap-y-4'>
-                      <p className='font-mont font-semibold text-[14px] 2xl:text-[16px] text-[#FF7000]'>Sellos 4910</p>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='font-mont text-[12px] 2xl:text-[14px]'>
-                          Color de TINTA : 
-                        </span>
-                        <img src={tintaIcon} className='w-1/12 2xl:w-auto' alt="tintaIcon" />
-                      </div>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='font-mont text-[12px] 2xl:text-[14px]'>
-                          Color de SELLO : 
-                        </span>
-                        <img src={colorIcon} className='w-2/12 2xl:w-auto' alt="colorIcon" />
-                      </div>
-                    </div> 
+              {
+                cartItems.map((product, index) => (
+                <div key={index} className="grid grid-cols-12 px-[10px] py-[20px] border-b-2">
+                  <div className="col-span-4 2xl:col-span-4">
+                    <div className='grid grid-cols-12'>
+                      <div className='col-span-1 flex items-center'>
+                        <img 
+                          src={deleteIcon} 
+                          className='cursor-pointer' 
+                          alt="deleteIcon" 
+                          onClick={() => dispatch(deleteProduct(cartItems[index]))} />
+                      </div>  
+                      <div className='col-span-5 flex justify-center'>
+                        <img src={product.img} alt="deleteIcon" />
+                      </div> 
+                      <div className='col-span-6 flex flex-col justify-center gap-y-4'>
+                        <p className='font-mont font-semibold text-[14px] 2xl:text-[16px] text-[#FF7000]'>{product.name}</p>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='font-mont text-[12px] 2xl:text-[14px]'>
+                            Color: 
+                          </span>
+                          <span className='font-mont text-[12px] 2xl:text-[14px]'>
+                            {product.color} 
+                          </span>
+                          {/* <img src={colorIcon} className='w-2/12 2xl:w-auto' alt="colorIcon" /> */}
+                        </div>
+                      </div> 
+                    </div>
+                  </div>
+                  <div className="col-span-2 flex justify-center items-center">
+                    {
+                      product.design 
+                      ? <img src={product.design} alt="" /> 
+                      : <span className='rounded-2xl bg-[#D1C8C1] p-[10px] text-[#7A3906] font-bold text-center text-[12px] xl:max-w-[100px] 2xl:text-[16px] 2xl:max-w-[144px]'>
+                          NO HAY DISEÑO
+                        </span> 
+                    }
+                  </div>
+                  <div className="col-span-2 2xl:col-span-2 flex items-center justify-center gap-x-2">
+                    <img 
+                      src={lessIcon} 
+                      className='w-2/12 cursor-pointer 2xl:w-auto' 
+                      alt="less" 
+                      onClick={() => dispatch(decrementQuantity(cartItems[index]))}
+                    />
+                    <input 
+                      name="quantity"
+                      className='max-w-[40px] border-2 border-black rounded-lg text-center' 
+                      type="number" 
+                      inputMode="numeric" 
+                      maxLength="3" 
+                      value={product.quantity}
+                      disabled={true}
+                    />
+                    <img 
+                      src={plusIcon} 
+                      className='w-2/12 cursor-pointer 2xl:w-auto' 
+                      alt="less" 
+                      onClick={() => dispatch(aumentQuantity(cartItems[index]))}
+                    />
+                  </div>
+                  <div className="col-span-2 2xl:col-span-2 flex justify-center items-center">
+                    <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ {(product.price).toFixed(2)}</p>
+                  </div>
+                  <div className="col-span-2 2xl:col-span-2 flex justify-center items-center">
+                    <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ {(product.total).toFixed(2)}</p>
                   </div>
                 </div>
-                <div className="col-span-2 flex justify-center">
-                  <img src={disenioShopping} className='w-10/12 2xl:w-auto' alt="" />
-                </div>
-                <div className="col-span-2 2xl:col-span-2 flex items-center justify-center gap-x-2">
-                  <img src={lessIcon} className='w-2/12 cursor-pointer 2xl:w-auto' alt="less" />
-                  <input className='max-w-[40px] 2xl:max-w-[50px] text-center' type="text" />
-                  <img src={plusIcon} className='w-2/12 cursor-pointer 2xl:w-auto' alt="less" />
-                </div>
-                <div className="col-span-2 2xl:col-span-2 flex justify-center items-center">
-                  <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ 15.00</p>
-                </div>
-                <div className="col-span-2 2xl:col-span-2 flex justify-center items-center">
-                  <p className='font-bold font-mont text-[16px] 2xl:text-[18px]'>S/ 30.00</p>
-                </div>
-              </div>         
+                ))
+              }         
             </div>
             <div className='py-[15px] px-[10px] bg-secondary rounded-lg flex items-center justify-between lg:hidden'>
               <h3 className='text-white font-bold'>PRODUCTOS</h3>
@@ -162,6 +190,7 @@ export const ShoppingCart = () => {
                                 <img src={lessIcon} 
                                   className='cursor-pointer' 
                                   alt="less" 
+                                  onClick={() => dispatch(decrementQuantity(cartItems[index]))}
                                   // onClick={decrementQuantity}
                                 />
                                 <input 
@@ -176,6 +205,7 @@ export const ShoppingCart = () => {
                                 <img src={plusIcon} 
                                   className='cursor-pointer' 
                                   alt="less" 
+                                  onClick={() => dispatch(aumentQuantity(cartItems[index]))}
                                 />
                               </div>
                             </div>
@@ -195,7 +225,7 @@ export const ShoppingCart = () => {
                                   PRECIO UNI.: 
                                 </span>
                                 <span className='text-[16px]'>
-                                  S/ {item.price}
+                                  S/ {(item.price.toFixed(2))}
                                 </span>
                               </div>
                               <div className='flex items-center justify-between gap-x-2'>
@@ -203,15 +233,22 @@ export const ShoppingCart = () => {
                                   TOTAL: 
                                 </span>
                                 <span className='text-[16px]'>
-                                  S/ {item.total}
+                                  S/ {(item.total).toFixed(2)}
                                 </span>
                               </div>
-                              <button 
+                              {
+                                item.design 
+                                ? 
+                                <button 
                                 className='bg-secondary text-white text-[12px] font-mont font-bold rounded-2xl cursor-pointer py-[10px]'
                                 onClick={() => handleClickDesignMobile(index)}
-                              >
-                                DISEÑO
-                              </button>
+                                >
+                                  DISEÑO
+                                </button>
+                                : <span className='rounded-2xl bg-secondary py-[10px] text-white font-bold text-center text-[12px] xl:text-[16px] xl:max-w-[144px]'>
+                                    NO HAY DISEÑO
+                                  </span> 
+                              }
                             </div>
                           </div>
                         </div>
@@ -221,7 +258,7 @@ export const ShoppingCart = () => {
                 )
             }
           </div>
-          <div className='col-span-12 lg:col-span-3 2xl:col-span-4 flex flex-col lg:block gap-y-2'>
+          <div className='col-span-12 lg:col-span-4 flex flex-col lg:block gap-y-2'>
             <div className='py-[15px] px-[10px] bg-secondary rounded-lg flex items-center justify-between lg:hidden'>
               <h3 className='text-white font-bold'>RESUMEN</h3>
               <img src={showResumen ? arrowDown : arrowRigth} 
@@ -231,21 +268,21 @@ export const ShoppingCart = () => {
             </div>
             {
               showResumen &&
-              <div className='rounded-2xl bg-[#D1C8C1] max-h-[650px] p-[15px]'>
+              <div className='rounded-2xl bg-[#D1C8C1] max-h-[650px] p-[15px] 2xl:max-h-[800px]'>
                 <h2 className='text-center font-mont text-[18px] 2xl:text-[25px] pb-[10px] border-b-2 border-[#5A5A5A]'>Resumen de pedidos</h2>
                 <button 
                   className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'retiro' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}`}
                   onClick={() => handleOption('retiro')}
                 >
                   Retiro en tienda
-                  <img src={iconCheck} className='lg:w-[15%] 2xl:w-auto' alt="iconCheck" />
+                  <img src={iconCheck} alt="iconCheck" />
                 </button>
                 <button 
                   className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'delivery' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}`}
                   onClick={() => handleOption('delivery')}
                  >
                   Delivery
-                  <img src={iconCheck} className='lg:w-[15%] 2xl:w-auto' alt="iconCheck" />
+                  <img src={iconCheck} alt="iconCheck" />
                 </button>
                 <div className='my-[30px]  2xl:px-[15px] flex flex-col gap-y-5'>
                   <div className='flex justify-between'>
@@ -272,21 +309,21 @@ export const ShoppingCart = () => {
                       <span className='font-mont'>Tarjetas</span>
                       <img src={visaAndMast} className='w-[40%]' alt="tarjetas" />
                     </div>
-                    <img src={iconCheck} className='lg:w-[15%] 2xl:w-auto' alt="iconCheck" />
+                    <img src={iconCheck} alt="iconCheck" />
                   </button>
                   <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px]'>
                     <div className='flex items-center gap-x-2'>
                       <span className='font-mont'>Billeteras</span>
                       <img src={plinAndYape} className='w-[35%]' alt="billeteras" />
                     </div>
-                    <img src={iconCheck} className='lg:w-[15%] 2xl:w-auto' alt="iconCheck" />
+                    <img src={iconCheck} alt="iconCheck" />
                   </button>
                 </div>
                 <div className='flex justify-between mt-[30px]'>
-                  <button className='bg-secondary text-white text-[12px] font-mont font-bold rounded-2xl cursor-pointer py-[10px] px-[50px] lg:px-[25px]'>
+                  <button className='btn-send-2'>
                     Pagar
                   </button>
-                  <button className='bg-secondary text-white text-[12px] font-mont font-bold rounded-2xl cursor-pointer py-[10px] px-[50px] lg:px-[25px]'>
+                  <button className='btn-send-2'>
                     Volver
                   </button>
                 </div>

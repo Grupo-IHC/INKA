@@ -36,6 +36,18 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setValueMenuMobile(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     console.log(status);
   }, []);
 
@@ -45,11 +57,12 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 ${
+      className={`fixed top-0 left-0 right-0 z-40
+       ${
         isScrolled || valueMenuMobile || showLogo
-          ? "bg-black bg-opacity-75"
+          ? "bg-black bg-opacity-75 lg:bg-black lg:bg-opacity-75"
           : "bg-transparent"
-      } ${showLogo ? 'lg:bg-black lg:bg-opacity-75' : 'lg:bg-transparent'}`}
+      } `}
     >
       <div
         className={`max-h-[67px] flex items-center py-3.5  px-1.5 relative sm:px-2.5 lg:justify-evenly`}
