@@ -24,6 +24,9 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
 .pErrorCLass {
   @apply font-mont font-semibold text-[12px] text-red-600 absolute bottom-0;
 }
+.btn-wsp{
+  @apply flex items-center justify-center lg:flex fixed lg:bottom-4 lg:right-4 lg:w-[50px] h-[50px] xl:w-[px] bg-white rounded-full transition duration-300 hover:bg-green-500;
+}
 .stamp {
   position: absolute;
   top: 39.5%;

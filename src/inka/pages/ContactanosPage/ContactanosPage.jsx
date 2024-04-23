@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { Loader } from '../../../inka/components/Loader';
+import { Wsp } from "../../../inka/components/Wsp_flot"
 import UBI from '../../../shared/assets/UBI.png';
 import RING from '../../../shared/assets/RING.png';
 import MSG from '../../../shared/assets/MSG.png';
@@ -125,11 +126,11 @@ export const ContactanosPage = () => {
                   </div>
               </div>
               <div className='flex justify-between pb-5 flex-col relative mb-5'>
-                <label className={`font-mont font-bold py-1 text-sm md:text-lg 2xl:text-2xl ${(formSubmitted && !!correoValid)? "text-red-600" : ""}`} htmlFor="message">Mensaje</label>
+                <label className={`font-mont font-bold py-1 text-sm md:text-lg 2xl:text-2xl ${(formSubmitted && !!messageValid)? "text-red-600" : ""}`} htmlFor="message">Mensaje</label>
                 <textarea 
                   name="message" 
                   cols="30" rows="3"
-                  className={`bg-[#E8DFDB] rounded-lg bg-primary outline-none ${(formSubmitted && !!correoValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
+                  className={`bg-[#E8DFDB] rounded-lg bg-primary outline-none ${(formSubmitted && !!messageValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
                   onChange={onInputChange} 
                   value={message}
                   placeholder="Mensaje" 
