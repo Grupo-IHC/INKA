@@ -11,7 +11,7 @@ export const Modal = ({children, onClose}) => {
       onClick={onClose}
     >
       <div 
-        className="bg-white p-6 rounded-2xl min-w-[300px] max-w-[310px] md:min-w-[500px] md:max-w-[600px] lg:min-w-[550px] flex flex-col justify-center"
+        className="bg-white cursor-auto p-6 rounded-2xl min-w-[300px] max-w-[310px] md:min-w-[500px] md:max-w-[600px] lg:min-w-[550px] flex flex-col justify-center"
         onClick={handleContentClick}
       >
         {children}

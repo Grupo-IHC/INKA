@@ -2,7 +2,6 @@ import deleteIcon from '../../../shared/assets/deleteIcon.svg';
 import colorIcon from '../../../shared/assets/colorIcon.svg';
 import arrowRigth from '../../../shared/assets/arrowRIgth.svg';
 import arrowDown from '../../../shared/assets/arrowDown.svg';
-import disenioShopping from '../../../shared/assets/disenioShoppingCart.png';
 import lessIcon from '../../../shared/assets/lessIcon.svg';
 import plusIcon from '../../../shared/assets/plusIcon.svg';
 import iconCheck from '../../../shared/assets/iconCheck.svg';
@@ -15,6 +14,7 @@ import 'animate.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { aumentQuantity, decrementQuantity, deleteProduct } from '../../../store/product/shoppingCartSlice';
 import { Modal } from '../../components/Modal';
+import { ModalRetiro } from './components/ModalRetiro';
 
 export const ShoppingCart = () => {
 
@@ -23,6 +23,7 @@ export const ShoppingCart = () => {
 
   const [selectedOption, setSelectedOption] = useState('');
   const [showModalDelivery, setShowModalDelivery] = useState(false);
+  const [showModalRetiro, setShowModalRetiro] = useState(false);
   const [showProducts, setShowProducts] = useState(true);
   const [showResumen, setShowResumen] = useState(true);
   const [showDesingMobile, setShowDesingMobile] = useState(false);
@@ -32,6 +33,8 @@ export const ShoppingCart = () => {
     setSelectedOption(option);
     if(option === 'delivery') {
       setShowModalDelivery(true);
+    } else {
+      setShowModalRetiro(true);
     }
   }
 
@@ -61,6 +64,10 @@ export const ShoppingCart = () => {
     setShowModalDelivery(false);
   }
 
+  const onCloseModalRetiro = () => {
+    setShowModalRetiro(false);
+  }
+
   const handleClickDesignMobile = (index) => {
     setShowDesingMobile(true);
     setIndex(index);
@@ -70,6 +77,7 @@ export const ShoppingCart = () => {
   return (
     <>
       {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} />}
+      {showModalRetiro && <ModalRetiro onClose={onCloseModalRetiro} />}
       {showDesingMobile && DesingMobile()}
       <section className="shoppingCart lg:grow lg:flex lg:items-center">
         <div className="container mx-auto gap-y-5 lg:gap-y-0 p-[15px] 2xl:px-0 grid grid-cols-12 gap-x-4">
@@ -178,83 +186,81 @@ export const ShoppingCart = () => {
                 (cartItems.length === 0 ?
                   emptyListProducts()
                   :
-                  <>
+                  <div className='products-mobile w-full flex flex-col gap-y-3 max-h-[700px] overflow-y-auto lg:hidden'>
                     { 
                       cartItems.map((item, index) => (
-                        // Code logic for mapping cart items
-                        <div key={index} className='products-mobile w-full flex flex-col gap-y-3 max-h-[700px] overflow-y-auto lg:hidden'>
-                          <div className='grid grid-cols-12 border-2 rounded-2xl p-[15px] gap-x-4'>
-                            <div className='col-span-5 flex flex-col justify-end items-center gap-y-10'>
-                              <img src={item.img} alt="ProductImage" className='md:w-[50%]' />
-                              <div className="flex items-center justify-center gap-x-2">
-                                <img src={lessIcon} 
-                                  className='cursor-pointer' 
-                                  alt="less" 
-                                  onClick={() => dispatch(decrementQuantity(cartItems[index]))}
-                                  // onClick={decrementQuantity}
-                                />
-                                <input 
-                                  name="quantity"
-                                  className='max-w-[40px] border-2 border-black rounded-lg text-center' 
-                                  type="number" 
-                                  inputMode="numeric" 
-                                  maxLength="3" 
-                                  value={item.quantity}
-                                  disabled={true}
-                                />
-                                <img src={plusIcon} 
-                                  className='cursor-pointer' 
-                                  alt="less" 
-                                  onClick={() => dispatch(aumentQuantity(cartItems[index]))}
-                                />
-                              </div>
+                        <div key={index} className='grid grid-cols-12 border-2 rounded-2xl p-[15px] gap-x-4 relative'>
+                          <img src={deleteIcon} alt="deleteIcon" className='absolute right-2 top-2' onClick={() => dispatch(deleteProduct(cartItems[index]))} />
+                          <div className='col-span-5 flex flex-col justify-end items-center gap-y-10'>
+                            <img src={item.img} alt="ProductImage" className='md:w-[50%]' />
+                            <div className="flex items-center justify-center gap-x-2">
+                              <img src={lessIcon} 
+                                className='cursor-pointer' 
+                                alt="less" 
+                                onClick={() => dispatch(decrementQuantity(cartItems[index]))}
+                                // onClick={decrementQuantity}
+                              />
+                              <input 
+                                name="quantity"
+                                className='max-w-[40px] border-2 border-black rounded-lg text-center' 
+                                type="number" 
+                                inputMode="numeric" 
+                                maxLength="3" 
+                                value={item.quantity}
+                                disabled={true}
+                              />
+                              <img src={plusIcon} 
+                                className='cursor-pointer' 
+                                alt="less" 
+                                onClick={() => dispatch(aumentQuantity(cartItems[index]))}
+                              />
                             </div>
-                            <div className='col-span-7 gap-y-3 flex flex-col justify-between'>
-                              <p className='font-semibold text-[14px] text-[#FF7000]'>Sellos 4910</p>
-                              <div className='flex items-center justify-between gap-x-2'>
-                                <span className='text-[12px] font-bold'>
-                                  COLOR: 
-                                </span>
-                                {/* <img src={colorIcon} className='' alt="colorIcon" /> */}
-                                <span>
-                                  {item.color}
-                                </span>
-                              </div>
-                              <div className='flex items-center justify-between gap-x-2'>
-                                <span className='text-[12px] font-bold'>
-                                  PRECIO UNI.: 
-                                </span>
-                                <span className='text-[16px]'>
-                                  S/ {(item.price.toFixed(2))}
-                                </span>
-                              </div>
-                              <div className='flex items-center justify-between gap-x-2'>
-                                <span className='text-[12px] font-bold'>
-                                  TOTAL: 
-                                </span>
-                                <span className='text-[16px]'>
-                                  S/ {(item.total).toFixed(2)}
-                                </span>
-                              </div>
-                              {
-                                item.design 
-                                ? 
-                                <button 
-                                className='bg-secondary text-white text-[12px] font-mont font-bold rounded-2xl cursor-pointer py-[10px]'
-                                onClick={() => handleClickDesignMobile(index)}
-                                >
-                                  DISEÑO
-                                </button>
-                                : <span className='rounded-2xl bg-secondary py-[10px] text-white font-bold text-center text-[12px] xl:text-[16px] xl:max-w-[144px]'>
-                                    NO HAY DISEÑO
-                                  </span> 
-                              }
+                          </div>
+                          <div className='col-span-7 gap-y-3 flex flex-col justify-between'>
+                            <p className='font-semibold text-[14px] text-[#FF7000]'>Sellos 4910</p>
+                            <div className='flex items-center justify-between gap-x-2'>
+                              <span className='text-[12px] font-bold'>
+                                COLOR: 
+                              </span>
+                              {/* <img src={colorIcon} className='' alt="colorIcon" /> */}
+                              <span>
+                                {item.color}
+                              </span>
                             </div>
+                            <div className='flex items-center justify-between gap-x-2'>
+                              <span className='text-[12px] font-bold'>
+                                PRECIO UNI.: 
+                              </span>
+                              <span className='text-[16px]'>
+                                S/ {(item.price.toFixed(2))}
+                              </span>
+                            </div>
+                            <div className='flex items-center justify-between gap-x-2'>
+                              <span className='text-[12px] font-bold'>
+                                TOTAL: 
+                              </span>
+                              <span className='text-[16px]'>
+                                S/ {(item.total).toFixed(2)}
+                              </span>
+                            </div>
+                            {
+                              item.design 
+                              ? 
+                              <button 
+                              className='bg-secondary text-white text-[12px] font-mont font-bold rounded-2xl cursor-pointer py-[10px]'
+                              onClick={() => handleClickDesignMobile(index)}
+                              >
+                                DISEÑO
+                              </button>
+                              : <span className='rounded-2xl bg-secondary py-[10px] text-white font-bold text-center text-[12px] xl:text-[16px] xl:max-w-[144px]'>
+                                  NO HAY DISEÑO
+                                </span> 
+                            }
                           </div>
                         </div>
                       ))
                     }
-                  </>
+                  </div>
                 )
             }
           </div>

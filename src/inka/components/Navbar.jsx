@@ -25,11 +25,11 @@ export const Navbar = () => {
 
   const showAccout = () => {
     return (
-      <div className=" bg-white absolute top-[72px] right-[0%] h-[auto] p-[15px]">
+      <div className="bg-black bg-opacity-75 absolute top-[67px] right-[0%] h-[auto] p-[15px]">
         {status === "authenticated" ? (
           <small onClick={logOut}>Salir</small>
         ) : (
-          <NavLink to={"/auth/login"}>Logueate</NavLink>
+          <NavLink to={"/auth/login"} className="text-white font-bold">Iniciar sesion</NavLink>
         )}
       </div>
     );
@@ -59,13 +59,13 @@ export const Navbar = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40
        ${
-        isScrolled || valueMenuMobile || showLogo
+        isScrolled || valueMenuMobile || showLogo || showProfile
           ? "bg-black bg-opacity-75 lg:bg-black lg:bg-opacity-75"
           : "bg-transparent"
       } `}
     >
       <div
-        className={`max-h-[67px] flex items-center py-3.5  px-1.5 relative sm:px-2.5 lg:justify-evenly`}
+        className={`max-h-[67px] flex items-center py-3.5 px-1.5 relative sm:px-2.5 lg:justify-evenly`}
       >
         <a
           className="cursor-pointer lg:hidden"
@@ -118,7 +118,6 @@ export const Navbar = () => {
           >
             CONTÁCTANOS
           </NavLink>
-          {showProfile && showAccout()}
         </div>
         <div className="search-box flex-1 relative">
           <input
@@ -154,6 +153,7 @@ export const Navbar = () => {
             </a>
           </div>
         </div>
+      {showProfile && showAccout()}
       </div>
     </header>
   );

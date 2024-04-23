@@ -31,6 +31,7 @@ export const useInkaStore = () => {
     }
   }
   const getProductFilterByCategory = async(id, categoryId) => {
+    setLoading(true);
     try {
       const {data} = await inkaApi.get(`/product/?type=${id}&category=${categoryId}`);
       return data.product;
