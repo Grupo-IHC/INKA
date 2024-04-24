@@ -41,6 +41,7 @@ export const ProductPageEdit = () => {
   const {onInputChange, aumentQuantity, quantity, isEmpty, decrementQuantity, setFormState} = useForm({quantity:1, isEmpty:false});
   const [productInfo, setProductInfo] = useState([]);
   const [indexColor, setIndexColor] = useState(0);
+  const [stock, setStock] = useState([]);
   const [idProduct, setIdProduct] = useState('');
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export const ProductPageEdit = () => {
       console.log(data[0])
       setProductInfo(data[0]);
       setIdProduct(data[0].id[0]);
+      setStock(data[0].stock);
     }
     getProduct();
   },[])  

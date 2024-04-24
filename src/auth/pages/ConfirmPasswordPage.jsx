@@ -18,21 +18,13 @@ export const ConfirmPasswordPage = () => {
                 Hemos enviado un código al correo registrado example@data.com.pe
               </p>
             </div>
-            <div className="flex flex-row justify-evenly lg:justify-between items-center pb-2 md:pb-4 lg:pb-10">
-              
+            <div className="flex flex-row justify-evenly lg:justify-between items-center pb-2 md:pb-4 lg:pb-10 gap-x-3">
+              <input type="number" max={10} className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
               <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
               <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
               <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
               <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
-              
-              {/* <label className="pb-7 text-lg font-bold">
-                Correo electrónico
-              </label>
-              <input
-                className="h-10 rounded-full ps-4 text-lg outline-none"
-                type="email"
-                placeholder="Ingrese su correo"
-              /> */}
+              <input type="text" className="bg-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center outline-none h-12 sm:h-16 lg:h-20 w-[14%] sm:w-[15%] md:w-[16%] lg:w-[20%] rounded-xl sm:rounded-2xl " ></input>
             </div>
             <div className="flex flex-col self-center text-[#1D1D1D] gap-4 mb-3 lg:mb-8">
               <div className="flex gap-2 text-xs sm:text-sm md:text-md lg:text-lg justify-between">

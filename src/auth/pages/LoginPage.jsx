@@ -65,7 +65,10 @@ export const LoginPage = () => {
               alt="eyeIcon"
             />
           </div>
-          <div className='text-center mt-[80px]'>
+          <Link to="/auth/restore-password">
+            <p className='py-3 font-mont underline text-[14px] lg:text-[16px] text-center m-[40px]'>Si olvidaste tu contraseña, haz click aqui</p>
+          </Link>
+          <div className='text-center'>
             <button 
               className='w-full bg-secondary text-white font-mont font-bold py-2.5 px-11 text-[14px] lg:text-[18px] rounded-lg cursor-pointer'
               type='submit'
