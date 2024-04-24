@@ -7,6 +7,7 @@ import arrowRigth from '../../../../shared/assets/arrowProductCarrousel.svg';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useInkaStore } from "../../../../hooks/useInkaStore";
+import stamp from '../../../../shared/assets/stamp.svg';
 
 
 export const Carrousel = ({typeProduct, category}) => {
@@ -64,6 +65,15 @@ export const Carrousel = ({typeProduct, category}) => {
     ]
   };
 
+  const skeleton = () => {
+    return (
+    <div className="loader-container h-[400px] flex items-center justify-center w-full bg-[#fff] relative">
+      <span className='loader !relative !top-0'></span>
+      <img className='stamp !abosolute !top-[30%]' src={stamp} alt="" />
+    </div>
+    )
+  }
+
 
   useEffect(() => {
     const getProducts = async() => {
@@ -76,7 +86,7 @@ export const Carrousel = ({typeProduct, category}) => {
 
   return (
     <>
-      {loading ? <h1>Cargando...</h1> :
+      {loading ? skeleton():
         <div className="slider-container">
           <Slider {...settings}>
             {
