@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { Loader } from '../../../inka/components/Loader';
-import { Wsp } from "../../../inka/components/Wsp_flot"
 import UBI from '../../../shared/assets/UBI.png';
 import RING from '../../../shared/assets/RING.png';
 import MSG from '../../../shared/assets/MSG.png';
