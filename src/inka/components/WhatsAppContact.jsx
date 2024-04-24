@@ -4,7 +4,7 @@ import cerrar from '../../shared/assets/cerrar_icon.png';
 import send from '../../shared/assets/send.png';
 import inkaLogoMobile from '../../shared/assets/logoFooter.svg';
 
-export const Wsp = () => {
+export const WhatsAppContact = () => {
   const [showWhatsApp, setShowWhatsApp] = useState(false);
   const [message, setMessage] = useState('');
 
