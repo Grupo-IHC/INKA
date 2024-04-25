@@ -26,22 +26,7 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   @apply font-mont font-semibold text-[12px] text-red-600 absolute bottom-0;
 }
 .btn-wsp{
-  @apply flex items-center  justify-center lg:flex fixed  xl:w-[px] bg-green-500 rounded-full transition duration-300 hover:bg-white;
-}
-
-.custom-scrollbar {
-  padding-right: 10px ;
-  scrollbar-width: thin;
-  scrollbar-color: #22C55E #ffff;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px; /* ajusta el ancho de la barra de desplazamiento */
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #22C55E; /* color de la barra de desplazamiento */
-  border-radius: 3px; /* bordes redondeados de la barra de desplazamiento */
+  @apply flex items-center  justify-center lg:flex fixed  xl:w-full bg-[#31241E] rounded-full border-2 border-[#D1C8C1] transition duration-300 hover:bg-[#D1C8C1] hover:border-[#31241E];
 }
 
 .stamp {
@@ -49,6 +34,20 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   top: 39.5%;
   animation: bounce 1s infinite;
 }
+
+.stamp_wsp{
+  animation: zoom 1s infinite;
+}
+
+@keyframes zoom {
+  0%, 100% {
+    
+  }
+  50% {
+    transform:  scaleY(1.2) scaleX(1.2); 
+  }
+}
+
 @keyframes bounce {
   0%, 100% {
     transform: translateY(10px) scaleY(0.7); 
