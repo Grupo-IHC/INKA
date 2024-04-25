@@ -4,41 +4,19 @@ import { Carrousel } from "./Carrousel";
 import { useInkaStore } from "../../../../hooks/useInkaStore";
 import { Loader } from "../../../components/Loader";
 
-const categorySeals = [
-  {
-    id: 1,
-    name: 'Sellos Profesionales',
-  },
-  {
-    id: 2,
-    name: 'Sellos Fechadores',
-  },
-  {
-    id: 3,
-    name: 'Sellos Circulares',
-  },
-]
-
-
 export const ProductLayout = () => {
   const {id} =  useParams();
 
-  const {loading, getTypeSealsById, getProductFilterByCategory} = useInkaStore();
+  const {loading, getTypeSealsById} = useInkaStore();
 
   const [indexLi, setIndexLi] = useState(0);
-  const [productById, setProductById] = useState([])
-  const [categoryById, setCategoryById] = useState([])
-  const [listProductByCategory, setListProductByCategory] = useState([]);
+  const [productById, setProductById] = useState([]);
+  const [categoryById, setCategoryById] = useState([]);
+  const [categoryByIndex, setCategoryByIndex] = useState('');
 
-  const clickIndexLi = async(index, categoryId) => {
-    setIndexLi(index);
-    if (index === 0) {
-      const {product} =  await getTypeSealsById(id)
-      setListProductByCategory(product);
-    }else {
-      const product =  await getProductFilterByCategory(id,categoryId);
-      setListProductByCategory(product);
-    }
+  const clickIndexLi = (index, category='') => {
+    setIndexLi(index);  
+    setCategoryByIndex(category);
   }
 
   useEffect(() => {
@@ -46,7 +24,6 @@ export const ProductLayout = () => {
       const {type, category, product} = await getTypeSealsById(id)
       setProductById(type);
       setCategoryById(category);
-      setListProductByCategory(product);
     }
     getProductById();
   }, [])
@@ -79,7 +56,7 @@ export const ProductLayout = () => {
             }
           </ul>
         </div>
-        <Carrousel product={listProductByCategory} loading={loading} />
+        <Carrousel typeProduct={id} category={categoryByIndex} />
       </div>
     </section>
     </>

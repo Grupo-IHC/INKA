@@ -5,6 +5,7 @@ export const authSlice = createSlice({
     initialState: {
         status: 'not-authenticated',
         id: null,
+        email: null,
         message: null,
     },
     reducers: {
@@ -20,8 +21,11 @@ export const authSlice = createSlice({
       },
       checkingCredentials: (state) => {
         state.status = 'checking';
+      },
+      restorePassword: (state, {payload}) => {
+        state.email = payload
       }
     }
 });
 
-export const { login, logout, checkingCredentials } = authSlice.actions;
+export const { login, logout, checkingCredentials, restorePassword } = authSlice.actions;

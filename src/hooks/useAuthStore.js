@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { inkaApi } from "../api/inkaApi";
 import { checkingCredentials, login, logout } from "../store/auth/authSlice";
+import { useState } from "react";
 
 export const useAuthStore = () => {
 
   const {status, id, message} = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const startLogin = async({username, password}) => {
     
@@ -36,6 +38,33 @@ export const useAuthStore = () => {
     }
  }
 
+ const restorePassword = async(email) => {
+  setLoading(true);
+  try {
+    const {data} = await inkaApi.post('/security/password_reset', {email});
+    return data;
+  } catch (error) {
+    console.log("error")
+    console.log(error);
+  } finally {
+    setLoading(false);
+  }
+ }
+
+ 
+ const confirmCode = async(email, code) => {
+  setLoading(true);
+  try {
+    const {data} = await inkaApi.post('/security/password_reset', {email,code});
+    return data;
+  } catch (error) {
+    console.log("error")
+    console.log(error);
+  } finally {
+    setLoading(false);
+  }
+ }
+
  const registerUser = async(data) => {
   try {
     const response = await inkaApi.post('/security/register', data);
@@ -54,11 +83,14 @@ export const useAuthStore = () => {
     message,
     status,
     id,
+    loading,
 
     startLogin,
     checkAuthToken,
     registerUser,
-    logoutUser
+    logoutUser,
+    restorePassword,
+    confirmCode
   }
 
 };

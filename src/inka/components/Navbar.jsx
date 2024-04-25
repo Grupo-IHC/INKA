@@ -25,11 +25,15 @@ export const Navbar = () => {
 
   const showAccout = () => {
     return (
-      <div className=" bg-white absolute top-[72px] right-[0%] h-[auto] p-[15px]">
+      <div className="bg-[#31241e] bg-opacity-85 rounded-xl w-[150px] absolute top-[72px] right-2 h-[auto] flex flex-col p-[15px]">
         {status === "authenticated" ? (
-          <small onClick={logOut}>Salir</small>
+          <>
+            <span className="text-white font-bold text-[16px] w-full text-center pb-[15px] border-b-2">¡Hola, Esaul!</span>
+            <NavLink className="text-white text-[14px] lg:text-[16px] w-full font-bold text-center py-[15px] border-b-2">Historial</NavLink>
+            <NavLink to={"/auth/login"} onClick={logOut} className="text-white text-[14px] lg:text-[16px] w-full font-bold text-center pt-[15px]">Salir</NavLink>
+          </>          
         ) : (
-          <NavLink to={"/auth/login"}>Logueate</NavLink>
+          <NavLink to={"/auth/login"} className="text-white text-[14px] lg:text-[16px] font-bold">Iniciar sesion</NavLink>
         )}
       </div>
     );
@@ -65,7 +69,7 @@ export const Navbar = () => {
       } `}
     >
       <div
-        className={`max-h-[67px] flex items-center py-3.5  px-1.5 relative sm:px-2.5 lg:justify-evenly`}
+        className={`max-h-[67px] flex items-center py-3.5 px-1.5 relative sm:px-2.5 lg:justify-evenly`}
       >
         <a
           className="cursor-pointer lg:hidden"
@@ -118,7 +122,6 @@ export const Navbar = () => {
           >
             CONTÁCTANOS
           </NavLink>
-          {showProfile && showAccout()}
         </div>
         <div className="search-box flex-1 relative">
           <input
@@ -154,6 +157,7 @@ export const Navbar = () => {
             </a>
           </div>
         </div>
+      {showProfile && showAccout()}
       </div>
     </header>
   );

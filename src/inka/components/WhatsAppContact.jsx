@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import wsp from '../../shared/assets/icon_wsp.png';
 
+
 export const Wsp = () => {
   
+
   const sendMessage = () => {
     const whatsappNumber = '51928420504';
     const encodedMessage = encodeURIComponent("Buenas tardes, quisiera información sobre sus productos.");

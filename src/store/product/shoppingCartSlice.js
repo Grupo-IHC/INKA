@@ -36,12 +36,12 @@ export const shoppingCartSlice = createSlice({
             state.cartTotalAmount = Math.round((state.cartTotalAmount - state.cartItems[itemId].price)*100)/100;
         },
         deleteProduct(state, {payload}) {
-            const newCartItems = state.cartItems.filter(item =>  {return item.id !== payload.id});
-            console.log(newCartItems);
-            // state.cartTotalQuantity -= state.cartItems[payload].quantity;
-            // state.cartTotalAmount = Math.round((state.cartTotalAmount - state.cartItems[payload].total)*100)/100;
-            // state.cartItems = newCartItems;
-
+            const itemId = state.cartItems.findIndex(item => item.id === payload.id);
+            state.cartTotalQuantity -= state.cartItems[itemId].quantity;
+            state.cartTotalAmount = Math.round((state.cartTotalAmount - state.cartItems[itemId].total) * 100)/100;
+            const newCartItems = state.cartItems.filter((item, index) => index !== itemId);
+            state.cartItems = newCartItems;
+            // console.log(JSON.parse(JSON.stringify(newCartItems)));
         }
     }
 });
