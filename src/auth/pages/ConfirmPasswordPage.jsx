@@ -6,7 +6,7 @@ import { useAuthStore } from "../../hooks/useAuthStore";
 export const ConfirmPasswordPage = () => {
 
   const {email} = useSelector(state => state.auth)
-  const {loading, restorePassword, } = useAuthStore();
+  const {loading, confirmCode, } = useAuthStore();
 
   const {onInputChange, digitOne, digitTwo, digitThree, digitFour } = useForm({
     digitOne: "",
@@ -15,17 +15,16 @@ export const ConfirmPasswordPage = () => {
     digitFour: ""
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     const code = (digitOne + digitTwo + digitThree + digitFour).toUpperCase();
-  }
+    try {
+      const response = await confirmCode(email, code);
+      console.log(response);
+    } catch (error) {
 
-  useEffect(()=>{
-    const prueba = async() => {
-      await restorePassword()
     }
-    prueba();
-  },[])
+  }
 
   return (
     <>

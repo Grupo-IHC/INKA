@@ -38,12 +38,24 @@ export const useAuthStore = () => {
     }
  }
 
- const restorePassword = async() => {
+ const restorePassword = async(email) => {
   setLoading(true);
   try {
-    let a = {email: "jhoneber31@gmail.com", code: "VRXX"}
-    const data = await inkaApi.post('/security/password_reset',a );
-    console.log("data",data);
+    const {data} = await inkaApi.post('/security/password_reset', {email});
+    return data;
+  } catch (error) {
+    console.log("error")
+    console.log(error);
+  } finally {
+    setLoading(false);
+  }
+ }
+
+ 
+ const confirmCode = async(email, code) => {
+  setLoading(true);
+  try {
+    const {data} = await inkaApi.post('/security/password_reset', {email,code});
     return data;
   } catch (error) {
     console.log("error")
@@ -77,7 +89,8 @@ export const useAuthStore = () => {
     checkAuthToken,
     registerUser,
     logoutUser,
-    restorePassword
+    restorePassword,
+    confirmCode
   }
 
 };
