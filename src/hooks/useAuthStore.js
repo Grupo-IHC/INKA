@@ -38,12 +38,15 @@ export const useAuthStore = () => {
     }
  }
 
- const restorePassword = async(email) => {
+ const restorePassword = async() => {
   setLoading(true);
   try {
-    const {data} = await inkaApi.post('/security/password_reset', email);
+    let a = {email: "jhoneber31@gmail.com", code: "VRXX"}
+    const data = await inkaApi.post('/security/password_reset',a );
+    console.log("data",data);
     return data;
   } catch (error) {
+    console.log("error")
     console.log(error);
   } finally {
     setLoading(false);

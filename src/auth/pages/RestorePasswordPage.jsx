@@ -2,19 +2,25 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../hooks/useAuthStore";
 import { useForm } from "../../hooks/useForm";
 import { Loader } from "../../inka/components/Loader";
+import { useDispatch } from "react-redux";
+import  {restorePassword as restore}  from "../../store/auth/authSlice"
 
 export const RestorePasswordPage = () => {
 
-  const {onInputChange, email} = useForm({email: ''});
+  const {onInputChange, email} = useForm({email:''});
   const {loading, restorePassword} = useAuthStore();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmit = async(e) => {
     e.preventDefault();
     if(email === '') return;
     try {
-      const {status} = await restorePassword({email});
-      if (status === 'OK') navigate('/auth/confirm-password')
+      const {status} = await restorePassword(email);
+      if (status === 'OK') {
+        navigate('/auth/confirm-password');
+        dispatch(restore(email));
+      } 
     } catch (error) {
       console.log(error);
     }
