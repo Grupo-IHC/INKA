@@ -22,12 +22,14 @@ export const ShoppingCart = () => {
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState('');
+  const [selectPayment, setSelectPayment] = useState('')
   const [showModalDelivery, setShowModalDelivery] = useState(false);
   const [showModalRetiro, setShowModalRetiro] = useState(false);
   const [showProducts, setShowProducts] = useState(true);
   const [showResumen, setShowResumen] = useState(true);
   const [showDesingMobile, setShowDesingMobile] = useState(false);
   const [index, setIndex] = useState('');
+  const [priceDelivery, setPriceDelivery] = useState(0);
 
   const handleOption = (option) => {
     setSelectedOption(option);
@@ -76,7 +78,7 @@ export const ShoppingCart = () => {
 
   return (
     <>
-      {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} />}
+      {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} priceDelivery={setPriceDelivery} />}
       {showModalRetiro && <ModalRetiro onClose={onCloseModalRetiro} />}
       {showDesingMobile && DesingMobile()}
       <section className="shoppingCart lg:grow lg:flex lg:items-center">
@@ -278,7 +280,7 @@ export const ShoppingCart = () => {
                 <h2 className='text-center font-mont text-[18px] 2xl:text-[25px] pb-[10px] border-b-2 border-[#5A5A5A]'>Resumen de pedidos</h2>
                 <button 
                   className={`mt-[10px] font-mont text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl ${selectedOption === 'retiro' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}`}
-                  onClick={() => handleOption('retiro')}
+                  onClick={() => {handleOption('retiro'), setPriceDelivery(0)}}
                 >
                   Retiro en tienda
                   <img src={iconCheck} alt="iconCheck" />
@@ -297,7 +299,7 @@ export const ShoppingCart = () => {
                   </div>
                   <div className='flex justify-between'>
                     <span className='font-semibold text-[16px] 2xl:text-[20px]'>Delivery</span>
-                    <span className='font-semibold text-[16px] 2xl:text-[20px]'>s/ 3.70</span>
+                    <span className='font-semibold text-[16px] 2xl:text-[20px]'>s/ {priceDelivery}</span>
                   </div>
                   <div className='flex justify-between pb-[10px] border-b-2 border-[#5A5A5A]'>
                     <span className='font-semibold text-[16px] 2xl:text-[20px]'>Subtotal</span>
@@ -305,19 +307,23 @@ export const ShoppingCart = () => {
                   </div>
                   <div className='flex justify-between'>
                     <span className='font-semibold text-[16px] 2xl:text-[20px]'>Total</span>
-                    <span className='font-semibold text-[16px] 2xl:text-[20px]'>s/ 43.70</span>
+                    <span className='font-semibold text-[16px] 2xl:text-[20px]'>s/ {cartTotalAmount+priceDelivery}</span>
                   </div>
                 </div>
                 <div className='flex flex-col gap-y-2'>
                   <h2 className='text-[16px] 2xl:text-[22px] font-semibold'>Metodo de Pago: </h2>
-                  <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px]'>
+                  <button 
+                  className={`mt-[10px] text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px] ${selectPayment === 'tarjeta' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}` }
+                  onClick={() => setSelectPayment('tarjeta')}>
                     <div className='flex items-center gap-x-2'>
                       <span className='font-mont'>Tarjetas</span>
                       <img src={visaAndMast} className='w-[40%]' alt="tarjetas" />
                     </div>
                     <img src={iconCheck} alt="iconCheck" />
                   </button>
-                  <button className='mt-[10px] text-[16px] 2xl:text-[20px] bg-white flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px]'>
+                  <button 
+                  className={`mt-[10px] text-[16px] 2xl:text-[20px] flex items-center justify-between w-full py-[7px] px-[15px] rounded-2xl max-h-[45px] ${selectPayment === 'billetera' ? 'bg-[#31241E] text-white' : 'bg-white text-black'}`}
+                  onClick={() => setSelectPayment('billetera')}>
                     <div className='flex items-center gap-x-2'>
                       <span className='font-mont'>Billeteras</span>
                       <img src={plinAndYape} className='w-[35%]' alt="billeteras" />
@@ -326,7 +332,10 @@ export const ShoppingCart = () => {
                   </button>
                 </div>
                 <div className='flex justify-between mt-[30px]'>
-                  <button className='btn-send-2'>
+                  <button 
+                    className={`btn-send-2 disabled:opacity-75`}
+                    disabled={true}
+                  >
                     Pagar
                   </button>
                   <button className='btn-send-2'>

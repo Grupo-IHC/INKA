@@ -67,7 +67,8 @@ export const ProductPageEdit = () => {
   }
 
   const onSubmit = () => {
-    dispatch(addToCart({
+
+    const product = {
       id: idProduct,
       name: productInfo.name,
       img: productInfo.image,
@@ -76,7 +77,9 @@ export const ProductPageEdit = () => {
       quantity: quantity,
       price: productInfo.price,
       total: Math.round(quantity * productInfo.price * 100) / 100,
-    }));
+    }
+
+    dispatch(addToCart(product));
   }
 
   return (

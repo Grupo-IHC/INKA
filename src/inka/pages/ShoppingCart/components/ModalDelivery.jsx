@@ -10,7 +10,7 @@ const formValidations = {
   phone: [(value) => value.length === 9,'El número de telefono debe tener 9 digitos.'],
 };
 
-export const ModalDelivery = ({onClose}) => {
+export const ModalDelivery = ({onClose, priceDelivery}) => {
 
   const {onInputChange, district, address, contact, nroDocument, phone, districtValid, addressValid, contactValid, nroDocumentValid, phoneValid, isFormValid} = useForm({
     district: '0',
@@ -27,7 +27,9 @@ export const ModalDelivery = ({onClose}) => {
     setFormSubmited(true);
     if (!isFormValid) return;
     console.log('llegue aqui')
-    // onClose();
+    priceDelivery(20);
+    onClose();
+    
   }
 
   return (

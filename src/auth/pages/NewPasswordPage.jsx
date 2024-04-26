@@ -1,13 +1,30 @@
-import React from 'react'
+import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
+
+const formValidations = {
+  password: [(value) => value.length >= 6,'La contraseña debe tener al menos 6 caracteres.'],
+};
 
 export const NewPasswordPage = () => {
+
+  const {onInputChange, password, confirmPassword, isFormValid, passwordValid} = useForm({password:'', confirmPassword:''}, formValidations);
+
+  const [formSubmitted, setFormSubmited] = useState(false);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmited(true);
+    if (!isFormValid || (password !== confirmPassword)) return;
+    console.log('llegue aqui')
+  }
+
   return (
     <>
-              <div className=" h-[100vh] w-[100%] grid grid-cols-1 lg:grid-cols-2 bg-white">
+      <div className=" h-[100vh] w-[100%] grid grid-cols-1 lg:grid-cols-2 bg-white">
         <div className="hidden lg:flex lg:bg-cover lg:bg-register"></div>
         <div className="flex flex-col justify-center items-center container mx-auto px-10 sm:px-16 md:px-20 lg:px-8">
           <form
-            action=""
+            onSubmit={onSubmit}
             className="flex flex-col justify-start relative gap-4 bg-[#D5D6D9] w-full max-w-lg py-5 md:py-7 lg:py-9 px-4 lg:px-8 rounded-3xl h-fit shadow-lg shadow-gray-600/40"
           >
             <div className="pb-1 lg:pb-2 text-start">
@@ -18,27 +35,35 @@ export const NewPasswordPage = () => {
                 Estás a un paso, escribe tu nueva contraseña
               </p>
             </div>
-            <div className="flex flex-col pb-2 lg:pb-2">
-              <label className="text-xs sm:text-sm md:text-md lg:text-lg pb-3 md:pb-3 font-bold">
+            <div className="flex flex-col pb-2 lg:pb-5 relative">
+              <label className={`labelInput ${(formSubmitted && !!passwordValid)? "text-red-600" : ""}`}>
                 Nueva contraseña
               </label>
               <input
-                className="text-xs sm:text-sm md:text-md lg:text-lg h-8 md:h-10 rounded-full ps-3 md:ps-4 outline-none"
+                className={`inputClass !bg-white ${(formSubmitted && !!passwordValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
                 type="password"
-                placeholder="Ingrese su correo"
+                name="password"
+                value={password}
+                onChange={onInputChange}
+                placeholder="Ingrese su nueva contraseña"
               />
+              {(formSubmitted && !!passwordValid) && <p className="pErrorCLass">{passwordValid}</p>}
             </div>
-            <div className="flex flex-col pb-2 lg:pb-3">
-              <label className="text-xs sm:text-sm md:text-md lg:text-lg pb-3 md:pb-3 font-bold">
+            <div className="flex flex-col pb-2 lg:pb-5 relative">
+              <label className={`labelInput ${(formSubmitted && (password !== confirmPassword))? "text-red-600" : ""}`}>
                 Repetir contraseña
               </label>
               <input
-                className="text-xs sm:text-sm md:text-md lg:text-lg h-8 lg:h-10 rounded-full ps-3 md:ps-4 outline-none"
+                className={`inputClass !bg-white ${(formSubmitted && (password !== confirmPassword))? "border-2 border-red-600" : "border-2 border-transparent"}`}
                 type="password"
-                placeholder="Ingrese su correo"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={onInputChange}
+                placeholder="Confirme su nueva contraseña"
               />
+              {(formSubmitted && (password !== confirmPassword)) && <p className="pErrorCLass">Las contraseñas no coinciden.</p>}
             </div>
-            <button className="text-xs sm:text-sm md:text-md lg:text-lg bg-secondary text-white font-medium p-3 md:p-3 rounded-2xl m-auto w-40 md:w-52 mb-1 md:mb-0">
+            <button className="text-xs sm:text-sm md:text-md lg:text-lg bg-secondary text-white font-medium p-3 md:p-3 rounded-2xl m-auto w-40 md:w-52 mb-1 md:mb-0" type="submit">
               Cambiar contraseña
             </button>
           </form>
