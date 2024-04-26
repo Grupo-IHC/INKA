@@ -26,17 +26,17 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   @apply font-mont font-semibold text-[12px] text-red-600 absolute bottom-0;
 }
 .btn-wsp{
-  @apply flex items-center  justify-center lg:flex fixed  xl:w-full bg-[#31241E] rounded-full border-2 border-[#D1C8C1] transition duration-300 hover:bg-[#D1C8C1] hover:border-[#31241E];
+  @apply flex items-center  justify-center lg:flex fixed  xl:w-full  rounded-full  ;
+}
+
+.btn-wsp:hover {
+  animation: zoom 1s infinite;
 }
 
 .stamp {
   position: absolute;
   top: 39.5%;
   animation: bounce 1s infinite;
-}
-
-.stamp_wsp{
-  animation: zoom 1s infinite;
 }
 
 @keyframes zoom {
