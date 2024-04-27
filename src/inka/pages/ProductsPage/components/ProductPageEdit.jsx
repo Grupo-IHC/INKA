@@ -15,6 +15,7 @@ import lessIcon from '../../../../shared/assets/lessIcon.svg';
 import plusIcon from '../../../../shared/assets/plusIcon.svg';
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../../store/product/shoppingCartSlice";
+import { AlertProduct } from "../../../components/AlertProduct";
 
 const colors = [
   {id: 1, color: redColor, name: 'Rojo'},
@@ -43,6 +44,7 @@ export const ProductPageEdit = () => {
   const [indexColor, setIndexColor] = useState(0);
   const [stock, setStock] = useState([]);
   const [idProduct, setIdProduct] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const getProduct = async() => {
@@ -78,14 +80,18 @@ export const ProductPageEdit = () => {
       price: productInfo.price,
       total: Math.round(quantity * productInfo.price * 100) / 100,
     }
-
     dispatch(addToCart(product));
+    setShowAlert(true);
+  }
+  const hideAlert = () => {
+    setShowAlert(false);
   }
 
   return (
     <>
       {loading && <Loader />}
-      <section className="Product lg:grow lg:flex lg:items-center">
+      <section className="Product lg:grow lg:flex lg:items-center relative">
+        {showAlert && <AlertProduct isVisible={showAlert} onHide={hideAlert}/>}
         <div className="container mx-auto px-[30px] py-[15px] grid gap-y-[30px] xl:grid-cols-3 xl:gap-y-[0px] xl:gap-x-[100px] xl:py-[30px]">
           <div className="flex flex-col xl:justify-between">
             <div className="flex flex-col gap-y-[15px]">
