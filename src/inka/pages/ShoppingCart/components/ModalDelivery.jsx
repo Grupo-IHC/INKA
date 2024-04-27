@@ -77,6 +77,8 @@ export const ModalDelivery = ({onClose, priceDelivery}) => {
           <input 
             type="text" 
             name="nroDocument"
+            pattern="[0-9]*"
+            title="Ingrese solo números"
             className={`inputClass ${(formSubmitted && !!nroDocumentValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
             value={nroDocument}
             onChange={onInputChange}
@@ -87,9 +89,11 @@ export const ModalDelivery = ({onClose, priceDelivery}) => {
           <label className={`labelInput ${(formSubmitted && !!phoneValid)? "text-red-600" : ""}`} htmlFor="phone">Telefono: </label>
           <input 
             type="text" 
+            pattern="[0-9]*"
             name="phone"
             className={`inputClass ${(formSubmitted && !!phoneValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
             value={phone}
+            title="Ingrese solo números"
             onChange={onInputChange}
           />
           {formSubmitted && !!phoneValid && <p className="pErrorCLass">{phoneValid}</p>}
