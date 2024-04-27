@@ -10,6 +10,7 @@ import { ProductLayout } from "../pages/ProductsPage/components/ProductLayout"
 import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart"
 import { ProductPageEdit } from "../pages/ProductsPage/components/ProductPageEdit"
 import { WhatsAppContact } from "../components/WhatsAppContact"
+import { ShoppingHistoryPage } from "../pages/ShoppingHistoryPage/ShoppingHistoryPage"
 
 export const InkaRoutes = () => {
   
@@ -28,6 +29,7 @@ export const InkaRoutes = () => {
           <Route path="/productos/:id" element={<ProductPageEdit/>} />
           <Route path="/contactanos" element={<ContactanosPage/>} />
           <Route path="/shopping" element={<ShoppingCart/>} />
+          <Route path="/shopping-history" element={<ShoppingHistoryPage/>} />
           <Route path="*" element={<Navigate to="/"/>} />
         </Routes>
       </div>
