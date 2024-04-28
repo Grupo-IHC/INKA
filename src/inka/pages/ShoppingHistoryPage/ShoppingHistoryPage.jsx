@@ -70,19 +70,19 @@ export const ShoppingHistoryPage = () => {
                 </div>
                 <div className="flex justify-center flex-col py-2">
                   <table className="text-white text-lg table-fixed">
-                    <thead className="text-xs ">
+                    <thead className="text-sm ">
                       <tr className="bg-red-500">
                         <th className="py-2 font-medium hidden md:block"></th>
-                        <th className="w-[40%]text-xs py-2 font-semibold">
+                        <th className="w-[40%] text-sm py-2 font-semibold">
                           Producto
                         </th>
-                        <th className="text-xs py-2 font-semibold">Color</th>
-                        <th className="text-xs py-2 font-semibold">Precio</th>
-                        <th className="text-xs py-2 font-semibold">Cantidad</th>
-                        <th className="text-xs py-2 font-semibold">Importe</th>
+                        <th className="text-sm py-2 font-semibold">Color</th>
+                        <th className="text-sm py-2 font-semibold">Precio</th>
+                        <th className="text-sm py-2 font-semibold">Cantidad</th>
+                        <th className="text-sm py-2 font-semibold">Importe</th>
                       </tr>
                     </thead>
-                    <tbody className="text-xs text-center">
+                    <tbody className="text-sm text-center">
                       <tr>
                         <td className="py-2 hidden md:block">
                           <img
@@ -91,11 +91,11 @@ export const ShoppingHistoryPage = () => {
                             alt=""
                           />
                         </td>
-                        <td className="text-xs py-2">Sello Layconsa xd</td>
-                        <td className="text-xs py-2">🏳️‍🌈</td>
-                        <td className="text-xs py-2">5.8</td>
-                        <td className="text-xs py-2">5</td>
-                        <td className="text-xs py-2">29</td>
+                        <td className="text-sm py-2">Sello Layconsa xd</td>
+                        <td className="text-sm py-2">🏳️‍🌈</td>
+                        <td className="text-sm py-2">5.8</td>
+                        <td className="text-sm py-2">5</td>
+                        <td className="text-sm py-2">29</td>
                       </tr>
                       <tr>
                         <td className="py-2 hidden md:block">
