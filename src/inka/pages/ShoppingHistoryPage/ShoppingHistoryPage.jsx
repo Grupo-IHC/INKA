@@ -34,13 +34,13 @@ export const ShoppingHistoryPage = () => {
           </h1>
         </div>
         <div className="flex flex-col">
-          <div className="bg-green-600 px-3 py-3 rounded-xl">
-            <div className="text-xs sm:text-sm  text-white py-2 flex">
+          <div className="bg-green-600 px-3 py-3 mb-5 rounded-xl text-sm sm:px-6 md:text-[16px] md:py-4 lg:w-[975px] lg:mx-auto">
+            <div className="text-white py-2 flex md:py-3">
               <h3 className="basis-10/12">
-                Código de Transacción: <strong>KLA154DA45AS</strong>
+                Código de Transacción : <strong>KLA154DA45AS</strong>
               </h3>
               <div className="basis-2/12 flex justify-center items-center">
-                <button className="w-12 m-auto" onClick={toggleVisibility}>
+                <button className="w-12 sm:w-16 md:w-20 m-auto" onClick={toggleVisibility}>
                   <i
                     className={
                       isVisible
@@ -52,96 +52,144 @@ export const ShoppingHistoryPage = () => {
               </div>
             </div>
             {isVisible && (
-              <div className="text-xs sm:text-sm animate__animated animate__fadeInDown">
+              <div className="animate__animated animate__fadeInDown">
                 <div className="sm:flex sm:items-center sm:flex-row">
                   <div className="sm:basis-2/4 self-center">
-                    <h3 className="py-2 text-white">
-                      Fecha de Compra: 15/02/23
+                    <h3 className="py-2 text-white md:py-3">
+                      Fecha de Compra : 15/02/23
                     </h3>
-                    <h3 className="py-2 text-white">Tipo de Venta: Delivery</h3>
+                    <h3 className="py-2 text-white md:py-3">Tipo de Venta : Delivery</h3>
                   </div>
                   <div className="sm:basis-2/4">
-                    <h3 className="py-2 text-white">
-                      Dirección: AAHH Machu Picchu Mz. X Lote 99 Dpto 1 - Villa
+                    <h3 className="py-2 text-white md:py-3">
+                      Dirección : AAHH Machu Picchu Mz. X Lote 99 Dpto 1 - Villa
                       El Salvador
                     </h3>
-                    <h3 className="py-2 text-white">Método de pago: YAPE </h3>
+                    <h3 className="py-2 text-white md:py-3">Método de pago : YAPE </h3>
                   </div>
                 </div>
-                <div className="flex justify-center flex-col py-2">
-                  <table className="text-white text-lg table-fixed">
-                    <thead className="text-sm ">
+                <div className="flex justify-center flex-col py-2 md:py-3">
+                  <table className="text-white lg:w-[926px] lg:m-auto">
+                    <thead className="">
                       <tr className="bg-red-500">
                         <th className="py-2 font-medium hidden md:block"></th>
-                        <th className="w-[40%] text-sm py-2 font-semibold">
-                          Producto
+                        <th className="w-[35%] py-2 font-semibold md:py-3">
+                          <h4>Productos</h4>
                         </th>
-                        <th className="text-sm py-2 font-semibold">Color</th>
-                        <th className="text-sm py-2 font-semibold">Precio</th>
-                        <th className="text-sm py-2 font-semibold">Cantidad</th>
-                        <th className="text-sm py-2 font-semibold">Importe</th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Color</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Precio</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Cantidad</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Importe</h4>
+                        </th>
                       </tr>
                     </thead>
-                    <tbody className="text-sm text-center">
+                    <tbody className="text-center">
                       <tr>
                         <td className="py-2 hidden md:block">
                           <img
-                            className="w-24"
+                            className="w-24 m-auto"
                             src="src/shared/assets/InicioN1.png"
                             alt=""
                           />
                         </td>
-                        <td className="text-sm py-2">Sello Layconsa xd</td>
-                        <td className="text-sm py-2">🏳️‍🌈</td>
-                        <td className="text-sm py-2">5.8</td>
-                        <td className="text-sm py-2">5</td>
-                        <td className="text-sm py-2">29</td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>🔴</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>S/ 5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>S/ 29</h4>
+                        </td>
                       </tr>
                       <tr>
                         <td className="py-2 hidden md:block">
                           <img
-                            className="w-24"
+                            className="w-24 m-auto"
                             src="src/shared/assets/InicioN1.png"
                             alt=""
                           />
                         </td>
-                        <td className="py-2">Sello Layconsa xd</td>
-                        <td className="py-2">🏳️‍🌈</td>
-                        <td className="py-2">5.8</td>
-                        <td className="py-2">5</td>
-                        <td className="py-2">29</td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>🔵</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>29</h4>
+                        </td>
                       </tr>
                       <tr>
                         <td className="py-2 hidden md:block">
                           <img
-                            className="w-24"
+                            className="w-24 m-auto"
                             src="src/shared/assets/InicioN1.png"
                             alt=""
                           />
                         </td>
-                        <td className="py-2">Sello Layconsa xd</td>
-                        <td className="py-2">🏳️‍🌈</td>
-                        <td className="py-2">5.8</td>
-                        <td className="py-2">5</td>
-                        <td className="py-2">29</td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>🟢</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>29</h4>
+                        </td>
                       </tr>
                       <tr>
-                        <td className="py-1.5 hidden md:block">
+                        <td className="py-2 hidden md:block">
                           <img
-                            className="w-24"
+                            className="w-24 m-auto"
                             src="src/shared/assets/InicioN1.png"
                             alt=""
                           />
                         </td>
-                        <td className="py-2">Sello Layconsa xd</td>
-                        <td className="py-2">🏳️‍🌈</td>
-                        <td className="py-2">5.8</td>
-                        <td className="py-2">5</td>
-                        <td className="py-2">29</td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>⚫</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>29</h4>
+                        </td>
                       </tr>
                       <tr>
                         <td
-                          className="font-medium py-1.5 text-center"
+                          className="font-medium py-2 text-center"
                           rowSpan={4}
                           colSpan={colSpanValue}
                         >
@@ -151,29 +199,241 @@ export const ShoppingHistoryPage = () => {
                               target="_blank"
                               className="inline-flex items-center"
                             >
-                              <p className="text-xs p-2 w-min">
+                              <p className="p-2 w-min md:px-3">
                                 Descargar Comprobante
                               </p>
-                              <i className="fa-solid fa-file-pdf text-lg"></i>
+                              <i className="fa-solid fa-file-pdf text-lg md:text-xl"></i>
                             </a>
                           </button>
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-end font-medium py-2">
-                          Subtotal :{" "}
+                        <td className="text-end font-medium py-2 md:py-3">
+                          <h4>Subtotal :</h4>
                         </td>
-                        <td className="py-1.5">159</td>
+                        <td className="py-2 md:py-3">
+                          <h4>S/ 159</h4>
+                        </td>
                       </tr>
                       <tr>
-                        <td className="text-end font-medium py-2">
-                          Delivery :{" "}
+                        <td className="text-end font-medium py-2 md:py-3">
+                          <h4>Delivery :</h4>
                         </td>
-                        <td className="py-1.5">200</td>
+                        <td className="py-2 md:py-3">
+                          <h4>S/ 200</h4>
+                        </td>
                       </tr>
                       <tr>
-                        <td className="text-end font-medium py-2">Total : </td>
-                        <td className="py-1.5">359</td>
+                        <td className="text-end font-medium py-2 md:py-3"> 
+                          <h4>Total :</h4>
+                        </td>
+                        <td className="py-2 md:py-3">
+                          <h4>S/ 359</h4>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-green-600 px-3 py-3 rounded-xl text-sm sm:px-6 md:text-[16px] md:py-4 lg:w-[975px] lg:m-auto">
+            <div className="text-white py-2 flex md:py-3">
+              <h3 className="basis-10/12">
+                Código de Transacción : <strong>KLA154DA45AS</strong>
+              </h3>
+              <div className="basis-2/12 flex justify-center items-center">
+                <button className="w-12 sm:w-16 md:w-20 m-auto" onClick={toggleVisibility}>
+                  <i
+                    className={
+                      isVisible
+                        ? "fa-solid fa-chevron-up"
+                        : "fa-solid fa-chevron-down"
+                    }
+                  ></i>
+                </button>
+              </div>
+            </div>
+            {isVisible && (
+              <div className="animate__animated animate__fadeInDown">
+                <div className="sm:flex sm:items-center sm:flex-row">
+                  <div className="sm:basis-2/4 self-center">
+                    <h3 className="py-2 text-white md:py-3">
+                      Fecha de Compra : 15/02/23
+                    </h3>
+                    <h3 className="py-2 text-white md:py-3">Tipo de Venta : Delivery</h3>
+                  </div>
+                  <div className="sm:basis-2/4">
+                    <h3 className="py-2 text-white md:py-3">
+                      Dirección : AAHH Machu Picchu Mz. X Lote 99 Dpto 1 - Villa
+                      El Salvador
+                    </h3>
+                    <h3 className="py-2 text-white md:py-3">Método de pago : YAPE </h3>
+                  </div>
+                </div>
+                <div className="flex justify-center flex-col py-2 md:py-3">
+                  <table className="text-white lg:w-[926px] lg:m-auto">
+                    <thead className="">
+                      <tr className="bg-red-500">
+                        <th className="py-2 font-medium hidden md:block"></th>
+                        <th className="w-[35%] py-2 font-semibold md:py-3">
+                          <h4>Productos</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Color</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Precio</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Cantidad</h4>
+                        </th>
+                        <th className="py-2 font-semibold md:py-3">
+                          <h4>Importe</h4>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-center">
+                      <tr>
+                        <td className="py-2 hidden md:block">
+                          <img
+                            className="w-24 m-auto"
+                            src="src/shared/assets/InicioN1.png"
+                            alt=""
+                          />
+                        </td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>🔴</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>S/ 5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>S/ 29</h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 hidden md:block">
+                          <img
+                            className="w-24 m-auto"
+                            src="src/shared/assets/InicioN1.png"
+                            alt=""
+                          />
+                        </td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>🔵</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>29</h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 hidden md:block">
+                          <img
+                            className="w-24 m-auto"
+                            src="src/shared/assets/InicioN1.png"
+                            alt=""
+                          />
+                        </td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>🟢</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>29</h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 hidden md:block">
+                          <img
+                            className="w-24 m-auto"
+                            src="src/shared/assets/InicioN1.png"
+                            alt=""
+                          />
+                        </td>
+                        <td className="py-2">
+                          <h4>Sello Layconsa xd</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>⚫</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5.8</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>5</h4>
+                        </td>
+                        <td className="py-2">
+                          <h4>29</h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          className="font-medium py-2 text-center"
+                          rowSpan={4}
+                          colSpan={colSpanValue}
+                        >
+                          <button className="bg-red-600 p-1 rounded-lg">
+                            <a
+                              href="https://w.app/KzQu4E"
+                              target="_blank"
+                              className="inline-flex items-center"
+                            >
+                              <p className="p-2 w-min md:px-3">
+                                Descargar Comprobante
+                              </p>
+                              <i className="fa-solid fa-file-pdf text-lg md:text-xl"></i>
+                            </a>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-end font-medium py-2 md:py-3">
+                          <h4>Subtotal :</h4>
+                        </td>
+                        <td className="py-2 md:py-3">
+                          <h4>S/ 159</h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-end font-medium py-2 md:py-3">
+                          <h4>Delivery :</h4>
+                        </td>
+                        <td className="py-2 md:py-3">
+                          <h4>S/ 200</h4>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="text-end font-medium py-2 md:py-3"> 
+                          <h4>Total :</h4>
+                        </td>
+                        <td className="py-2 md:py-3">
+                          <h4>S/ 359</h4>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
