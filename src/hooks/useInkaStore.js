@@ -65,10 +65,23 @@ export const useInkaStore = () => {
     }
    }
 
+  const payCartShopping = async(data) => {
+    try {
+      const {data} = await inkaApi.post('/sales', data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
+  }
+
   return {
     getTypeSeals,
     getTypeSealsById,
     getProductFilterByCategory,
+    payCartShopping,
     getInfoProduct,
     ContactSend,
     loading

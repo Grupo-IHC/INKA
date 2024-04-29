@@ -15,10 +15,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { aumentQuantity, decrementQuantity, deleteProduct } from '../../../store/product/shoppingCartSlice';
 import { Modal } from '../../components/Modal';
 import { ModalRetiro } from './components/ModalRetiro';
+import { useInkaStore } from '../../../hooks/useInkaStore';
 
 export const ShoppingCart = () => {
 
   const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.shoppingCart);
+  const {id} = useSelector(state => state.auth);
+  const {payCartShopping} = useInkaStore();
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState('');
@@ -73,6 +76,29 @@ export const ShoppingCart = () => {
   const handleClickDesignMobile = (index) => {
     setShowDesingMobile(true);
     setIndex(index);
+  }
+
+  const payShopping = async() => {
+
+    const data = {
+      order_detail: cartItems.map(item => ({
+        product: item.id,
+        design: item.design,
+        price: item.total,
+        quantity: item.quantity,
+      })),
+      client: id,
+      price: cartTotalAmount+priceDelivery,
+      
+
+    }
+
+    try {
+      const response = await payCartShopping();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
@@ -334,7 +360,9 @@ export const ShoppingCart = () => {
                 <div className='flex justify-between mt-[30px]'>
                   <button 
                     className={`btn-send-2 disabled:opacity-75`}
-                    disabled={true}
+                    onClick={() => console.log('Pagar')}
+                    type='submit'
+                    disabled={(cartItems.length === 0 || selectedOption === '' || selectPayment === '' ) ? true : false}
                   >
                     Pagar
                   </button>
