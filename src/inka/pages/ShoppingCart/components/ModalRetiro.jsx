@@ -46,6 +46,8 @@ export const ModalRetiro = ({onClose}) => {
           <input 
             type="text" 
             name="nroDocument"
+            pattern="[0-9]*"
+            title="Ingrese solo números"
             className={`inputClass ${(formSubmitted && !!nroDocumentValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
             value={nroDocument}
             onChange={onInputChange}
@@ -57,6 +59,8 @@ export const ModalRetiro = ({onClose}) => {
           <input 
             type="text" 
             name="phone"
+            pattern="[0-9]*"
+            title="Ingrese solo números"
             className={`inputClass ${(formSubmitted && !!phoneValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
             value={phone}
             onChange={onInputChange}

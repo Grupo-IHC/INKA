@@ -39,6 +39,19 @@ h1,h2,h3,h4,h5,h6,p,a,label,li{
   animation: bounce 1s infinite;
 }
 
+.swings {
+  animation: move  3s ;
+}
+
+@keyframes move {
+  0%, 100% {
+    
+  }
+  60% {
+    transform:  translateX(-100%) ; 
+  }
+}
+
 @keyframes zoom {
   0%, 100% {
     

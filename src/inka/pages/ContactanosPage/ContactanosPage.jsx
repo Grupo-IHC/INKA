@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { Loader } from '../../../inka/components/Loader';
-import UBI from '../../../shared/assets/UBI.png';
-import RING from '../../../shared/assets/RING.png';
-import MSG from '../../../shared/assets/MSG.png';
 import { useInkaStore } from '../../../hooks/useInkaStore';
 import { MessageRegister } from '../../../auth/layout/MessageRegister';
 
@@ -152,17 +149,16 @@ export const ContactanosPage = () => {
           </div>
           <div className="pb-10 flex flex-col items-center  md:flex-row md:justify-center w-full space-y-4 md:space-y-0 md:space-x-4 md:px-2 lg:space-x-20 lg:px-32 xl:px-68">
             <div className="py-4 bg-[#F2F2F2] flex justify-center items-center flex-col p-1 w-8/12 shadow-md">
-              <img className="h-7 mb-2" src={UBI} alt="UBICACION" />
-              <p className="font-bold text-sm sm:text-base xl:text-lg" >UBICACION</p>
+              <img className="h-7 mb-2" src="https://aws-sellos.s3.amazonaws.com/Imagenes+WEBP/UBI.webp" alt="UBICACION" />              <p className="font-bold text-sm sm:text-base xl:text-lg" >UBICACION</p>
               <p className="text-xs sm:text-sm xl:text-sm" >Av. Sol a Marte Zona “D”</p>
             </div>
             <div className="py-4 bg-[#7B6960] text-white  flex justify-center items-center flex-col p-1  w-8/12 shadow-md">
-              <img className="h-7 mb-2" src={MSG} alt="MSG" />
+              <img className="h-7 mb-2" src="https://aws-sellos.s3.amazonaws.com/Imagenes+WEBP/MSG.webp" alt="MSG" />
               <p className="font-bold text-sm sm:text-base xl:text-lg">CORREO</p>
               <p className="text-xs sm:text-sm xl:text-sm">sellosinka@gmail.com</p> 
             </div>
             <div className="py-4 bg-[#F2F2F2] flex justify-center items-center flex-col p-1  w-8/12 shadow-md">
-              <img className="h-7 mb-2" src={RING} alt="RING" />
+              <img className="h-7 mb-2" src="https://aws-sellos.s3.amazonaws.com/Imagenes+WEBP/RING.webp" alt="RING" />
               <p className="font-bold text-sm sm:text-base xl:text-lg">TELEFONO</p>
               <p className="text-xs sm:text-sm xl:text-sm">+51 987654321</p>
             </div>
