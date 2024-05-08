@@ -52,6 +52,12 @@ export const shoppingCartSlice = createSlice({
       state.cartItems = newCartItems;
       // console.log(JSON.parse(JSON.stringify(newCartItems)));
       local(state.cartItems,state.cartTotalQuantity, state.cartTotalAmount);
+    },
+    restartShoppingCart(state) {
+      state.cartItems =[];
+      state.cartTotalQuantity = 0;
+      state.cartTotalAmount = 0;
+      local(state.cartItems,state.cartTotalQuantity, state.cartTotalAmount);
     }
   }
 });

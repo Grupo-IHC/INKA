@@ -134,7 +134,7 @@ export const ContactanosPage = () => {
                 >
                   value={message}
                 </textarea>
-                {(formSubmitted && !!messageValid) && <p className="pErrorCLass">    {messageValid}</p>}
+                {(formSubmitted && !!messageValid) && <p className="pErrorCLass">{messageValid}</p>}
               </div>
               <div className="w-full flex justify-center lg:justify-start">
                 <button 

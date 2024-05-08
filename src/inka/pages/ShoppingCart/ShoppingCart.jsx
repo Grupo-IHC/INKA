@@ -21,7 +21,7 @@ export const ShoppingCart = () => {
 
   const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.shoppingCart);
   const {id} = useSelector(state => state.auth);
-  const {payCartShopping} = useInkaStore();
+  const {payCartShopping, uploadImage} = useInkaStore();
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState('');
@@ -33,6 +33,11 @@ export const ShoppingCart = () => {
   const [showDesingMobile, setShowDesingMobile] = useState(false);
   const [index, setIndex] = useState('');
   const [priceDelivery, setPriceDelivery] = useState(0);
+  const [infoContact, setInfoContact] = useState({
+    contact : '',
+    contact_dni : '',
+    address: '',
+  })
 
   const handleOption = (option) => {
     setSelectedOption(option);
@@ -83,19 +88,26 @@ export const ShoppingCart = () => {
     const data = {
       order_detail: cartItems.map(item => ({
         product: item.id,
-        design: item.design,
+        design_image: item.design,
         price: item.total,
         quantity: item.quantity,
       })),
       client: id,
       price: cartTotalAmount+priceDelivery,
-      
-
+      address: infoContact.address,
+      contact: infoContact.contact,
+      contact_dni: infoContact.contact_dni,
+      quantity: cartTotalQuantity,
+      type_delivery: selectedOption === 'delivery' ? 'bbb7dafa-45f6-4ec3-87d7-520624f58770' : '0c209139-9381-4a4e-b4de-7b9135c3006d',
+      method_payment: selectPayment === 'tarjeta' ? 'caa5ad1e-5c83-440b-a232-80fb6b01f28c' : '918121ee-551b-4618-b0c9-0f9cf46898ec',
     }
 
     try {
-      const response = await payCartShopping();
-      console.log(response);
+      const response = await payCartShopping(data);
+      if(response) {
+        console.log(response);
+        console.log('Pago exitoso');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -104,8 +116,8 @@ export const ShoppingCart = () => {
 
   return (
     <>
-      {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} priceDelivery={setPriceDelivery} />}
-      {showModalRetiro && <ModalRetiro onClose={onCloseModalRetiro} />}
+      {showModalDelivery && <ModalDelivery onClose={onCloseModalDelivery} priceDelivery={setPriceDelivery} contact={setInfoContact} />}
+      {showModalRetiro && <ModalRetiro onClose={onCloseModalRetiro} contact={setInfoContact} />}
       {showDesingMobile && DesingMobile()}
       <section className="shoppingCart lg:grow lg:flex lg:items-center">
         <div className="container mx-auto gap-y-5 lg:gap-y-0 p-[15px] 2xl:px-0 grid grid-cols-12 gap-x-4">
@@ -360,8 +372,7 @@ export const ShoppingCart = () => {
                 <div className='flex justify-between mt-[30px]'>
                   <button 
                     className={`btn-send-2 disabled:opacity-75`}
-                    onClick={() => console.log('Pagar')}
-                    type='submit'
+                    onClick={payShopping}
                     disabled={(cartItems.length === 0 || selectedOption === '' || selectPayment === '' ) ? true : false}
                   >
                     Pagar

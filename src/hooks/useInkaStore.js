@@ -65,10 +65,21 @@ export const useInkaStore = () => {
     }
    }
 
+  const uploadImage = async(image) => {
+    try {
+      const formData = new FormData();
+      formData.append('desing', image);
+      const response = await inkaApi.post('/sales/design', formData);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const payCartShopping = async(data) => {
     try {
-      const {data} = await inkaApi.post('/sales', data);
-      return data;
+      const response = await inkaApi.post('/sales/', data);
+      return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -83,6 +94,7 @@ export const useInkaStore = () => {
     getProductFilterByCategory,
     payCartShopping,
     getInfoProduct,
+    uploadImage,
     ContactSend,
     loading
   }

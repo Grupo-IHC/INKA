@@ -37,7 +37,7 @@ export const ProductPageEdit = () => {
 
   const dispatch = useDispatch();
 
-  const {getInfoProduct, loading} = useInkaStore();
+  const {getInfoProduct, loading, uploadImage} = useInkaStore();
 
   const {onInputChange, aumentQuantity, quantity, isEmpty, decrementQuantity, setFormState} = useForm({quantity:1, isEmpty:false});
   const [productInfo, setProductInfo] = useState([]);
@@ -68,14 +68,25 @@ export const ProductPageEdit = () => {
     setIdProduct(productInfo.id[index]);
   }
 
-  const onSubmit = () => {
+  const onSubmit = async() => {
+
+    let urlImage = '';
+
+    if( acceptedFiles[0]) {
+      try {
+        const {imagenes_subidas}  = await uploadImage(acceptedFiles[0]);
+        urlImage = imagenes_subidas[0].url;
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     const product = {
       id: idProduct,
       name: productInfo.name,
       img: productInfo.image,
       color: productInfo.color[indexColor],
-      design: acceptedFiles[0] ? URL.createObjectURL(acceptedFiles[0]) : null,
+      design: urlImage,
       quantity: quantity,
       price: productInfo.price,
       total: Math.round(quantity * productInfo.price * 100) / 100,
