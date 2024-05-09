@@ -12,7 +12,7 @@ import { ModalDelivery } from './components/ModalDelivery';
 
 import 'animate.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { aumentQuantity, decrementQuantity, deleteProduct } from '../../../store/product/shoppingCartSlice';
+import { aumentQuantity, decrementQuantity, deleteProduct, restartShoppingCart } from '../../../store/product/shoppingCartSlice';
 import { Modal } from '../../components/Modal';
 import { ModalRetiro } from './components/ModalRetiro';
 import { useInkaStore } from '../../../hooks/useInkaStore';
@@ -93,7 +93,7 @@ export const ShoppingCart = () => {
         quantity: item.quantity,
       })),
       client: id,
-      price: cartTotalAmount+priceDelivery,
+      price_total: cartTotalAmount+priceDelivery,
       address: infoContact.address,
       contact: infoContact.contact,
       contact_dni: infoContact.contact_dni,
@@ -102,9 +102,12 @@ export const ShoppingCart = () => {
       method_payment: selectPayment === 'tarjeta' ? 'caa5ad1e-5c83-440b-a232-80fb6b01f28c' : '918121ee-551b-4618-b0c9-0f9cf46898ec',
     }
 
+    console.log(data);
+
     try {
       const response = await payCartShopping(data);
       if(response) {
+        dispatch(restartShoppingCart())
         console.log(response);
         console.log('Pago exitoso');
       }

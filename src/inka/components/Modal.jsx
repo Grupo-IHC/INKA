@@ -7,7 +7,7 @@ export const Modal = ({children, onClose}) => {
 
   return (
     <div 
-      className={`modal cursor-pointer h-screen w-full flex justify-center items-center bg-[#000] bg-opacity-75 fixed inset-0 z-40`}
+      className={`modal h-screen w-full flex justify-center items-center bg-[#000] bg-opacity-75 fixed inset-0 z-40`}
       onClick={onClose}
     >
       <div 

@@ -62,4 +62,4 @@ export const shoppingCartSlice = createSlice({
   }
 });
 
-export const {addToCart, aumentQuantity, decrementQuantity, deleteProduct} = shoppingCartSlice.actions;
+export const {addToCart, aumentQuantity, decrementQuantity, deleteProduct, restartShoppingCart} = shoppingCartSlice.actions;
