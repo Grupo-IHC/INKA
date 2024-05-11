@@ -7,7 +7,6 @@ import { useInkaStore } from '../../../hooks/useInkaStore';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader';
 
-
 export const ProductsPage = () => {
 
   const {getTypeSeals, loading} = useInkaStore();
@@ -26,18 +25,6 @@ export const ProductsPage = () => {
     }
     getTypes();
   },[])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setValueMenuMobile(true);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <>

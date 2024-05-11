@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { useInkaStore } from "../../../../hooks/useInkaStore";
 import stamp from '../../../../shared/assets/stamp.svg';
 
-
 export const Carrousel = ({typeProduct, category}) => {
 
   const {loading, getProductFilterByCategory} = useInkaStore();

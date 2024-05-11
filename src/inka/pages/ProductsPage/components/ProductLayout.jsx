@@ -21,7 +21,7 @@ export const ProductLayout = () => {
 
   useEffect(() => {
     const getProductById = async() => {
-      const {type, category, product} = await getTypeSealsById(id)
+      const {type, category} = await getTypeSealsById(id)
       setProductById(type);
       setCategoryById(category);
     }

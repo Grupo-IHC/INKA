@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { LayoutExplorerSeals } from './components/LayoutExplorerSeals';
-import arrowRigthIcon from '../../../shared/assets/arrowRigthIcon.png';
-import arrowDownIcon from '../../../shared/assets/arrowLetfIcon.png';
 
 const categorySeals = [
   {
