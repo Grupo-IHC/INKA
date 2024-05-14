@@ -16,13 +16,16 @@ import { aumentQuantity, decrementQuantity, deleteProduct, restartShoppingCart }
 import { Modal } from '../../components/Modal';
 import { ModalRetiro } from './components/ModalRetiro';
 import { useInkaStore } from '../../../hooks/useInkaStore';
+import { useAuthStore } from '../../../hooks/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 export const ShoppingCart = () => {
 
   const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.shoppingCart);
-  const {id} = useSelector(state => state.auth);
-  const {payCartShopping, uploadImage} = useInkaStore();
+  const {id, status} = useAuthStore();
+  const {payCartShopping} = useInkaStore();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [selectedOption, setSelectedOption] = useState('');
   const [selectPayment, setSelectPayment] = useState('')
@@ -85,6 +88,11 @@ export const ShoppingCart = () => {
 
   const payShopping = async() => {
 
+    if(status === "not-authenticated") {
+      navigate("/auth/login")
+      return;
+    };
+
     const data = {
       order_detail: cartItems.map(item => ({
         product: item.id,
@@ -102,14 +110,10 @@ export const ShoppingCart = () => {
       method_payment: selectPayment === 'tarjeta' ? 'caa5ad1e-5c83-440b-a232-80fb6b01f28c' : '918121ee-551b-4618-b0c9-0f9cf46898ec',
     }
 
-    console.log(data);
-
     try {
       const response = await payCartShopping(data);
       if(response) {
         dispatch(restartShoppingCart())
-        console.log(response);
-        console.log('Pago exitoso');
       }
     } catch (error) {
       console.log(error);

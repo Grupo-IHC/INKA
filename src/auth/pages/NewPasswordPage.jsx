@@ -15,7 +15,6 @@ export const NewPasswordPage = () => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid || (password !== confirmPassword)) return;
-    console.log('llegue aqui')
   }
 
   return (

@@ -22,7 +22,6 @@ export const ExplorarPage = () => {
 
   const clickIndexLi = (index) => {
     setIndexLi(index);
-    console.log(index);
   }
  
   return (

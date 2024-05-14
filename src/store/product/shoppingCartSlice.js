@@ -50,7 +50,6 @@ export const shoppingCartSlice = createSlice({
       state.cartTotalAmount = Math.round((state.cartTotalAmount - state.cartItems[itemId].total) * 100)/100;
       const newCartItems = state.cartItems.filter((item, index) => index !== itemId);
       state.cartItems = newCartItems;
-      // console.log(JSON.parse(JSON.stringify(newCartItems)));
       local(state.cartItems,state.cartTotalQuantity, state.cartTotalAmount);
     },
     restartShoppingCart(state) {

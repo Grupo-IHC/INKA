@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export const useAuthStore = () => {
 
-  const {status, id, message} = useSelector(state => state.auth);
+  const {status, id, message, name} = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -16,7 +16,8 @@ export const useAuthStore = () => {
     try {
       const {data} = await inkaApi.post('/security/login', {username, password});
       localStorage.setItem('token', data.access);
-      dispatch(login({ user: data.user, confirmation: data.confirmation }));
+      localStorage.setItem("user",data.info_user.first_name);
+      dispatch(login({ user: data.user, confirmation: data.confirmation, name: data.info_user.first_name}));
       return data;
     } catch (error) {
       dispatch(logout({detail: error.response.data.detail}));
@@ -31,7 +32,7 @@ export const useAuthStore = () => {
       dispatch(checkingCredentials());
       const {data} = await inkaApi.post('/security/token/verify/', {token: token});
       localStorage.setItem('token', data.access);
-      dispatch(login({ user: data.user, confirmation: 'waaaazaaaa'}));
+      dispatch(login({ user: data.user, confirmation: data.access, name: data.info_user.first_name}));
     } catch (error) {
       localStorage.clear();
       dispatch(logout({detail: error.response.data.detail}));
@@ -84,6 +85,7 @@ export const useAuthStore = () => {
     status,
     id,
     loading,
+    name,
 
     startLogin,
     checkAuthToken,

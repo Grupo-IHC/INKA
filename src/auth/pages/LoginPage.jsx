@@ -30,7 +30,7 @@ export const LoginPage = () => {
     const response = await startLogin({username: document, password});
     if (response) navigate('/');
     } catch (error) {
-      console.log(error);
+      throw new error
     }
   }
 
