@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import { AuthRoutes } from "../auth/routes/AuthRoutes"
 import { InkaRoutes } from "../inka/routes/InkaRoutes"
 import { useEffect } from "react"

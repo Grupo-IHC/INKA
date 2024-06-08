@@ -20,12 +20,10 @@ export const RegisterPage = () => {
 
   const {registerUser} = useAuthStore();
 
-  const {onInputChange, formState, onReset, nroDocument, firstName, lastName, email, password, repeatPassword, nroDocumentValid, firstNameValid, lastNameValid, emailValid, passwordValid, isFormValid} = useForm({
+  const {onInputChange, nroDocument, firstName, lastName, email, password, repeatPassword, nroDocumentValid, firstNameValid, lastNameValid, emailValid, passwordValid, isFormValid} = useForm({
     nroDocument: '',
     firstName: '',
-    secondName: '',
     lastName: '',
-    secondLastName: '',
     email: '',
     password: '',
     repeatPassword:''

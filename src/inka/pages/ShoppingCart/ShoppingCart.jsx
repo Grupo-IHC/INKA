@@ -1,5 +1,4 @@
 import deleteIcon from '../../../shared/assets/deleteIcon.svg';
-import colorIcon from '../../../shared/assets/colorIcon.svg';
 import arrowRigth from '../../../shared/assets/arrowRIgth.svg';
 import arrowDown from '../../../shared/assets/arrowDown.svg';
 import lessIcon from '../../../shared/assets/lessIcon.svg';
@@ -21,7 +20,7 @@ export const ShoppingCart = () => {
 
   const {cartItems, cartTotalQuantity, cartTotalAmount} = useSelector(state => state.shoppingCart);
   const {id} = useSelector(state => state.auth);
-  const {payCartShopping, uploadImage} = useInkaStore();
+  const {payCartShopping} = useInkaStore();
   const dispatch = useDispatch();
 
   const [selectedOption, setSelectedOption] = useState('');

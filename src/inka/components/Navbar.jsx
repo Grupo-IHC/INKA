@@ -1,4 +1,3 @@
-import inkaLogo from "../../shared/assets/inkaLogo.svg";
 import inkaLogoMobile from "../../shared/assets/inkaLogoMobile.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useLocationInicio } from "../../hooks/useLocationInicio";
@@ -7,9 +6,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export const Navbar = () => {
-  const { showLogo, isScrolled, isAuth } = useLocationInicio();
+  const { showLogo, isScrolled } = useLocationInicio();
 
-  const { logoutUser, status } = useAuthStore();
+  const { logoutUser, status, user} = useAuthStore();
 
   const { cartTotalQuantity } = useSelector((state) => state.shoppingCart);
 
@@ -28,8 +27,8 @@ export const Navbar = () => {
       <div className="bg-[#31241e] bg-opacity-85 rounded-xl w-[150px] absolute top-[72px] right-2 h-[auto] flex flex-col p-[15px]">
         {status === "authenticated" ? (
           <>
-            <span className="text-white font-bold text-[16px] w-full text-center pb-[15px] border-b-2">¡Hola, Esaul!</span>
-            <NavLink className="text-white text-[14px] lg:text-[16px] w-full font-bold text-center py-[15px] border-b-2">Historial</NavLink>
+            <span className="text-white font-bold text-[16px] w-full text-center pb-[15px] border-b-2">¡Hola, {user}!</span>
+            <NavLink to={"/shopping-history"} className="text-white text-[14px] lg:text-[16px] w-full font-bold text-center py-[15px] border-b-2">Historial</NavLink>
             <NavLink to={"/auth/login"} onClick={logOut} className="text-white text-[14px] lg:text-[16px] w-full font-bold text-center pt-[15px]">Salir</NavLink>
           </>          
         ) : (
@@ -49,10 +48,6 @@ export const Navbar = () => {
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    console.log(status);
   }, []);
 
   const valueShowProfile = () => {

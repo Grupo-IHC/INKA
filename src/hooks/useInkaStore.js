@@ -88,11 +88,24 @@ export const useInkaStore = () => {
     }
   }
 
+  const getHistoryShopping = async() => {
+    try {
+      const response = await inkaApi.get('/sales/shopping');
+      console.log(response.data);
+      return response.data;
+    }catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return {
     getTypeSeals,
     getTypeSealsById,
     getProductFilterByCategory,
     payCartShopping,
+    getHistoryShopping,
     getInfoProduct,
     uploadImage,
     ContactSend,
