@@ -15,7 +15,6 @@ import { aumentQuantity, decrementQuantity, deleteProduct, restartShoppingCart }
 import { Modal } from '../../components/Modal';
 import { ModalRetiro } from './components/ModalRetiro';
 import { useInkaStore } from '../../../hooks/useInkaStore';
-import { useNavigate } from 'react-router-dom';
 
 export const ShoppingCart = () => {
 
@@ -23,7 +22,6 @@ export const ShoppingCart = () => {
   const {id} = useSelector(state => state.auth);
   const {payCartShopping} = useInkaStore();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [selectedOption, setSelectedOption] = useState('');
   const [selectPayment, setSelectPayment] = useState('')

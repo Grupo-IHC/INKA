@@ -5,11 +5,7 @@ import { useState } from "react";
 
 export const useAuthStore = () => {
 
-<<<<<<< HEAD
   const {status, id, user, message} = useSelector(state => state.auth);
-=======
-  const {status, id, message, name} = useSelector(state => state.auth);
->>>>>>> e14b3d40bfee50cfcfa12cc7b9f55d6ac16c221f
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -19,15 +15,9 @@ export const useAuthStore = () => {
 
     try {
       const {data} = await inkaApi.post('/security/login', {username, password});
-<<<<<<< HEAD
       const {access, info_user, user} = data;
       localStorage.setItem('token', access);
       dispatch(login({ user: info_user.first_name, id: user, email:info_user.email ,confirmation: data.confirmation }));
-=======
-      localStorage.setItem('token', data.access);
-      localStorage.setItem("user",data.info_user.first_name);
-      dispatch(login({ user: data.user, confirmation: data.confirmation, name: data.info_user.first_name}));
->>>>>>> e14b3d40bfee50cfcfa12cc7b9f55d6ac16c221f
       return data;
     } catch (error) {
       dispatch(logout({detail: error.response.data.detail}));
