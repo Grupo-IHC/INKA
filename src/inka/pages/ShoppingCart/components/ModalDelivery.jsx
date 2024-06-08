@@ -26,7 +26,6 @@ export const ModalDelivery = ({onClose, priceDelivery, contact:contactInfo}) => 
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid) return;
-    console.log('llegue aqui')
     priceDelivery(20);
     contactInfo({
     contact,

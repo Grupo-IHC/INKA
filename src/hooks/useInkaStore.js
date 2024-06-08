@@ -79,6 +79,7 @@ export const useInkaStore = () => {
   const payCartShopping = async(data) => {
     try {
       const response = await inkaApi.post('/sales/', data);
+      console.log(response, "el envio")
       return response.data;
     } catch (error) {
       console.log(error);

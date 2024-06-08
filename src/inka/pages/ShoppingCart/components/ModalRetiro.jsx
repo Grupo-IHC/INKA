@@ -22,7 +22,6 @@ export const ModalRetiro = ({onClose, contact: contactInfo}) => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid) return;
-    console.log('llegue aqui')
     contactInfo({
       contact,
       contact_dni : nroDocument,

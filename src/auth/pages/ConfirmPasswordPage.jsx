@@ -20,7 +20,6 @@ export const ConfirmPasswordPage = () => {
     const code = (digitOne + digitTwo + digitThree + digitFour).toUpperCase();
     try {
       const response = await confirmCode(email, code);
-      console.log(response);
     } catch (error) {
 
     }

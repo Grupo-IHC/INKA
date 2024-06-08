@@ -48,7 +48,6 @@ export const ProductPageEdit = () => {
   useEffect(() => {
     const getProduct = async() => {
       const {data} = await getInfoProduct(id);
-      console.log(data[0])
       setProductInfo(data[0]);
       setIdProduct(data[0].id[0]);
     }

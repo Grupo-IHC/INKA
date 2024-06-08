@@ -43,7 +43,6 @@ export const RegisterPage = () => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid || (password !== repeatPassword)) return;
-    console.log('llegue aqui')
     const dataSend = {
       email,
       password,
@@ -58,7 +57,6 @@ export const RegisterPage = () => {
       setShowMessage(true);
       setvalueMessage({ status: status, message: msg });
     } catch (error) {
-      console.log(error);
     }
   }
 

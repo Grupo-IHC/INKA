@@ -22,7 +22,7 @@ export const RestorePasswordPage = () => {
         dispatch(restore(email));
       } 
     } catch (error) {
-      console.log(error);
+      throw new error;
     }
   }
 

@@ -8,7 +8,11 @@ import { useSelector } from "react-redux";
 export const Navbar = () => {
   const { showLogo, isScrolled } = useLocationInicio();
 
+<<<<<<< HEAD
   const { logoutUser, status, user} = useAuthStore();
+=======
+  const { logoutUser, status, name } = useAuthStore();
+>>>>>>> e14b3d40bfee50cfcfa12cc7b9f55d6ac16c221f
 
   const { cartTotalQuantity } = useSelector((state) => state.shoppingCart);
 
