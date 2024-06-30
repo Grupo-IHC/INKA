@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import back from '../../shared/assets/FondoLogin.png';
 
 export const AuthLayout = ({children, title = ""}) => {
 

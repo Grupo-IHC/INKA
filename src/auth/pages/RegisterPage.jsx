@@ -57,6 +57,7 @@ export const RegisterPage = () => {
       setShowMessage(true);
       setvalueMessage({ status: status, message: msg });
     } catch (error) {
+      console.log(error);
     }
   }
 
@@ -73,6 +74,7 @@ export const RegisterPage = () => {
           <div className='flex justify-between flex-col pb-5 relative'>
             <label className={`labelInput ${(formSubmitted && !!emailValid)? "text-red-600" : ""}`} htmlFor="email">Email</label>
             <input
+              id="email"
               value={email}
               name="email"
               className={`inputClass ${(formSubmitted && !!emailValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
@@ -82,8 +84,9 @@ export const RegisterPage = () => {
             {(formSubmitted && !!emailValid) && <p className="pErrorCLass">{emailValid}</p>}
           </div>
           <div className='flex justify-between pb-5 flex-col relative'>
-            <label className={`labelInput ${(formSubmitted && !!nroDocumentValid)? "text-red-600": ""}`} htmlFor="firstName">Nro. Documento</label>
+            <label className={`labelInput ${(formSubmitted && !!nroDocumentValid)? "text-red-600": ""}`} htmlFor="nroDocument">Nro. Documento</label>
             <input
+              id="nroDocument"
               value={nroDocument}
               name="nroDocument"
               className={`inputClass ${(formSubmitted && !!nroDocumentValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
@@ -93,8 +96,9 @@ export const RegisterPage = () => {
             {(formSubmitted && !!nroDocumentValid) && <p className="pErrorCLass">{nroDocumentValid}</p>}
           </div>
           <div className='flex justify-between pb-5 flex-col relative'>
-            <label className={`labelInput ${(formSubmitted && !!firstNameValid)? "text-red-600" : ""}`}    htmlFor="firstName">Nombres</label>
+            <label className={`labelInput ${(formSubmitted && !!firstNameValid)? "text-red-600" : ""}`} htmlFor="firstName">Nombres</label>
             <input
+              id="firstName"
               value={firstName}
               name="firstName"
               className={`inputClass ${(formSubmitted && !!firstNameValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
@@ -104,8 +108,9 @@ export const RegisterPage = () => {
             {(formSubmitted && !!firstNameValid) && <p className="pErrorCLass">{firstNameValid}</p>}
           </div>
           <div className='flex justify-between pb-5 flex-col relative'>
-            <label className={`labelInput ${(formSubmitted && !!lastNameValid)? "text-red-600" : ""}`}   htmlFor="lastName">Apellidos</label>
+            <label className={`labelInput ${(formSubmitted && !!lastNameValid)? "text-red-600" : ""}`} htmlFor="lastName">Apellidos</label>
             <input
+              id="lastName"
               value={lastName}
               name="lastName"
               className={`inputClass ${(formSubmitted && !! lastNameValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
@@ -115,8 +120,9 @@ export const RegisterPage = () => {
             {(formSubmitted && !!lastNameValid) && <p className="pErrorCLass">{lastNameValid}</p>}
           </div>
           <div className='flex justify-between pb-5 flex-col relative'>
-            <label className={`labelInput ${(formSubmitted && !!passwordValid)? "text-red-600" : ""}`}    htmlFor="password">Contraseña</label>
+            <label className={`labelInput ${(formSubmitted && !!passwordValid)? "text-red-600" : ""}`} htmlFor="password">Contraseña</label>
             <input
+              id="password"
               value={password}
               name="password"
               className={`inputClass ${(formSubmitted && !!passwordValid)? "border-2 border-red-600" : "border-2 border-transparent"}`}
@@ -132,8 +138,9 @@ export const RegisterPage = () => {
             {(formSubmitted && !!passwordValid) && <p className="pErrorCLass">{passwordValid}</p>}
           </div>
           <div className='flex justify-between pb-5 flex-col relative'>
-            <label className={`labelInput ${(formSubmitted && (password !== repeatPassword))? "text-red-600" : ""}`}    htmlFor="repeatPassword">Repite la contrseña </label>
+            <label className={`labelInput ${(formSubmitted && (password !== repeatPassword))? "text-red-600" : ""}`}    htmlFor="repeatPassword">Repite la contrseña</label>
             <input
+              id="repeatPassword"
               value={repeatPassword}
               name="repeatPassword"
               className={`inputClass ${(formSubmitted && (password !== repeatPassword))? "border-2 border-red-600" : "border-2 border-transparent"}`}

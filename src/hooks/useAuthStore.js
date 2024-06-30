@@ -70,6 +70,7 @@ export const useAuthStore = () => {
  const registerUser = async(data) => {
   try {
     const response = await inkaApi.post('/security/register', data);
+    console.log(response);
     return response.data;
   } catch (error) {
     return error.response.data;
