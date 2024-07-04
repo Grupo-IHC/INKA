@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
+import { useSelector } from "react-redux";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 const formValidations = {
   password: [(value) => value.length >= 6,'La contraseña debe tener al menos 6 caracteres.'],
@@ -11,10 +13,19 @@ export const NewPasswordPage = () => {
 
   const [formSubmitted, setFormSubmited] = useState(false);
 
+  const {email} = useSelector(state => state.auth);
+
+  const {changePassword} = useAuthStore();
+
+  
+
   const onSubmit = (e) => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid || (password !== confirmPassword)) return;
+
+    const {status} = changePassword({email, password});
+
   }
 
   return (

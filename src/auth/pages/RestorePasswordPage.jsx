@@ -4,9 +4,14 @@ import { useForm } from "../../hooks/useForm";
 import { Loader } from "../../inka/components/Loader";
 import { useDispatch } from "react-redux";
 import  {restorePassword as restore}  from "../../store/auth/authSlice"
+import { useState } from "react";
 
 export const RestorePasswordPage = () => {
 
+  const [responseRestore, setResponseRestore] = useState({
+    status: null,
+    msg:null
+  });
   const {onInputChange, email} = useForm({email:''});
   const {loading, restorePassword} = useAuthStore();
   const navigate = useNavigate();
@@ -15,15 +20,10 @@ export const RestorePasswordPage = () => {
   const onSubmit = async(e) => {
     e.preventDefault();
     if(email === '') return;
-    try {
-      const {status} = await restorePassword(email);
-      if (status === 'OK') {
-        navigate('/auth/new-password');
-        dispatch(restore(email));
-      } 
-    } catch (error) {
-      throw new error;
-    }
+    const {status} = await restorePassword(email);
+    if (status === 'OK') {
+      dispatch(restore(email));
+    } 
   }
 
   return (
@@ -65,12 +65,13 @@ export const RestorePasswordPage = () => {
             </button>
             <div className="flex flex-col self-center text-[#1D1D1D] gap-4 mt-2">
               <div className="flex text-xs sm:text-sm md:text-md lg:text-lg gap-2 justify-between">
-                <span>Don't have an account?</span>
+                <span>¿No tienes cuenta?</span>
                 <a
-                  className="text-[#1D1D1D] font-semibold no-underline hover:underline "
-                  title="Create Account"
+                  className="text-[#1D1D1D] font-semibold no-underline hover:underline cursor-pointer"
+                  title="Crear cuenta"
+                  onClick={() => navigate("/auth/register")}
                 >
-                  Sign Up
+                  Crear cuenta
                 </a>
               </div>
             </div>

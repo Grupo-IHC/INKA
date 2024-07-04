@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { inkaApi } from "../api/inkaApi";
 import { checkingCredentials, login, logout } from "../store/auth/authSlice";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export const useAuthStore = () => {
 
@@ -44,15 +45,27 @@ export const useAuthStore = () => {
   setLoading(true);
   try {
     const {data} = await inkaApi.post('/security/password_reset', {email});
+    Swal.fire("Correo encontrado", data.msg, "success")
     return data;
   } catch (error) {
-    console.log("error")
-    console.log(error);
+    Swal.fire("Error", error.response.data.msg, "error")
   } finally {
     setLoading(false);
   }
  }
 
+ const changePassword = async(data) => {
+  setLoading(true);
+  try {
+    const {data} = await inkaApi.post('security/change_password', data);
+    Swal.fire("Contraseña cambiada", data.msg, "success");
+    return data;
+  } catch (error) {
+    Swal.fire("Error", error.response.data.msg, "error");
+  } finally {
+    setLoading(false);
+  }
+ }
  
  const confirmCode = async(email, code) => {
   setLoading(true);
@@ -95,7 +108,8 @@ export const useAuthStore = () => {
     registerUser,
     logoutUser,
     restorePassword,
-    confirmCode
+    confirmCode,
+    changePassword
   }
 
 };

@@ -13,6 +13,14 @@ export const shoppingCartSlice = createSlice({
       cartItems: JSON.parse(localStorage.getItem('cart')) || [],
       cartTotalQuantity: JSON.parse(localStorage.getItem('cartTotalQuantity')) || 0,
       cartTotalAmount: JSON.parse(localStorage.getItem('cartTotalAmount')) || 0,
+      delivery: 0,
+      contact: {
+        address: '',
+        contactName: '',
+        contactDni: '',
+        typeDelivery: '',
+        method_payment: '',
+      }
   },
   reducers: {
     addToCart(state, {payload}) {
@@ -57,8 +65,42 @@ export const shoppingCartSlice = createSlice({
       state.cartTotalQuantity = 0;
       state.cartTotalAmount = 0;
       local(state.cartItems,state.cartTotalQuantity, state.cartTotalAmount);
+    },
+    saveContact(state, {payload}) {
+      if(payload.typeDelivery === "delivery") {
+        state.contact = {
+          ...state.contact,
+          address: payload.address,
+          contactName: payload.contact,
+          contactDni: payload.nroDocument,
+          typeDelivery: 'bbb7dafa-45f6-4ec3-87d7-520624f58770' 
+        };
+        state.delivery = 20;
+      } else {
+        state.contact = {
+          ...state.contact,
+          contactName: payload.contact,
+          contactDni: payload.nroDocument,
+          address: '',
+          typeDelivery: '0c209139-9381-4a4e-b4de-7b9135c3006d'
+        }
+        state.delivery = 0;
+      }
+    },
+    saveMethodPayment(state, {payload}) {
+      if(payload === 'tarjeta') {
+        state.contact = {
+        ...state.contact,
+        method_payment : 'caa5ad1e-5c83-440b-a232-80fb6b01f28c'
+        }
+      } else {
+        state.contact = {
+          ...state.contact,
+          method_payment : "918121ee-551b-4618-b0c9-0f9cf46898ec"
+        }
+      }
     }
   }
 });
 
-export const {addToCart, aumentQuantity, decrementQuantity, deleteProduct, restartShoppingCart} = shoppingCartSlice.actions;
+export const {addToCart, aumentQuantity, decrementQuantity, deleteProduct, restartShoppingCart, saveContact, saveMethodPayment} = shoppingCartSlice.actions;

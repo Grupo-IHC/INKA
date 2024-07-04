@@ -11,6 +11,7 @@ import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart"
 import { ProductPageEdit } from "../pages/ProductsPage/components/ProductPageEdit"
 import { WhatsAppContact } from "../components/WhatsAppContact"
 import { ShoppingHistoryPage } from "../pages/ShoppingHistoryPage/ShoppingHistoryPage"
+import { SearchProduct } from "../pages/SearchProduct/SearchProduct"
 
 export const InkaRoutes = () => {
   
@@ -19,10 +20,10 @@ export const InkaRoutes = () => {
   return (
     <>
       <Navbar/>
-      {/* <div className={`min-h-screen ${showLogo ? 'bg-white home pt-[67px] 2xl:pt-[112px]' : 'startPage bg-mobile bg-contain lg:bg-inicio pt-[67px] 2xl:pt-[112px]'}`}> */}
-      <div className={`Home flex flex-col ${showLogo ? "pt-[67px] lg:min-h-[calc(100vh-67px-100px)] 2xl:min-h-[calc(100vh-100px-67px)]": ''}`}>
+      <div className={`Home flex flex-col ${showLogo ? "pt-[67px] lg:min-h-[calc(100vh-100px)]": ''}`}>
         <Routes>
           <Route path="/" element={<InicioPage/>} />
+          <Route path="/search/:name" element={<SearchProduct/>} />
           <Route path="/explorar" element={<ExplorarPage/>} />
           <Route path="/productos" element={<ProductsPage/>} />
           <Route path="/productos/typeproduct/:id" element={<ProductLayout/>}/>

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { inkaApi } from "../api/inkaApi";
+import Swal from "sweetalert2";
 
 export const useInkaStore = () => {
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const getTypeSeals = async() => {
+    setLoading(true);
     try {
       const {data} = await inkaApi.get('/product/type');
       return data;
@@ -18,6 +20,7 @@ export const useInkaStore = () => {
     }
   }
   const getTypeSealsById = async(id) => {
+    setLoading(true);
     try {
       const {data} = await inkaApi.get(`/product/?type=${id}`);
       console.log(data.product);
@@ -44,6 +47,7 @@ export const useInkaStore = () => {
   }
 
   const getInfoProduct = async(id) => {
+    setLoading(true);
     try {
       const {data} = await inkaApi.get(`/product/${id}`);
       return data;
@@ -58,7 +62,6 @@ export const useInkaStore = () => {
   const ContactSend = async(data) => {
     try {
       const response = await inkaApi.post('/security/contact', data);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return error.response.data;
@@ -76,26 +79,40 @@ export const useInkaStore = () => {
     }
   }
 
-  const payCartShopping = async(data) => {
+  const payCartShopping = async (data) => {
+    setLoading(true);
     try {
       const response = await inkaApi.post('/sales/', data);
-      console.log(response, "el envio")
-      return response.data;
+      Swal.fire('Compra realizada', response.data.message, 'success');
+      return response.status;
     } catch (error) {
-      console.log(error);
-    }
-    finally {
+      Swal.fire('Error', error.response.data.message, 'error');
+    } finally {
       setLoading(false);
     }
   }
+  
 
   const getHistoryShopping = async() => {
+    setLoading(true);
     try {
       const response = await inkaApi.get('/sales/shopping');
       console.log(response.data);
       return response.data;
     }catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const getSearchProduct = async(name) => {
+    setLoading(true);
+    try {
+      const response = await inkaApi.get(`/product/filter?name=${name}`);
+      return response.data;
+    } catch (error) {
+      return error.response.data;
     } finally {
       setLoading(false);
     }
@@ -110,6 +127,7 @@ export const useInkaStore = () => {
     getInfoProduct,
     uploadImage,
     ContactSend,
-    loading
+    loading,
+    getSearchProduct
   }
 }

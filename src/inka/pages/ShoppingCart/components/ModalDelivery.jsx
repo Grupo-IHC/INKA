@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useForm } from "../../../../hooks/useForm";
 import { Modal } from "../../../components/Modal"
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../../../store/modal/modalSlice";
+import { saveContact } from "../../../../store/product/shoppingCartSlice";
 
 const formValidations = {
   district: [(value) => value !== '0','Seleccione un distrito.'],
@@ -10,7 +13,7 @@ const formValidations = {
   phone: [(value) => value.length === 9,'El número de telefono debe tener 9 digitos.'],
 };
 
-export const ModalDelivery = ({onClose, priceDelivery, contact:contactInfo}) => {
+export const ModalDelivery = () => {
 
   const {onInputChange, district, address, contact, nroDocument, phone, districtValid, addressValid, contactValid, nroDocumentValid, phoneValid, isFormValid} = useForm({
     district: '0',
@@ -22,21 +25,22 @@ export const ModalDelivery = ({onClose, priceDelivery, contact:contactInfo}) => 
 
   const [formSubmitted, setFormSubmited] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const onCloseModal = () => {
+    dispatch(closeModal());
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid) return;
-    priceDelivery(20);
-    contactInfo({
-    contact,
-    contact_dni : nroDocument,
-    address,})
-    onClose();
-    
+    dispatch(saveContact({contact, nroDocument,address,typeDelivery: 'delivery'}))
+    onCloseModal();
   }
 
   return (
-    <Modal onClose={onClose}>
+    <Modal>
       <h1 className="font-mont font-bold text-lg lg:text-3xl text-center py-4 border-b-2 border-[#000]">Entrega de pedido</h1>
       <form onSubmit={onSubmit} className="mt-4">
         <div className='flex justify-between pb-5 flex-col relative'>
@@ -105,7 +109,7 @@ export const ModalDelivery = ({onClose, priceDelivery, contact:contactInfo}) => 
            <button className="btn-send-2" type="submit">
             Aceptar
            </button>
-           <button className="btn-send-2" onClick={onClose}>
+           <button className="btn-send-2" onClick={onCloseModal}>
             Cancelar
            </button>
         </div>

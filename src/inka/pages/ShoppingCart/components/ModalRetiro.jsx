@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useForm } from '../../../../hooks/useForm';
 import { Modal } from '../../../components/Modal'
+import { useDispatch } from 'react-redux';
+import { closeModal } from '../../../../store/modal/modalSlice';
+import { saveContact } from '../../../../store/product/shoppingCartSlice';
 
 const formValidations = {
   contact: [(value) => value.length > 0,'Ingrese el nombre del contacto.'],
@@ -8,7 +11,7 @@ const formValidations = {
   phone: [(value) => value.length === 9,'El número de telefono debe tener 9 digitos.'],
 };
 
-export const ModalRetiro = ({onClose, contact: contactInfo}) => {
+export const ModalRetiro = () => {
 
   const {onInputChange, contact, nroDocument, phone, contactValid, nroDocumentValid, phoneValid, isFormValid} = useForm({
     contact: '',
@@ -18,20 +21,22 @@ export const ModalRetiro = ({onClose, contact: contactInfo}) => {
 
   const [formSubmitted, setFormSubmited] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const onCloseModal = () => {
+    dispatch(closeModal());
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid) return;
-    contactInfo({
-      contact,
-      contact_dni : nroDocument,
-      address: 'Tienda',
-    })
-    onClose();
+    dispatch(saveContact({contact, nroDocument,typeDelivery: 'retiro'}))
+    onCloseModal();
   }
 
   return (
-    <Modal onClose={onClose}>
+    <Modal>
       <h1 className="font-mont font-bold text-lg lg:text-3xl text-center py-4 border-b-2 border-[#000]">Recojo en tienda</h1>
       <form onSubmit={onSubmit} className="mt-4">
         <div className='flex justify-between pb-5 flex-col relative'>
@@ -75,7 +80,7 @@ export const ModalRetiro = ({onClose, contact: contactInfo}) => {
            <button className="btn-send-2" type="submit">
             Aceptar
            </button>
-           <button className="btn-send-2" onClick={onClose}>
+           <button className="btn-send-2" onClick={onCloseModal}>
             Cancelar
            </button>
         </div>
