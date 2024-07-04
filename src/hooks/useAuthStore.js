@@ -57,11 +57,10 @@ export const useAuthStore = () => {
  const changePassword = async(data) => {
   setLoading(true);
   try {
-    const {data} = await inkaApi.post('security/change_password', data);
-    Swal.fire("Contraseña cambiada", data.msg, "success");
-    return data;
+    const {msg} = await inkaApi.post('security/change_password', data);
+    Swal.fire("Contraseña cambiada", msg, "success");
   } catch (error) {
-    Swal.fire("Error", error.response.data.msg, "error");
+    Swal.fire("Error", error.response.msg, "error");
   } finally {
     setLoading(false);
   }

@@ -9,7 +9,7 @@ const formValidations = {
 
 export const NewPasswordPage = () => {
 
-  const {onInputChange, password, confirmPassword, isFormValid, passwordValid} = useForm({password:'', confirmPassword:''}, formValidations);
+  const {onInputChange, password, confirmPassword, isFormValid, passwordValid, formState} = useForm({password:'', confirmPassword:''}, formValidations);
 
   const [formSubmitted, setFormSubmited] = useState(false);
 
@@ -19,13 +19,15 @@ export const NewPasswordPage = () => {
 
   
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
     setFormSubmited(true);
     if (!isFormValid || (password !== confirmPassword)) return;
 
-    const {status} = changePassword({email, password});
-
+    await changePassword({email, new_password:password});
+    
+    formState.password = '';
+    formState.confirmPassword = '';
   }
 
   return (
