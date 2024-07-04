@@ -67,26 +67,13 @@ export const useAuthStore = () => {
   }
  }
  
- const confirmCode = async(email, code) => {
-  setLoading(true);
-  try {
-    const {data} = await inkaApi.post('/security/password_reset', {email,code});
-    return data;
-  } catch (error) {
-    console.log("error")
-    console.log(error);
-  } finally {
-    setLoading(false);
-  }
- }
 
  const registerUser = async(data) => {
   try {
     const response = await inkaApi.post('/security/register', data);
-    console.log(response);
-    return response.data;
+    Swal.fire("Usuario registrado", response.data.msg, "success");
   } catch (error) {
-    return error.response.data;
+    Swal.fire("Error", error.response.data.msg, "error");
   }
  }
 
@@ -108,7 +95,6 @@ export const useAuthStore = () => {
     registerUser,
     logoutUser,
     restorePassword,
-    confirmCode,
     changePassword
   }
 

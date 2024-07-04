@@ -63,9 +63,9 @@ export const useInkaStore = () => {
   const ContactSend = async(data) => {
     try {
       const response = await inkaApi.post('/security/contact', data);
-      return response.data;
+      Swal.fire('Mensaje enviado', response.data.message, 'success');
     } catch (error) {
-      return error.response.data;
+      Swal.fire('Error', error.response.data.message, 'error');
     }
    }
 

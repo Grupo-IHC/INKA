@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { Loader } from '../../../inka/components/Loader';
 import { useInkaStore } from '../../../hooks/useInkaStore';
-import { MessageRegister } from '../../../auth/layout/MessageRegister';
 
 const formValidations = {
   correo: [(value) => value.length > 0,'Ingrese un correo.'],
@@ -15,7 +14,7 @@ export const ContactanosPage = () => {
 
   const { ContactSend } = useInkaStore();
 
-  const {onInputChange, formState, asunto,correo,nombres, message, isFormValid,correoValid,nombresValid, asuntoValid, messageValid}  = useForm({
+  const {onInputChange, formState, asunto,correo,nombres, message, isFormValid,correoValid,nombresValid, asuntoValid, messageValid,setFormState}  = useForm({
     asunto: '',
     message: '',
     correo: '',
@@ -23,12 +22,8 @@ export const ContactanosPage = () => {
   }, formValidations);
 
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [valueMessage, setvalueMessage] = useState({
-    status:"",
-    message:""
-  });
+
     
   const onSubmit = async(e) => {
     e.preventDefault();
@@ -42,41 +37,26 @@ export const ContactanosPage = () => {
       message:message
     }
 
-    try{  
-      setLoading(true);
-      try{
-        const{status,msg} = await ContactSend(contactSend);
-        setLoading(false);
-        setShowMessage(status);
-        setvalueMessage({status:status,message:msg});
-      }
-      catch{
-        console.log(error);
-      }
-    }
-    catch{
-      console.log(error);
-    }
-
-    finally{
-      setFormSubmitted(false);
-    }
+    setLoading(true);
+    await ContactSend(contactSend);
+    setLoading(false);
+    setFormState({
+      asunto: '',
+      message: '',
+      correo: '',
+      nombres: ''
+    })
+    setFormSubmitted(false);
   }
 
-  const CloseModal = ()=>{
-    
-    setShowMessage(false);
-    
-  }
 
   return (
     <>
     {loading&&<Loader />}
-    {showMessage&&<MessageRegister status={valueMessage.status} message={valueMessage.message} onClose={CloseModal}/> }
       <section className="home-4">
         <div className="container mx-auto" >
-          <div className=" m-5 sm: m-5 md:grid grid-cols-2 mt-5 ml-5 mr-5 2xl:mb-10" >
-            <h1 className="font-bold text-center text-xl m-4 md:text-left md:m-0 md:ml-4 text-2xl lg:text-2xl xl:text-4xl">PONTE EN CONTACTO <br></br> CON NUESTRO EQUIPO</h1>
+          <div className="md:grid grid-cols-2 mt-5 ml-5 mr-5 2xl:mb-10" >
+            <h1 className="font-bold text-center text-xl m-4 md:text-left md:m-0 md:ml-4  lg:text-2xl xl:text-4xl">PONTE EN CONTACTO <br></br> CON NUESTRO EQUIPO</h1>
             <p className="text-xs text-justify sm:text-xs lg:text-sm  xl:text-base">Si tienes alguna pregunta, inquietud o queja, no dudes en ponerte en contacto con nosotros. Nuestro equipo de atención al cliente está disponible para brindarte asistencia y resolver cualquier problema que puedas tener. Tu satisfacción es nuestra prioridad.</p>
           </div>
           <div className="m-6 mb-10 lg:flex justify-between xl:justify-start gap-x-16 2xl:gap-x-24 ">
@@ -86,7 +66,7 @@ export const ContactanosPage = () => {
                 <input
                   value={correo}
                   name="correo"
-                  className={`bg-[#E8DFDB] rounded-lg bg-primary outline-none ${(formSubmitted && !!correoValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
+                  className={`rounded-lg bg-primary outline-none ${(formSubmitted && !!correoValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
                   type="text" 
                   onChange={onInputChange} 
                   placeholder="Correo Electrónico" 
@@ -100,10 +80,10 @@ export const ContactanosPage = () => {
                     <input
                       value={asunto}
                       name="asunto"
-                      className={`bg-[#E8DFDB] rounded-lg bg-primary outline-none ${(formSubmitted && !!asuntoValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
+                      className={`rounded-lg bg-primary outline-none ${(formSubmitted && !!asuntoValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
                       type="text" 
                       onChange={onInputChange} 
-                      placeholder="Asunto" 
+                      placeholder="Tema del mensaje" 
                     />
                     {(formSubmitted && !!asuntoValid) && <p className="pErrorCLass">{asuntoValid}</p>}
                   </div>
@@ -112,7 +92,7 @@ export const ContactanosPage = () => {
                       <input
                         value={nombres}
                         name="nombres"
-                        className={`bg-[#E8DFDB] rounded-lg bg-primary outline-none ${(formSubmitted && !!nombresValid)?"border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`} 
+                        className={`rounded-lg bg-primary outline-none ${(formSubmitted && !!nombresValid)?"border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`} 
                         type="text" 
                         onChange={onInputChange} 
                         placeholder="Nombre y Apellido" 
@@ -125,7 +105,7 @@ export const ContactanosPage = () => {
                 <textarea 
                   name="message" 
                   cols="30" rows="3"
-                  className={`bg-[#E8DFDB] rounded-lg bg-primary outline-none ${(formSubmitted && !!messageValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
+                  className={`rounded-lg bg-primary outline-none ${(formSubmitted && !!messageValid)? "border-2 border-red-600" : "border-2 border-transparent"} text-lg p-2`}
                   onChange={onInputChange} 
                   value={message}
                   placeholder="Mensaje" 

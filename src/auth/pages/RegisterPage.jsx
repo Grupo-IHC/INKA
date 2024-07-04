@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useAuthStore } from '../../hooks/useAuthStore';
 import { Loader } from "../../inka/components/Loader";
-import { MessageRegister } from "../layout/MessageRegister";
 
 const formValidations = {
   nroDocument: [(value) => value.length === 8,'El DNI debe tener 8 caracteres.'],
@@ -33,11 +32,7 @@ export const RegisterPage = () => {
   const [valueEyeRepeat, setValueEyeRepeat] = useState(false);
   const [formSubmitted, setFormSubmited] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [valueMessage, setvalueMessage] = useState({
-    status: '',
-    message: '',
-  })
+
 
   const onSubmit = async(e) => {
     e.preventDefault();
@@ -51,24 +46,15 @@ export const RegisterPage = () => {
       document_number: nroDocument
     }
     setLoading(true);
-    try {
-      const {status, msg} = await registerUser(dataSend);
-      setLoading(false);
-      setShowMessage(true);
-      setvalueMessage({ status: status, message: msg });
-    } catch (error) {
-      console.log(error);
-    }
+    await registerUser(dataSend);
+    setLoading(false);
   }
 
-  const closeMessageRegister = () => {
-    setShowMessage(false);
-  }
+
 
   return (
     <>
       {loading && <Loader />}
-      {showMessage && <MessageRegister status={valueMessage.status} message={valueMessage.message} onClose={closeMessageRegister}/>}
       <AuthLayout title="Register">
         <form onSubmit={onSubmit} className="">
           <div className='flex justify-between flex-col pb-5 relative'>
