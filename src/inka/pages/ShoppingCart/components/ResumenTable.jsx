@@ -172,13 +172,12 @@ export const ResumenTable = () => {
           </div>
           <div className="flex justify-between mt-[30px]">
             <button
-              className={`btn-send-2 disabled:opacity-75`}
+              className={`btn-send-2 disabled:opacity-75 w-full`}
               onClick={payShopping}
               disabled={!selectPayment || cartTotalQuantity === 0 || !contactName || !id || loading}
             >
               Pagar
             </button>
-            <button className="btn-send-2">Volver</button>
           </div>
         </div>
       )}
