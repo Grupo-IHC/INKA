@@ -31,7 +31,7 @@ export const NewPasswordPage = () => {
     formState.confirmPassword = '';
 
     setTimeout(() => {
-      navigate('/login');
+      navigate('/auth/login');
     }, 15000);
   }
 

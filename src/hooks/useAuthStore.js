@@ -21,6 +21,7 @@ export const useAuthStore = () => {
       dispatch(login({ user: info_user.first_name, id: user, email:info_user.email ,confirmation: data.confirmation }));
       return data;
     } catch (error) {
+      Swal.fire("Error", error.response.data.detail, "error");
       dispatch(logout({detail: error.response.data.detail}));
     }
   }

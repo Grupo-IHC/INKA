@@ -6,6 +6,7 @@ export const useInkaStore = () => {
 
   const [loading, setLoading] = useState(false);
 
+
   const getTypeSeals = async() => {
     setLoading(true);
     try {
@@ -96,8 +97,10 @@ export const useInkaStore = () => {
   const getHistoryShopping = async() => {
     setLoading(true);
     try {
+      const token = localStorage.getItem('token');
+      if (!token) return dispatch(logout({detail: 'No token found'}));
+      inkaApi.defaults.headers.common.Authorization = "Bearer" + " " + token;
       const response = await inkaApi.get('/sales/shopping');
-      console.log(response.data);
       return response.data;
     }catch (error) {
       console.log(error);
