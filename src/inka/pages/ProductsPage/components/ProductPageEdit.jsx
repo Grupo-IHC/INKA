@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useInkaStore } from "../../../../hooks/useInkaStore"
 import { useEffect, useCallback, useState } from "react";
 import {useDropzone} from 'react-dropzone'
@@ -37,6 +37,8 @@ export const ProductPageEdit = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const {getInfoProduct, loading, uploadImage} = useInkaStore();
 
   const {onInputChange, aumentQuantity, quantity, isEmpty, decrementQuantity, setFormState} = useForm({quantity:1, isEmpty:false});
@@ -47,7 +49,11 @@ export const ProductPageEdit = () => {
 
   useEffect(() => {
     const getProduct = async() => {
-      const {data} = await getInfoProduct(id);
+      const {data,status} = await getInfoProduct(id);
+      if(status === "ERROR") {
+        navigate('/productos')
+        return;
+      }
       setProductInfo(data[0]);
       setIdProduct(data[0].id[0]);
     }

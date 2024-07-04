@@ -16,7 +16,7 @@ export const SearchProduct = () => {
   const navigate = useNavigate();
 
   const clickSeeMore = (id) => {
-    navigate(`/product/${id}`)
+    navigate(`/productos/${id}`)
   }
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const SearchProduct = () => {
             </div>
           ):
             getProducts.map((product, index) => (
-              <div key={index} className="col-span-1 rounded-lg p-3 border-2 ">
+              <div key={index} className="col-span-1 rounded-lg p-3 border-2 " onClick={() => clickSeeMore(product.id[0])}>
                 <div className="flex justify-center">
                   <img src={product.image} alt={product.name} className="block" />
                 </div>

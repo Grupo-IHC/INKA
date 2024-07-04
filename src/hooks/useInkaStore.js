@@ -50,11 +50,10 @@ export const useInkaStore = () => {
   const getInfoProduct = async(id) => {
     setLoading(true);
     try {
-      const {data} = await inkaApi.get(`/product/${id}`);
-      return data;
-
+      const response = await inkaApi.get(`/product/${id}`);
+      return response.data;
     } catch (error) {
-      console.log(error);
+      return error.response.data;
     } finally {
       setLoading(false);
     }
@@ -83,6 +82,8 @@ export const useInkaStore = () => {
   const payCartShopping = async (data) => {
     setLoading(true);
     try {
+      const token = localStorage.getItem('token');
+      inkaApi.defaults.headers.common.Authorization = "Bearer" + " " + token;
       const response = await inkaApi.post('/sales/', data);
       Swal.fire('Compra realizada', response.data.message, 'success');
       return response.status;
