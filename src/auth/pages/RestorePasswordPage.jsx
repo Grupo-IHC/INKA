@@ -8,21 +8,17 @@ import { useState } from "react";
 
 export const RestorePasswordPage = () => {
 
-  const [responseRestore, setResponseRestore] = useState({
-    status: null,
-    msg:null
-  });
+
   const {onInputChange, email} = useForm({email:''});
   const {loading, restorePassword} = useAuthStore();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const onSubmit = async(e) => {
     e.preventDefault();
     if(email === '') return;
     const {status} = await restorePassword(email);
     if (status === 'OK') {
-      dispatch(restore(email));
+      localStorage.setItem('email', email);
     } 
   }
 

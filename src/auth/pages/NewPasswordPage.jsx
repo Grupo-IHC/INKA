@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import { useSelector } from "react-redux";
 import { useAuthStore } from "../../hooks/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 const formValidations = {
   password: [(value) => value.length >= 6,'La contraseña debe tener al menos 6 caracteres.'],
@@ -13,11 +14,11 @@ export const NewPasswordPage = () => {
 
   const [formSubmitted, setFormSubmited] = useState(false);
 
-  const {email} = useSelector(state => state.auth);
+  const email = localStorage.getItem('email');
 
   const {changePassword} = useAuthStore();
 
-  
+  const navigate = useNavigate();
 
   const onSubmit = async(e) => {
     e.preventDefault();
@@ -28,6 +29,10 @@ export const NewPasswordPage = () => {
     
     formState.password = '';
     formState.confirmPassword = '';
+
+    setTimeout(() => {
+      navigate('/login');
+    }, 15000);
   }
 
   return (
