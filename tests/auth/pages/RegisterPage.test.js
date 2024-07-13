@@ -5,6 +5,7 @@ import { RegisterPage } from "../../../src/auth/pages/RegisterPage";
 import { store } from "../../../src/store/store";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const mockRegisterUser = jest.fn();
 jest.mock('../../../src/hooks/useAuthStore.js', () => ({
@@ -13,14 +14,21 @@ jest.mock('../../../src/hooks/useAuthStore.js', () => ({
   })
 }));
 
+jest.mock('sweetalert2', () => ({
+  fire: jest.fn()
+}));
+
 describe('Pruebas en RegisterPage', () => {
   beforeEach(() => {
     mockRegisterUser.mockClear();
+    Swal.fire.mockClear();
   });
 
   test('debe de mostrar el componente correctamente y el mensaje de éxito', async () => {
     const successMessage = 'Por favor, verifica tu correo electrónico y haz clic en el enlace de activación para completar tu registro. Revisa tu carpeta de spam.';
-    mockRegisterUser.mockResolvedValue({ status: 'OK', msg: successMessage });
+    mockRegisterUser.mockImplementation(async () => {
+      Swal.fire('Usuario registrado', successMessage, 'success');
+    })
 
     render(
       <Provider store={store}>
@@ -58,7 +66,7 @@ describe('Pruebas en RegisterPage', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText(successMessage)).toBeInTheDocument();
+      expect(Swal.fire).toHaveBeenCalledWith('Usuario registrado', successMessage, 'success');
     });
 
 

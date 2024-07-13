@@ -47,7 +47,7 @@ export const SearchProduct = () => {
             </div>
           ):
             getProducts.map((product, index) => (
-              <div key={index} className="col-span-1 rounded-lg p-3 border-2 " onClick={() => clickSeeMore(product.id[0])}>
+              <div key={index} className="col-span-1 rounded-lg p-3 border-2 " onClick={() => clickSeeMore(product.code)}>
                 <div className="flex justify-center">
                   <img src={product.image} alt={product.name} className="block" />
                 </div>
@@ -55,7 +55,7 @@ export const SearchProduct = () => {
                 <small className="block">{product.type_product}</small>
                 <div className="flex justify-between mt-2">
                   <span>Precio:</span>
-                  <span className="font-semibold">S/ {product.price.toFixed(2)}</span>
+                  {product.price !== undefined ? `S/ ${product.price.toFixed(2)}` : 'Precio no disponible'}
                 </div>
                 <button
                   className="btn-send-2 w-full mt-2 !rounded-lg"

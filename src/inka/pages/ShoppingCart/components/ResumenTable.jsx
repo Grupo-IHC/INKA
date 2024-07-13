@@ -8,7 +8,6 @@ import { restartShoppingCart, saveMethodPayment } from "../../../../store/produc
 import { savingData } from "../../../hellpers/savingData";
 import { useInkaStore } from '../../../../hooks/useInkaStore';
 
-
 import arrowDown from "/src/shared/assets/arrowDown.svg";
 import arrowRigth from "/src/shared/assets/arrowRIgth.svg";
 import iconCheck from "/src/shared/assets/iconCheck.svg";

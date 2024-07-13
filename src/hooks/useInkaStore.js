@@ -94,7 +94,6 @@ export const useInkaStore = () => {
     }
   }
   
-
   const getHistoryShopping = async() => {
     setLoading(true);
     try {
